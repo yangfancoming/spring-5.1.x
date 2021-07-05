@@ -1268,10 +1268,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		Object object = null;
 		// 如果beanDefinition为null,则尝试从缓存中获取给定的FactoryBean公开的对象
 		if (mbd == null) {
-			/*
-			 * 如果 mbd 为空，则从缓存中加载 bean。FactoryBean 生成的单例 bean 会被缓存
-			 * 在 factoryBeanObjectCache 集合中，不用每次都创建
-			 */
+			//  如果 mbd 为空，则从缓存中加载 bean。FactoryBean 生成的单例 bean 会被缓存在 factoryBeanObjectCache 集合中，不用每次都创建
 			object = getCachedObjectForFactoryBean(beanName);
 		}
 		// 未能从缓存中获得FactoryBean公开的对象,则说明该bean是一个新创建的bean

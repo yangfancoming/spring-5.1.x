@@ -19,7 +19,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * 2、由于第三方库不能直接注册到spring容器，于是可以实现org.springframework.bean.factory.FactoryBean接口，
  * 		然后给出自己对象的实例化代码即可。 （mybatis-spring 就是这么做的）
  *
- * FactoryBean最为典型的一个应用就是用来创建AOP的代理对象
+ * 3、FactoryBean 最为典型的一个应用就是用来创建AOP的代理对象
  * @see  AbstractBeanFactory#isFactoryBean(String)
  * @see  AbstractBeanFactory#isFactoryBean(String, org.springframework.beans.factory.support.RootBeanDefinition)
  * @see  AbstractBeanFactory#predictBeanType(String, org.springframework.beans.factory.support.RootBeanDefinition, Class[])
@@ -27,7 +27,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class App {
 
 	ApplicationContext ac = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
-//	look(ac);
 
 	@Test
 	public void test(){

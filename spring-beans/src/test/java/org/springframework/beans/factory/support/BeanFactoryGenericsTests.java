@@ -457,7 +457,7 @@ public class BeanFactoryGenericsTests {
 	}
 
 
-	// todo
+	// todo   对应bean属性factory-method  使用工厂方法 创建bean实例
 	@Test
 	public void testGenericSetFactoryMethod() {
 		RootBeanDefinition rbd = new RootBeanDefinition(GenericBean.class);
@@ -665,8 +665,6 @@ public class BeanFactoryGenericsTests {
 		RootBeanDefinition rbd = new RootBeanDefinition(Mockito.class);
 		rbd.setFactoryMethodName("mock");
 		rbd.getConstructorArgumentValues().addGenericArgumentValue(Runnable.class);
-
-
 		bf.registerBeanDefinition("mock", rbd);
 
 		assertEquals(Runnable.class, bf.getType("mock"));
@@ -688,10 +686,8 @@ public class BeanFactoryGenericsTests {
 	 */
 	@Test
 	public void parameterizedInstanceFactoryMethod() {
-
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
-
 		rbd = new RootBeanDefinition();
 		rbd.setFactoryBeanName("mocksControl");
 		rbd.setFactoryMethodName("createMock");
@@ -708,8 +704,6 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void parameterizedInstanceFactoryMethodWithNonResolvedClassName() {
-
-
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
 
@@ -729,7 +723,6 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void parameterizedInstanceFactoryMethodWithWrappedClassName() {
-
 		RootBeanDefinition rbd = new RootBeanDefinition();
 		rbd.setBeanClassName(Mockito.class.getName());
 		rbd.setFactoryMethodName("mock");
@@ -747,7 +740,6 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void parameterizedInstanceFactoryMethodWithInvalidClassName() {
-
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
 
@@ -767,7 +759,6 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void parameterizedInstanceFactoryMethodWithIndexedArgument() {
-
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
 
@@ -787,9 +778,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test  // SPR-16720
 	public void parameterizedInstanceFactoryMethodWithTempClassLoader() {
-
 		bf.setTempClassLoader(new OverridingClassLoader(getClass().getClassLoader()));
-
 		RootBeanDefinition rbd = new RootBeanDefinition(MocksControl.class);
 		bf.registerBeanDefinition("mocksControl", rbd);
 
@@ -809,9 +798,7 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMatchingWithBeanNameDifferentiation() {
-
 		bf.setAutowireCandidateResolver(new GenericTypeAwareAutowireCandidateResolver());
-
 		bf.registerBeanDefinition("doubleStore", new RootBeanDefinition(NumberStore.class));
 		bf.registerBeanDefinition("floatStore", new RootBeanDefinition(NumberStore.class));
 		bf.registerBeanDefinition("numberBean",new RootBeanDefinition(NumberBean.class, RootBeanDefinition.AUTOWIRE_CONSTRUCTOR, false));
@@ -832,7 +819,6 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMatchingWithFullTypeDifferentiation() {
-
 		bf.setDependencyComparator(AnnotationAwareOrderComparator.INSTANCE);
 		bf.setAutowireCandidateResolver(new GenericTypeAwareAutowireCandidateResolver());
 
@@ -933,7 +919,6 @@ public class BeanFactoryGenericsTests {
 
 	@Test
 	public void testGenericMatchingWithUnresolvedOrderedStream() {
-
 		bf.setDependencyComparator(AnnotationAwareOrderComparator.INSTANCE);
 		bf.setAutowireCandidateResolver(new GenericTypeAwareAutowireCandidateResolver());
 

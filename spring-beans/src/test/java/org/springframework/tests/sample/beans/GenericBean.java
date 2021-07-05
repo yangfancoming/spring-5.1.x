@@ -281,9 +281,9 @@ public class GenericBean<T> {
 		this.standardEnumMap = standardEnumMap;
 	}
 
-//	public static GenericBean createInstance(Set<Integer> integerSet) {
-//		return new GenericBean(integerSet);
-//	}
+	public static GenericBean createInstance(Set<Integer> integerSet) {
+		return new GenericBean(integerSet);
+	}
 
 	public static GenericBean createInstance(Set<Integer> integerSet, List<Resource> resourceList) {
 		return new GenericBean(integerSet, resourceList);
