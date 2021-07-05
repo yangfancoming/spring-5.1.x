@@ -9,8 +9,12 @@ package com.goat.chapter201.dependson.item02;
  */
 public class EventPublisherBean {
 
+	public EventPublisherBean() {
+		System.out.println(" 学生 初始化 ");
+	}
+
 	public void publish() {
-		System.out.println("事件发布者 初始化 ");
-		EventManager.getInstance().publish("发布事件咯~~");
+
+		EventManager.getInstance().publish("学生迟到~~");
 	}
 }

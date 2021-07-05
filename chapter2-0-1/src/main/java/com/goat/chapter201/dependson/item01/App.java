@@ -16,6 +16,6 @@ public class App {
 	 */
 	@Test
 	public void test31(){
-		System.out.println("hello -> " + context.getBean("hello"));
+		System.out.println("world 先于 hello 创建");
 	}
 }

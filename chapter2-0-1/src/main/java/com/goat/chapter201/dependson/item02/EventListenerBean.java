@@ -9,8 +9,11 @@ package com.goat.chapter201.dependson.item02;
  */
 public class EventListenerBean {
 
+	public EventListenerBean() {
+		System.out.println(" 老师 初始化 ");
+	}
+
 	public void addListener() {
-		System.out.println(" 事件监听者  初始化 ");
-		EventManager.getInstance().addListener(s ->System.out.println("event received in EventListenerBean : 监听到事件。。。" + s));
+		EventManager.getInstance().addListener(s ->System.out.println("老师: 监听到事件：" + s));
 	}
 }
