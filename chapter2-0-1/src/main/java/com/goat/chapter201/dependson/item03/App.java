@@ -10,7 +10,6 @@ import java.util.Arrays;
 
 /**
  * Created by Administrator on 2021/7/5.
- *
  * @ Description: 测试 @DependsOn 注解
  * @ author  山羊来了
  * @ date 2021/7/5---17:36
@@ -42,7 +41,6 @@ import java.util.Arrays;
  * 第五步，调用XM，参数为beanName=B，dependentBeanName=A，alreadySeen=有C
  * 第六步，检测dependentBeanMap能否获取到B，可以获取到，dependentBeans不为空，已存在A
  * 第七步，dependentBeans包含A，已检测到存在循环依赖。
-
  */
 public class App {
 
