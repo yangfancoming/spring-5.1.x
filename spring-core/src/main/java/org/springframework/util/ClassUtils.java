@@ -185,7 +185,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * 看名字就知道，是Class.forName的一个增强版本；通过指定的classloader加载对应的类；除了能正常加载普通的类型，还能加载简单类型，数组，或者内部类
+	 * 通过反射获取类信息
 	 * Replacement for {@code Class.forName()} that also returns Class instances  for primitives (e.g. "int") and array class names (e.g. "String[]").
 	 * Furthermore, it is also capable of resolving inner class names in Java source style (e.g. "java.lang.Thread.State" instead of "java.lang.Thread$State").
 	 * @param name the name of the Class
@@ -194,6 +194,7 @@ public abstract class ClassUtils {
 	 * @throws ClassNotFoundException if the class was not found
 	 * @throws LinkageError if the class file could not be loaded
 	 * @see Class#forName(String, boolean, ClassLoader)
+	 * 看名字就知道，是Class.forName的一个增强版本；通过指定的classloader加载对应的类；除了能正常加载普通的类型，还能加载简单类型，数组，或者内部类
 	 */
 	public static Class<?> forName(String name, @Nullable ClassLoader classLoader) throws ClassNotFoundException, LinkageError {
 		Assert.notNull(name, "Name must not be null");
@@ -239,10 +240,9 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * 和forName方法相同，内部就是直接调用的forName方法，只是抛出的异常不一样而已；
+	 * 通过反射获取类信息
 	 * Resolve the given class name into a Class instance. Supports primitives (like "int") and array class names (like "String[]").
-	 * This is effectively equivalent to the {@code forName}  method with the same arguments,
-	 * with the only difference being the exceptions thrown in case of class loading failure.
+	 * This is effectively equivalent to the {@code forName}  method with the same arguments,with the only difference being the exceptions thrown in case of class loading failure.
 	 * @param className the name of the Class
 	 * @param classLoader the class loader to use (may be {@code null}, which indicates the default class loader)
 	 * @return a class instance for the supplied name
@@ -251,6 +251,7 @@ public abstract class ClassUtils {
 	 * (typically a missing dependency declaration in a Jigsaw module definition
 	 * for a superclass or interface implemented by the class to be loaded here)
 	 * @see #forName(String, ClassLoader)
+	 * 和forName方法相同，内部就是直接调用的forName方法，只是抛出的异常不一样而已；
 	 */
 	public static Class<?> resolveClassName(String className, @Nullable ClassLoader classLoader) throws IllegalArgumentException {
 		try {

@@ -71,6 +71,7 @@ public abstract class BeanUtils {
 	}
 
 	/**
+	 * 使用指定类的最优构造函数进行实例化
 	 * Instantiate a class using its 'primary' constructor (for Kotlin classes,potentially having default arguments declared)
 	 * or its default constructor (for regular Java classes, expecting a standard no-arg setup).
 	 * Note that this method tries to set the constructor accessible if given a non-accessible (that is, non-public) constructor.

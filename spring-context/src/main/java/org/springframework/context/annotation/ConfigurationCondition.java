@@ -39,5 +39,4 @@ public interface ConfigurationCondition extends Condition {
 		 */
 		REGISTER_BEAN
 	}
-
 }

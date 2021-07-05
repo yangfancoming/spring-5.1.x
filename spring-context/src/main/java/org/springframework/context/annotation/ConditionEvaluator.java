@@ -73,10 +73,10 @@ public class ConditionEvaluator {
 			return shouldSkip(metadata, ConfigurationPhase.REGISTER_BEAN);
 		}
 		List<Condition> conditions = new ArrayList<>();
-		//首先获取@Conditional注解属性value指定的条件判定类
+		// 获取@Conditional注解的value属性值，即条件判定类的全限定名
 		for (String[] conditionClasses : getConditionClasses(metadata)) {
 			for (String conditionClass : conditionClasses) {
-				//获取条件判定类的Condition实例对象
+				// 根据指定的全限定类名，反射创建Condition接口的实现类
 				Condition condition = getCondition(conditionClass, this.context.getClassLoader());
 				conditions.add(condition);
 			}
@@ -88,26 +88,33 @@ public class ConditionEvaluator {
 			if (condition instanceof ConfigurationCondition) {
 				requiredPhase = ((ConfigurationCondition) condition).getConfigurationPhase();
 			}
-			// 调用具体条件判定类的matches方法判定是否匹配
-			// 只有Condition的requiredPhase与当前调用阶段一致，matches方法才生效，否则所有配置类都解析有一个condition返回false就跳过类的解析或注册
+			// 调用具体条件判定类的matches方法判定是否匹配 （由于源码中没有ConfigurationCondition接口实现类，因此requiredPhase == null永远为真）
 			if ((requiredPhase == null || requiredPhase == phase) && !condition.matches(this.context, metadata)) {
+				// 由于!condition.matches() 取反，所以只要匹配上了，就不会跳过，将其注册进容器。
 				return true;
 			}
 		}
 		return false;
 	}
 
-	//获取@Conditional条件注解的属性值，即条件判定类
+	/**
+	 * 获取@Conditional注解的value属性值，即条件判定类的全限定名
+	*/
 	@SuppressWarnings("unchecked")
 	private List<String[]> getConditionClasses(AnnotatedTypeMetadata metadata) {
+		// 取得指定类型注解的所有的属性值（k-v）
 		MultiValueMap<String, Object> attributes = metadata.getAllAnnotationAttributes(Conditional.class.getName(), true);
 		Object values = (attributes != null ? attributes.get("value") : null);
 		return (List<String[]>) (values != null ? values : Collections.emptyList());
 	}
 
-	//获取条件判定类的Condition实例对象
+	/**
+	 * 根据指定的全限定类名，反射创建Condition接口的实现类
+	*/
 	private Condition getCondition(String conditionClassName, @Nullable ClassLoader classloader) {
+		// 通过反射获取类信息
 		Class<?> conditionClass = ClassUtils.resolveClassName(conditionClassName, classloader);
+		// 使用指定类的最优构造函数进行实例化
 		return (Condition) BeanUtils.instantiateClass(conditionClass);
 	}
 

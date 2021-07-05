@@ -268,7 +268,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				// 注解@DependsOn。 A->B->C，则先注册和实例化C,然后是B，最后是A
 				String[] dependsOn = mbd.getDependsOn();
 				if (dependsOn != null) {
-					// 循环实例化所有的依赖bean
+					// 循环实例化所有的依赖bean。 三步走： 1.检测条件 2.更新检测条件 3.实例化Bean
 					for (String dep : dependsOn) {
 						// 1.检测 是否有循环依赖，如果有则抛出异常
 						if (isDependent(beanName, dep)) {
