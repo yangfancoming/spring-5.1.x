@@ -1,4 +1,4 @@
-package com.goat.chapter201.dependson;
+package com.goat.chapter201.dependson.item01;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

@@ -1,20 +1,15 @@
-
-
 package org.springframework.context.annotation;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.core.annotation.AliasFor;
 
 /**
  * Indicates that a method produces a bean to be managed by the Spring container.
- *
  * <h3>Overview</h3>
  *
  * The names and semantics of the attributes to this annotation are intentionally
@@ -181,10 +176,8 @@ import org.springframework.core.annotation.AliasFor;
  * Note however that {@code static} {@code @Bean} methods will not be enhanced for scoping and AOP
  * semantics as mentioned above. This works out in {@code BFPP} cases, as they are not typically
  * referenced by other {@code @Bean} methods. As a reminder, a WARN-level log message will be
- * issued for any non-static {@code @Bean} methods having a return type assignable to
- * {@code BeanFactoryPostProcessor}.
+ * issued for any non-static {@code @Bean} methods having a return type assignable to {@code BeanFactoryPostProcessor}.
 
- * @author Sam Brannen
  * @since 3.0
  * @see Configuration
  * @see Scope
@@ -202,8 +195,7 @@ public @interface Bean {
 
 	/**
 	 * Alias for {@link #name}.
-	 * Intended to be used when no other attributes are needed, for example:
-	 * {@code @Bean("customBeanName")}.
+	 * Intended to be used when no other attributes are needed, for example: {@code @Bean("customBeanName")}.
 	 * @since 4.3.3
 	 * @see #name
 	 */
@@ -214,8 +206,7 @@ public @interface Bean {
 	 * The name of this bean, or if several names, a primary bean name plus aliases.
 	 * If left unspecified, the name of the bean is the name of the annotated method.
 	 * If specified, the method name is ignored.
-	 * The bean name and aliases may also be configured via the {@link #value}
-	 * attribute if no other attributes are declared.
+	 * The bean name and aliases may also be configured via the {@link #value} attribute if no other attributes are declared.
 	 * @see #value
 	 */
 	@AliasFor("value")
@@ -244,8 +235,7 @@ public @interface Bean {
 
 	/**
 	 * The optional name of a method to call on the bean instance during initialization.
-	 * Not commonly used, given that the method may be called programmatically directly
-	 * within the body of a Bean-annotated method.
+	 * Not commonly used, given that the method may be called programmatically directly within the body of a Bean-annotated method.
 	 * The default value is {@code ""}, indicating no init method to be called.
 	 * @see org.springframework.beans.factory.InitializingBean
 	 * @see org.springframework.context.ConfigurableApplicationContext#refresh()
@@ -253,9 +243,8 @@ public @interface Bean {
 	String initMethod() default "";
 
 	/**
-	 * The optional name of a method to call on the bean instance upon closing the
-	 * application context, for example a {@code close()} method on a JDBC
-	 * {@code DataSource} implementation, or a Hibernate {@code SessionFactory} object.
+	 * The optional name of a method to call on the bean instance upon closing the application context,
+	 * for example a {@code close()} method on a JDBC {@code DataSource} implementation, or a Hibernate {@code SessionFactory} object.
 	 * The method must have no arguments but may throw any exception.
 	 * As a convenience to the user, the container will attempt to infer a destroy
 	 * method against an object returned from the {@code @Bean} method. For example, given
@@ -265,8 +254,7 @@ public @interface Bean {
 	 * inference' is currently limited to detecting only public, no-arg methods named
 	 * 'close' or 'shutdown'. The method may be declared at any level of the inheritance
 	 * hierarchy and will be detected regardless of the return type of the {@code @Bean}
-	 * method (i.e., detection occurs reflectively against the bean instance itself at
-	 * creation time).
+	 * method (i.e., detection occurs reflectively against the bean instance itself at creation time).
 	 * To disable destroy method inference for a particular {@code @Bean}, specify an
 	 * empty string as the value, e.g. {@code @Bean(destroyMethod="")}. Note that the
 	 * {@link org.springframework.beans.factory.DisposableBean} callback interface will
@@ -280,5 +268,4 @@ public @interface Bean {
 	 * @see org.springframework.context.ConfigurableApplicationContext#close()
 	 */
 	String destroyMethod() default AbstractBeanDefinition.INFER_METHOD;
-
 }

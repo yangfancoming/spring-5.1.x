@@ -3,6 +3,6 @@
 	   xmlns="http://www.springframework.org/schema/beans"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
 
-	<bean id="hello" class="com.goat.chapter201.dependson.Hello" depends-on="world"/>
-	<bean id="world" class="com.goat.chapter201.dependson.World" />
+	<bean id="hello" class="com.goat.chapter201.dependson.item01.Hello" depends-on="world"/>
+	<bean id="world" class="com.goat.chapter201.dependson.item01.World" />
 </beans>

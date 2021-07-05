@@ -161,8 +161,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		Assert.notNull(singletonFactory, "Singleton factory must not be null");
 		synchronized (singletonObjects) {
 			if (!singletonObjects.containsKey(beanName)) {
-				singletonFactories.put(beanName, singletonFactory);
 				logger.warn("【IOC容器 添加 singletonFactories 三级单例缓冲池 全局唯一入口！ 】 beanName： " + beanName);
+				singletonFactories.put(beanName, singletonFactory);
 				earlySingletonObjects.remove(beanName);
 				registeredSingletons.add(beanName);
 			}

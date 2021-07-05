@@ -29,6 +29,11 @@ public class App {
 	ApplicationContext ac = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
 
 	@Test
+	public void test0(){
+
+	}
+
+	@Test
 	public void test(){
 		Object test = ac.getBean("testBean");
 		System.out.println(test);
