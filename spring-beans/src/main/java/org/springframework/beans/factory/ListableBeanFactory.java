@@ -159,13 +159,15 @@ public interface ListableBeanFactory extends BeanFactory {
 	 * Use BeanFactoryUtils' {@code beanNamesForTypeIncludingAncestors} to include beans in ancestor factories too.
 	 * Note: Does <i>not</i> ignore singleton beans that have been registered  by other means than bean definitions.
 	 * Bean names returned by this method should always return bean names <i>in the order of definition</i> in the backend configuration, as far as possible.
+	 * 第一个参数type表示要查找的bean的类型
 	 * @param type the class or interface to match, or {@code null} for all bean names
-	 * @param includeNonSingletons whether to include prototype or scoped beans too or just singletons (also applies to FactoryBeans)
-	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and
-	 * <i>objects created by FactoryBeans</i> (or by factory methods with a
-	 * "factory-bean" reference) for the type check. Note that FactoryBeans need to be
-	 * eagerly initialized to determine their type: So be aware that passing in "true"
-	 * for this flag will initialize FactoryBeans and "factory-bean" references.
+	 * 是否考虑非单例bean
+	 * @param includeNonSingletons whether to include prototype or scoped beans too or just singletons (also applies to FactoryBeans)  includeNonSingletons
+	 * allowEagerInit 是否允许提早初始化
+	 * @param allowEagerInit whether to initialize <i>lazy-init singletons</i> and  <i>objects created by FactoryBeans</i>
+	 * (or by factory methods with a "factory-bean" reference) for the type check.
+	 * Note that FactoryBeans need to be eagerly initialized to determine their type:
+	 * So be aware that passing in "true" for this flag will initialize FactoryBeans and "factory-bean" references.
 	 * @return the names of beans (or objects created by FactoryBeans) matching the given object type (including subclasses), or an empty array if none
 	 * @see FactoryBean#getObjectType
 	 * @see BeanFactoryUtils#beanNamesForTypeIncludingAncestors(ListableBeanFactory, Class, boolean, boolean)

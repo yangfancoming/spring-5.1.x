@@ -146,8 +146,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	protected void addSingleton(String beanName, Object singletonObject) {
 		synchronized (singletonObjects) {
 			// 将动态代理后的bean 或是正常的非代理的单例bean， 存入一级单例缓存池中  全局唯一入口
-			logger.warn("【IOC容器 添加 singletonObjects 一级单例缓冲池 全局唯一入口！ 】 beanName： " + beanName);
 			singletonObjects.put(beanName, singletonObject);
+			logger.warn("【IOC容器 添加 singletonObjects 一级单例缓冲池 全局唯一入口！ 】 beanName： " + beanName);
 			// bean一旦存入一级缓存，则要将其从二三级缓存中清除。
 			singletonFactories.remove(beanName);
 			earlySingletonObjects.remove(beanName);

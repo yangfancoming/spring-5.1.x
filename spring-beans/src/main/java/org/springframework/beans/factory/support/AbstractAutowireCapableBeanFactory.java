@@ -603,13 +603,17 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	@Override
 	@Nullable
 	protected Class<?> predictBeanType(String beanName, RootBeanDefinition mbd, Class<?>... typesToMatch) {
+		//判断beanName对应的类型
 		Class<?> targetType = determineTargetType(beanName, mbd, typesToMatch);
 		// Apply SmartInstantiationAwareBeanPostProcessors to predict the eventual type after a before-instantiation shortcut.
+		//SmartInstantiationAwareBeanPostProcessor这个后置处理器可以决定bean的类型和用于实例化bean的构造函数
 		if (targetType != null && !mbd.isSynthetic() && hasInstantiationAwareBeanPostProcessors()) {
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
 				if (bp instanceof SmartInstantiationAwareBeanPostProcessor) {
 					SmartInstantiationAwareBeanPostProcessor ibp = (SmartInstantiationAwareBeanPostProcessor) bp;
 					Class<?> predicted = ibp.predictBeanType(targetType, beanName);
+					//如果返回的类型不为空，并且如果是要判断是否为FactoryBean，那么会再不符合条件的情况下继续调用下一个后置处理器
+					//如果是其他类型，直接返回
 					if (predicted != null && (typesToMatch.length != 1 || FactoryBean.class != typesToMatch[0] || FactoryBean.class.isAssignableFrom(predicted))) {
 						return predicted;
 					}
@@ -628,8 +632,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	@Nullable
 	protected Class<?> determineTargetType(String beanName, RootBeanDefinition mbd, Class<?>... typesToMatch) {
+		//获取缓存的类型，如果有，直接返回，没有就需要继续解析
 		Class<?> targetType = mbd.getTargetType();
 		if (targetType == null) {
+			//判断是否有指定工厂方法，没有就通过加载器加载beanClass，返回类型
+			//这里面如果指定了loadTimeWeaver的临时的加载器，那么会判断是否需要进行增强，如果增强会返回增强后的类对象
+			//这个临时加载器，我们在预备容器时判断是否存在loadTimeWeaver时，设置进来的
+			//如果存在工厂方法，那么需要解析工厂方法的返回值类型
 			targetType = (mbd.getFactoryMethodName() != null ? getTypeForFactoryMethod(beanName, mbd, typesToMatch) : resolveBeanClass(mbd, beanName, typesToMatch));
 			if (ObjectUtils.isEmpty(typesToMatch) || getTempClassLoader() == null) {
 				mbd.resolvedTargetType = targetType;
@@ -651,6 +660,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	@Nullable
 	protected Class<?> getTypeForFactoryMethod(String beanName, RootBeanDefinition mbd, Class<?>... typesToMatch) {
+		//从缓存中获取其属性
 		ResolvableType cachedReturnType = mbd.factoryMethodReturnType;
 		if (cachedReturnType != null) {
 			return cachedReturnType.resolve();
@@ -659,14 +669,18 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		boolean isStatic = true;
 		String factoryBeanName = mbd.getFactoryBeanName();
 		if (factoryBeanName != null) {
+			//如果指定的工厂beanName是自己，报错
 			if (factoryBeanName.equals(beanName)) {
 				throw new BeanDefinitionStoreException(mbd.getResourceDescription(), beanName,"factory-bean reference points back to the same bean definition");
 			}
 			// Check declared factory method return type on factory class.
+			//获取factoryBeanName对应的bean的class
 			factoryClass = getType(factoryBeanName);
+			//如果存在factoryBeanName，那么对应的方法不为静态方法
 			isStatic = false;
 		}else {
 			// Check declared factory method return type on bean class.
+			//直接解析beanName对应bean的class
 			factoryClass = resolveBeanClass(mbd, beanName, typesToMatch);
 		}
 		if (factoryClass == null) return null;
@@ -675,17 +689,28 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// Can't clearly figure out exact method due to type converting / autowiring!
 		Class<?> commonType = null;
 		Method uniqueCandidate = null;
+		//获取xml配置时指定的构造参数
 		int minNrOfArgs = (mbd.hasConstructorArgumentValues() ? mbd.getConstructorArgumentValues().getArgumentCount() : 0);
+		//获取当前工厂类的所有具体方法（当前类->父类->接口的default方法）
+		//如果发生方法覆盖，那么取返回类型最具体的那个一个
+		//在java中覆盖的方法的返回类型不能比被覆盖方法的返回类型更宽松
+		//也就是这个覆盖方法的返回类型要么与父类的被覆盖返回值类型一样
+		//要么是其返回值的子类
 		Method[] candidates = factoryMethodCandidateCache.computeIfAbsent(	factoryClass, ReflectionUtils::getUniqueDeclaredMethods);
 
 		for (Method candidate : candidates) {
+			//找到符合当前bean指定的工厂方法的方法
 			if (Modifier.isStatic(candidate.getModifiers()) == isStatic && mbd.isFactoryMethod(candidate) && candidate.getParameterCount() >= minNrOfArgs) {
+				//这里可能有人会问为啥是factoryMethod.getParameterTypes().length >= minNrOfArgs
+				//因为我们配置方法参数可能没有全部指定，特别是发生注解注入与xml相结合的，哈哈，这就是需求，习惯就好
 				// Declared type variables to inspect?
 				if (candidate.getTypeParameters().length > 0) {
 					try {
 						// Fully resolve parameter names and argument values.
+						//获取方法的参数类型
 						Class<?>[] paramTypes = candidate.getParameterTypes();
 						String[] paramNames = null;
+						//通过asm解析字节码获取参数名称
 						ParameterNameDiscoverer pnd = getParameterNameDiscoverer();
 						if (pnd != null) {
 							paramNames = pnd.getParameterNames(candidate);
@@ -694,15 +719,25 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 						Set<ConstructorArgumentValues.ValueHolder> usedValueHolders = new HashSet<>(paramTypes.length);
 						Object[] args = new Object[paramTypes.length];
 						for (int i = 0; i < args.length; i++) {
+							//获取符合条件的参数，首先根据下标，类型，名字匹配
+							//如果没有匹配到，那么到通用参数集合中获取
+							//根据类型，名称匹配
 							ConstructorArgumentValues.ValueHolder valueHolder = cav.getArgumentValue(i, paramTypes[i], (paramNames != null ? paramNames[i] : null), usedValueHolders);
 							if (valueHolder == null) {
+								//通过参数值进行类型匹配
 								valueHolder = cav.getGenericArgumentValue(null, null, usedValueHolders);
 							}
+							//如果匹配成功，设置对应的参数值，没有匹配到值就是默认的null
 							if (valueHolder != null) {
 								args[i] = valueHolder.getValue();
+								//加入到已被使用集合中，下次不再被重复使用
 								usedValueHolders.add(valueHolder);
 							}
 						}
+						//解析返回值，如果存在泛型，那么会通过参数来解析返回类型
+						//比如 public <T> T test(T arg1);
+						//通过参数arg1参数判断返回的值类型，没有的直接使用反射method.getReturnType()
+						//（*1*）
 						Class<?> returnType = AutowireUtils.resolveReturnTypeForFactoryMethod(candidate, args, getBeanClassLoader());
 						uniqueCandidate = (commonType == null && returnType == candidate.getReturnType() ? candidate : null);
 						commonType = ClassUtils.determineCommonAncestor(returnType, commonType);
@@ -715,6 +750,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					}
 				}else {
 					uniqueCandidate = (commonType == null ? candidate : null);
+					//如果方法参数为空的，走这，这个方法的逻辑很简单就是将当前方法的返回值和上一个方法的返回值进行isAssignableFrom，通俗点就是找爸爸，如果不是父子关系，那么向上追踪
+					//找共同的父级
 					commonType = ClassUtils.determineCommonAncestor(candidate.getReturnType(), commonType);
 					if (commonType == null) {
 						// Ambiguous return types found: return null to indicate "not determinable".

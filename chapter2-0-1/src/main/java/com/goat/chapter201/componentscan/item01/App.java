@@ -26,7 +26,6 @@ public class App {
 	 * @see NamespaceHandlerSupport#findParserForElement(org.w3c.dom.Element, org.springframework.beans.factory.xml.ParserContext)
 	 * @see ComponentScanBeanDefinitionParser#parse(org.w3c.dom.Element, org.springframework.beans.factory.xml.ParserContext)
 	 * @see ClassPathBeanDefinitionScanner#doScan(String...)
-	 *
 	 */
 	@Test
 	public void test1(){

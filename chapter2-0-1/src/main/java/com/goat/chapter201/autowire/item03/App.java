@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * 自动注入  注解版
  */
-
 @ComponentScan("com.goat.chapter201.autowire.item03")
 public class App {
 
