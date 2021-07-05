@@ -264,23 +264,20 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				// 校验合并的beanDefinition,如果验证失败,则抛出异常
 				// 检查mbd是否为抽象的或mbd为单例，但存在args的情况（args只有初始化原型对象才允许存在)
 				checkMergedBeanDefinition(mbd, beanName, args);
-				// Guarantee initialization of beans that the current bean depends on. 保证当前bean所依赖的bean的初始化
-				// 获取当前bean所依赖的其他bean  如果有则把依赖的bean先创建出来 对应 xml配置文件中 <Bean> 标签中的 depends-on 属性
-				// 确保初始化当前bean所依赖的bean。
+				// Guarantee initialization of beans that the current bean depends on. 保证当前bean所依赖的bean的先行初始化
 				// 注解@DependsOn。 A->B->C，则先注册和实例化C,然后是B，最后是A
-				// 以本项目为例，当创建class Human的bean时，dependsOn数组中会存放"xiawa"，因为Human @DepensOn("xiawa")
 				String[] dependsOn = mbd.getDependsOn();
 				if (dependsOn != null) {
-					// 循环所有的依赖bean,并递归实例化
+					// 循环实例化所有的依赖bean
 					for (String dep : dependsOn) {
-						// 检测 是否有循环依赖，如果有则抛出异常
+						// 1.检测 是否有循环依赖，如果有则抛出异常
 						if (isDependent(beanName, dep)) {
 							throw new BeanCreationException(mbd.getResourceDescription(), beanName,"Circular depends-on relationship between '" + beanName + "' and '" + dep + "'");
 						}
-						// 注册依赖记录  // 注册依赖 // 尝试注册依赖的bd,如果已经创建则直接返回
+						// 2.注册依赖记录2个Map（dependentBeanMap dependenciesForBeanMap）
 						registerDependentBean(dep, beanName);
 						try {
-							// 加载 depends-on 依赖  // 实例化依赖的bean //尝试先将依赖的bean创建出来,如果已经创建则直接从容器中获取
+							// 3.实例化依赖的bean （走正常流水线）
 							getBean(dep);
 						}catch (NoSuchBeanDefinitionException ex) {
 							throw new BeanCreationException(mbd.getResourceDescription(), beanName,	"'" + beanName + "' depends on missing bean '" + dep + "'", ex);
