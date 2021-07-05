@@ -94,64 +94,51 @@ class ScriptBeanDefinitionParser extends AbstractBeanDefinitionParser {
 	protected AbstractBeanDefinition parseInternal(Element element, ParserContext parserContext) {
 		// Engine attribute only supported for <lang:std>
 		String engine = element.getAttribute(ENGINE_ATTRIBUTE);
-
 		// Resolve the script source.
 		String value = resolveScriptSource(element, parserContext.getReaderContext());
 		if (value == null) {
 			return null;
 		}
-
 		// Set up infrastructure.
 		LangNamespaceUtils.registerScriptFactoryPostProcessorIfNecessary(parserContext.getRegistry());
-
 		// Create script factory bean definition.
 		GenericBeanDefinition bd = new GenericBeanDefinition();
 		bd.setBeanClassName(this.scriptFactoryClassName);
 		bd.setSource(parserContext.extractSource(element));
 		bd.setAttribute(ScriptFactoryPostProcessor.LANGUAGE_ATTRIBUTE, element.getLocalName());
-
 		// Determine bean scope.
 		String scope = element.getAttribute(SCOPE_ATTRIBUTE);
 		if (StringUtils.hasLength(scope)) {
 			bd.setScope(scope);
 		}
-
 		// Determine autowire mode.
 		String autowire = element.getAttribute(AUTOWIRE_ATTRIBUTE);
 		int autowireMode = parserContext.getDelegate().getAutowireMode(autowire);
 		// Only "byType" and "byName" supported, but maybe other default inherited...
 		if (autowireMode == AbstractBeanDefinition.AUTOWIRE_AUTODETECT) {
 			autowireMode = AbstractBeanDefinition.AUTOWIRE_BY_TYPE;
-		}
-		else if (autowireMode == AbstractBeanDefinition.AUTOWIRE_CONSTRUCTOR) {
+		}else if (autowireMode == AbstractBeanDefinition.AUTOWIRE_CONSTRUCTOR) {
 			autowireMode = AbstractBeanDefinition.AUTOWIRE_NO;
 		}
 		bd.setAutowireMode(autowireMode);
-
 		// Parse depends-on list of bean names.
 		String dependsOn = element.getAttribute(DEPENDS_ON_ATTRIBUTE);
 		if (StringUtils.hasLength(dependsOn)) {
-			bd.setDependsOn(StringUtils.tokenizeToStringArray(
-					dependsOn, BeanDefinitionParserDelegate.MULTI_VALUE_ATTRIBUTE_DELIMITERS));
+			bd.setDependsOn(StringUtils.tokenizeToStringArray(dependsOn, BeanDefinitionParserDelegate.MULTI_VALUE_ATTRIBUTE_DELIMITERS));
 		}
-
 		// Retrieve the defaults for bean definitions within this parser context
 		BeanDefinitionDefaults beanDefinitionDefaults = parserContext.getDelegate().getBeanDefinitionDefaults();
-
 		// Determine init method and destroy method.
 		String initMethod = element.getAttribute(INIT_METHOD_ATTRIBUTE);
 		if (StringUtils.hasLength(initMethod)) {
 			bd.setInitMethodName(initMethod);
-		}
-		else if (beanDefinitionDefaults.getInitMethodName() != null) {
+		}else if (beanDefinitionDefaults.getInitMethodName() != null) {
 			bd.setInitMethodName(beanDefinitionDefaults.getInitMethodName());
 		}
-
 		if (element.hasAttribute(DESTROY_METHOD_ATTRIBUTE)) {
 			String destroyMethod = element.getAttribute(DESTROY_METHOD_ATTRIBUTE);
 			bd.setDestroyMethodName(destroyMethod);
-		}
-		else if (beanDefinitionDefaults.getDestroyMethodName() != null) {
+		}else if (beanDefinitionDefaults.getDestroyMethodName() != null) {
 			bd.setDestroyMethodName(beanDefinitionDefaults.getDestroyMethodName());
 		}
 
@@ -160,7 +147,6 @@ class ScriptBeanDefinitionParser extends AbstractBeanDefinitionParser {
 		if (StringUtils.hasText(refreshCheckDelay)) {
 			bd.setAttribute(ScriptFactoryPostProcessor.REFRESH_CHECK_DELAY_ATTRIBUTE, Long.valueOf(refreshCheckDelay));
 		}
-
 		// Attach any proxy target class metadata.
 		String proxyTargetClass = element.getAttribute(PROXY_TARGET_CLASS_ATTRIBUTE);
 		if (StringUtils.hasText(proxyTargetClass)) {
@@ -175,8 +161,7 @@ class ScriptBeanDefinitionParser extends AbstractBeanDefinitionParser {
 		}
 		cav.addIndexedArgumentValue(constructorArgNum++, value);
 		if (element.hasAttribute(SCRIPT_INTERFACES_ATTRIBUTE)) {
-			cav.addIndexedArgumentValue(
-					constructorArgNum++, element.getAttribute(SCRIPT_INTERFACES_ATTRIBUTE), "java.lang.Class[]");
+			cav.addIndexedArgumentValue(constructorArgNum++, element.getAttribute(SCRIPT_INTERFACES_ATTRIBUTE), "java.lang.Class[]");
 		}
 
 		// This is used for Groovy. It's a bean reference to a customizer bean.
@@ -184,15 +169,12 @@ class ScriptBeanDefinitionParser extends AbstractBeanDefinitionParser {
 			String customizerBeanName = element.getAttribute(CUSTOMIZER_REF_ATTRIBUTE);
 			if (!StringUtils.hasText(customizerBeanName)) {
 				parserContext.getReaderContext().error("Attribute 'customizer-ref' has empty value", element);
-			}
-			else {
+			}else {
 				cav.addIndexedArgumentValue(constructorArgNum++, new RuntimeBeanReference(customizerBeanName));
 			}
 		}
-
 		// Add any property definitions that need adding.
 		parserContext.getDelegate().parsePropertyElements(element, bd);
-
 		return bd;
 	}
 

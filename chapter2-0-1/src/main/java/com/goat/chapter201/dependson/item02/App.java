@@ -1,6 +1,8 @@
 package com.goat.chapter201.dependson.item02;
 
 import org.junit.Test;
+import org.springframework.beans.factory.support.AbstractBeanFactory;
+import org.springframework.beans.factory.support.DefaultSingletonBeanRegistry;
 import org.springframework.context.annotation.*;
 
 /**
@@ -13,6 +15,16 @@ import org.springframework.context.annotation.*;
  *  如果先创建学生，后创建老师的话，那么老师很有可能会遗漏掉某些学生的迟到。
  *
  *  鉴于此场景，@DependsOn 注解应运而生。 在学生类上添加@DependsOn("teacher")，这样一来，容器会保证在创建学生之前，会先去创建老师。
+ */
+
+/**
+ * 注解 版本 @dependsOn 注解，以下为解析入口：
+ * @see AnnotationConfigUtils#processCommonDefinitionAnnotations(org.springframework.beans.factory.annotation.AnnotatedBeanDefinition, org.springframework.core.type.AnnotatedTypeMetadata)
+ * 以下为使用出口：
+ * @see AbstractBeanFactory#doGetBean(java.lang.String, java.lang.Class, java.lang.Object[], boolean)
+ * @see DefaultSingletonBeanRegistry#isDependent(java.lang.String, java.lang.String)
+ * @see DefaultSingletonBeanRegistry#registerDependentBean(java.lang.String, java.lang.String)
+ * @see AbstractBeanFactory#getBean(java.lang.String)
  */
 @Configuration
 @ComponentScan("com.goat.chapter201.dependson.item02")

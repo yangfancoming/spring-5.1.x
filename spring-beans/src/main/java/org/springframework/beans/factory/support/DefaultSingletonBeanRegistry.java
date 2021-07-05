@@ -123,10 +123,19 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	/** Map between containing bean names: bean name to Set of bean names that the bean contains. bean包含关系的缓存：bean name  对应 该bean包含的所有bean的name */
 	private final Map<String, Set<String>> containedBeanMap = new ConcurrentHashMap<>(16);
 
-	/** Map between dependent bean names: bean name to Set of dependent bean names. bean依赖关系的缓存：bean name 对应 依赖于该bean的所有bean的name (value中bean要先于key表示的bean被销毁)*/
+	/**
+	 * Map between dependent bean names: bean name to Set of dependent bean names
+	 * bean依赖关系的缓存：bean name 对应 依赖于该bean的所有bean的name (value中bean要先于key表示的bean被销毁)
+	 * 例如： a dependsOn b,c   则存储为
+	 * k = "b", v = {"a"}
+	 * k = "c", v = {"a"}
+	 */
 	private final Map<String, Set<String>> dependentBeanMap = new ConcurrentHashMap<>(64);
 
-	/** Map between depending bean names: bean name to Set of bean names for the bean's dependencies. bean依赖关系的缓存：bean name 对应 该bean依赖的所有bean的name */
+	/**
+	 * Map between depending bean names: bean name to Set of bean names for the bean's dependencies.
+	 * 例如： a dependsOn b,c   则存储为  k = "a", v = {"b","c"}
+	 */
 	private final Map<String, Set<String>> dependenciesForBeanMap = new ConcurrentHashMap<>(64);
 
 	/**
@@ -452,11 +461,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	/**
 	 * Determine whether the specified dependent bean has been registered as dependent on the given bean or on any of its transitive dependencies.
 	 * 确定指定的依赖bean是否已注册为依赖于给定bean或其任何可传递依赖项
-	 * @param beanName the name of the bean to check
-	 * @param dependentBeanName the name of the dependent bean
+	 * @param beanName the name of the bean to check   当前要创建的bean
+	 * @param dependentBeanName the name of the dependent bean 当前要创建的bean中所需要的依赖bean
 	 * @since 4.0
-	 */
-	/*
 	 * 检测是否存在 depends-on 循环依赖，若存在则抛异常。比如 A 依赖 B，B 又依赖 A，他们的配置如下：
 	 *   <bean id="beanA" class="BeanA" depends-on="beanB">
 	 *   <bean id="beanB" class="BeanB" depends-on="beanA">
@@ -471,15 +478,23 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	// 返回denpendentBean是否为bean的依赖bean
 	private boolean isDependent(String beanName, String dependentBeanName, @Nullable Set<String> alreadySeen) {
-		if (alreadySeen != null && alreadySeen.contains(beanName)) return false;
+		if (alreadySeen != null && alreadySeen.contains(beanName)) {
+			return false;
+		}
 		String canonicalName = canonicalName(beanName);
 		Set<String> dependentBeans = dependentBeanMap.get(canonicalName);
-		if (dependentBeans == null) return false;
-		if (dependentBeans.contains(dependentBeanName)) return true;
+		if (dependentBeans == null) {
+			return false;
+		}
+		if (dependentBeans.contains(dependentBeanName)) {
+			return true;
+		}
 		for (String transitiveDependency : dependentBeans) {
 			if (alreadySeen == null) alreadySeen = new HashSet<>();
 			alreadySeen.add(beanName);
-			if (isDependent(transitiveDependency, dependentBeanName, alreadySeen)) return true;
+			if (isDependent(transitiveDependency, dependentBeanName, alreadySeen)) {
+				return true;
+			}
 		}
 		return false;
 	}
@@ -514,7 +529,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		String canonicalName = canonicalName(beanName);
 		synchronized (dependentBeanMap) {
 			Set<String> dependentBeans = dependentBeanMap.computeIfAbsent(canonicalName, k -> new LinkedHashSet<>(8));
-			if (!dependentBeans.add(dependentBeanName)) return;
+			if (!dependentBeans.add(dependentBeanName)) {
+				return;
+			}
 		}
 		synchronized (dependenciesForBeanMap) {
 			Set<String> dependenciesForBean = dependenciesForBeanMap.computeIfAbsent(dependentBeanName, k -> new LinkedHashSet<>(8));
