@@ -55,7 +55,6 @@ import static org.mockito.BDDMockito.*;
 
 /**
  * Tests properties population and autowire behavior.
-
  */
 public class DefaultListableBeanFactoryTests {
 
@@ -1297,7 +1296,7 @@ public class DefaultListableBeanFactoryTests {
 	@Test
 	public void testAutowireBeanByNameWithDependencyCheck() {
 		RootBeanDefinition bd = new RootBeanDefinition(TestBean.class);
-		lbf.registerBeanDefinition("spous", bd);// 容器中bean的名称为"spous"，而待注入的DependenciesBean对象的属性名为"spouse"
+		lbf.registerBeanDefinition("fuck", bd);// 容器中bean的名称为"spous"，而待注入的DependenciesBean对象的属性名为"spouse"
 		try {
 			lbf.autowire(DependenciesBean.class, AutowireCapableBeanFactory.AUTOWIRE_BY_NAME, true);
 			fail("Should have thrown UnsatisfiedDependencyException");
@@ -1362,16 +1361,35 @@ public class DefaultListableBeanFactoryTests {
 		lbf.getBean(TestBean.class);
 	}
 
+	/**
+	 * 测试 将bd注册到父工厂，然后从子工厂中获取bd。结果依然可以获取到
+	 * 出口
+	 * @see DefaultListableBeanFactory#resolveBean(org.springframework.core.ResolvableType, java.lang.Object[], boolean)
+	 * @see AbstractBeanFactory#getParentBeanFactory()
+	 * @see DefaultListableBeanFactory#resolveBean(org.springframework.core.ResolvableType, java.lang.Object[], boolean)
+	*/
 	@Test
 	public void testGetBeanByTypeDefinedInParent() {
+		// 创建父工厂
 		DefaultListableBeanFactory parent = new DefaultListableBeanFactory();
+		// 创建bd
 		RootBeanDefinition bd1 = new RootBeanDefinition(TestBean.class);
+		// 将bd注册到父工厂中
 		parent.registerBeanDefinition("bd1", bd1);
+		// 从父工厂中派生出子工厂
 		DefaultListableBeanFactory lbf = new DefaultListableBeanFactory(parent);
+		// 测试从子工厂中获取bean实例。
 		TestBean bean = lbf.getBean(TestBean.class);
 		assertThat(bean.getBeanName(), equalTo("bd1"));
 	}
 
+	/**
+	 * 测试  容器中有2个名称不同但是bd相同的bean，在按类型获取时会触发NoUniqueBeanDefinitionException异常
+	 * @see DefaultListableBeanFactory#getBean(java.lang.Class)
+	 * @see DefaultListableBeanFactory#determinePrimaryCandidate(java.util.Map, java.lang.Class)
+	 * @see DefaultListableBeanFactory#determineHighestPriorityCandidate(java.util.Map, java.lang.Class)
+	 * 经过 determinePrimaryCandidate 和 determineHighestPriorityCandidate  都未能从多个候选者中，筛选出优先bean的话，则抛出异常。
+	*/
 	@Test(expected = NoUniqueBeanDefinitionException.class)
 	public void testGetBeanByTypeWithAmbiguity() {
 		RootBeanDefinition bd1 = new RootBeanDefinition(TestBean.class);

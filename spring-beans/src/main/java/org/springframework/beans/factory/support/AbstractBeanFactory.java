@@ -1030,8 +1030,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@Nullable
 	private Class<?> doResolveBeanClass(RootBeanDefinition mbd, Class<?>... typesToMatch) throws ClassNotFoundException {
 		// 1. Spring 自定义的类型器 DecoratingClassLoader 修改了 JDK 的类加载规则，自己先加载一把，没有再特派给父加载器
-		//    这就产生了一个问题，每个临时的类加载器可能加载同一个类可能出现多个
-		//    所以可以将其加入到 excludeClass 仍采用双亲委派
+		//    这就产生了一个问题，每个临时的类加载器可能加载同一个类可能出现多个，所以可以将其加入到 excludeClass 仍采用双亲委派
 		ClassLoader beanClassLoader = getBeanClassLoader();
 		ClassLoader dynamicLoader = beanClassLoader;
 		boolean freshResolve = false;
