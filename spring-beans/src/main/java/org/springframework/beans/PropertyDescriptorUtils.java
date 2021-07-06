@@ -137,5 +137,4 @@ abstract class PropertyDescriptorUtils {
 				ObjectUtils.nullSafeEquals(pd.getPropertyEditorClass(), otherPd.getPropertyEditorClass()) &&
 				pd.isBound() == otherPd.isBound() && pd.isConstrained() == otherPd.isConstrained());
 	}
-
 }

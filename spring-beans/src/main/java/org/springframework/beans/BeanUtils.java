@@ -453,13 +453,21 @@ public abstract class BeanUtils {
 	 * Obtain a new MethodParameter object for the write method of the specified property.
 	 * @param pd the PropertyDescriptor for the property
 	 * @return a corresponding MethodParameter object
+	 * <p>为指定属性的写方法获取一个新的MethodParameter对象</p>
 	 */
 	public static MethodParameter getWriteMethodParameter(PropertyDescriptor pd) {
+		//GenericTypeAwarePropertyDescriptor:通用属性描述器，用于保存 <property/>中的相关信息(例：属性所属类Class，属性的对应
+		// get/set 方法 Method 对象等)；
+		// 如果pd是 GenericTypeAwarePropertyDescriptor 实例
 		if (pd instanceof GenericTypeAwarePropertyDescriptor) {
+			//返回pd的setter的方法参数包装对象
 			return new MethodParameter(((GenericTypeAwarePropertyDescriptor) pd).getWriteMethodParameter());
 		}else {
+			//获取pd的属性setter方法
 			Method writeMethod = pd.getWriteMethod();
+			//如果writeMethod为null，抛出异常
 			Assert.state(writeMethod != null, "No write method available");
+			//新建一个方法参数包装对象对witerMethodd进行包装，指定该方法的参数为第一个
 			return new MethodParameter(writeMethod, 0);
 		}
 	}
@@ -475,6 +483,7 @@ public abstract class BeanUtils {
 	 */
 	public static boolean isSimpleProperty(Class<?> clazz) {
 		Assert.notNull(clazz, "Class must not be null");
+		// 如果type是"简单"值类型 || (type是数组 & type的元素类型是否"简单"值类型) 就为ture；否则为false
 		return isSimpleValueType(clazz) || (clazz.isArray() && isSimpleValueType(clazz.getComponentType()));
 	}
 
@@ -483,6 +492,7 @@ public abstract class BeanUtils {
 	 * a primitive, an enum, a String or other CharSequence, a Number, a Date,a URI, a URL, a Locale or a Class.
 	 * @param clazz the type to check
 	 * @return whether the given type represents a "simple" value type
+	 * <p>检查给定的类型是否表示 "简单" 值类型: primitive 或者 primitive包装器，枚举，字符串， 或 其他字符，数字，日期，时态，URI，URL，语言环境或类</p>
 	 */
 	public static boolean isSimpleValueType(Class<?> clazz) {
 		return (ClassUtils.isPrimitiveOrWrapper(clazz) || Enum.class.isAssignableFrom(clazz) ||

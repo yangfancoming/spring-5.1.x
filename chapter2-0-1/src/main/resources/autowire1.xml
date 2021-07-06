@@ -3,13 +3,14 @@
 	   xmlns="http://www.springframework.org/schema/beans"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
 
-	<bean name="mongoDao" class="com.goat.chapter201.autowire.MongoDao"/>
-	<bean name="mysqlDao" class="com.goat.chapter201.autowire.MysqlDao"/>
 
 	<!-- 非自动注入，手动配置依赖 -->
 	<bean name="service-without-autowire" class="com.goat.chapter201.autowire.item01.Service" autowire="no">
 		<property name="mysqlDao" ref="mysqlDao"/>
 		<property name="mongoDao" ref="mongoDao"/>
 	</bean>
+
+	<bean name="mongoDao" class="com.goat.chapter201.autowire.MongoDao"/>
+	<bean name="mysqlDao" class="com.goat.chapter201.autowire.MysqlDao"/>
 
 </beans>

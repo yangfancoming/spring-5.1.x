@@ -1,27 +1,18 @@
-
-
 package org.springframework.beans;
-
 import java.beans.BeanInfo;
 import java.beans.IndexedPropertyDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.math.BigDecimal;
-
 import org.junit.Test;
-
 import org.springframework.tests.sample.beans.TestBean;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 /**
-
-
- * @author Sam Brannen
  * @since 3.1
  */
 public class ExtendedBeanInfoTests {
@@ -613,8 +604,7 @@ public class ExtendedBeanInfoTests {
 	}
 
 	/**
-	 * Ensures that an empty string is not passed into a PropertyDescriptor constructor. This
-	 * could occur when handling ArrayList.set(int,Object)
+	 * Ensures that an empty string is not passed into a PropertyDescriptor constructor. This could occur when handling ArrayList.set(int,Object)
 	 */
 	@Test
 	public void emptyPropertiesIgnored() throws IntrospectionException {
@@ -723,7 +713,6 @@ public class ExtendedBeanInfoTests {
 	public void propertyCountsMatch() throws IntrospectionException {
 		BeanInfo bi = Introspector.getBeanInfo(TestBean.class);
 		BeanInfo ebi = new ExtendedBeanInfo(bi);
-
 		assertThat(ebi.getPropertyDescriptors().length, equalTo(bi.getPropertyDescriptors().length));
 	}
 

@@ -1,19 +1,13 @@
-
-
 package org.springframework.beans;
-
 import java.beans.IndexedPropertyDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
-
 import org.junit.Test;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 /**
-
  * @see ExtendedBeanInfoTests
  */
 public class SimplePropertyDescriptorTests {
@@ -22,8 +16,7 @@ public class SimplePropertyDescriptorTests {
 	public void toStringOutput() throws IntrospectionException, SecurityException, NoSuchMethodException {
 		{
 			Object pd = new ExtendedBeanInfo.SimplePropertyDescriptor("foo", null, null);
-			assertThat(pd.toString(), containsString(
-					"PropertyDescriptor[name=foo, propertyType=null, readMethod=null"));
+			assertThat(pd.toString(), containsString("PropertyDescriptor[name=foo, propertyType=null, readMethod=null"));
 		}
 		{
 			class C {

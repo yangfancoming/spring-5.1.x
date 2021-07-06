@@ -1265,6 +1265,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @param beanName the name of the bean
 	 * @param mbd the bean definition for the bean
 	 * @param bw the BeanWrapper with bean instance
+	 * 用来自 BeanDefinition 的属性值填充给定的BeanWrapper中的bean实例
 	 */
 	@SuppressWarnings("deprecation")  // for postProcessPropertyValues
 	protected void populateBean(String beanName, RootBeanDefinition mbd, @Nullable BeanWrapper bw) {
@@ -1324,10 +1325,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				// 标注了@Autowired，没有找到反倒为报错 No qualifying bean of type 'java.lang.String' 。。。注意这些区别
 				autowireByType(beanName, mbd, bw, newPvs);
 			}
+			// 结合注入后的配置，覆盖当前配置
 			pvs = newPvs;
 		}
 		// 下面的代码是判断是否需要执行postProcessPropertyValues；改变bean的属性
 		boolean hasInstAwareBpps = hasInstantiationAwareBeanPostProcessors();
+		// 是否进行依赖检查
 		boolean needsDepCheck = (mbd.getDependencyCheck() != AbstractBeanDefinition.DEPENDENCY_CHECK_NONE);
 		PropertyDescriptor[] filteredPds = null;
 		// 这里又是一种后置处理，用于在 Spring 填充属性到 bean 对象前，对属性的值进行相应的处理，比如可以修改某些属性的值。这时注入到 bean 中的值就不是配置文件中的内容了，而是经过后置处理器修改后的内容
@@ -1340,7 +1343,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 					// sos 这里解析@Autowire注解  依赖的bean注入在这里实现  AutowiredAnnotationBeanPostProcessor
 					PropertyValues pvsToUse = ibp.postProcessProperties(pvs, bw.getWrappedInstance(), beanName);
 					if (pvsToUse == null) {
-						if (filteredPds == null)  filteredPds = filterPropertyDescriptorsForDependencyCheck(bw, mbd.allowCaching);
+						if (filteredPds == null) {
+							filteredPds = filterPropertyDescriptorsForDependencyCheck(bw, mbd.allowCaching);
+						}
 						pvsToUse = ibp.postProcessPropertyValues(pvs, filteredPds, bw.getWrappedInstance(), beanName);
 						if (pvsToUse == null) return;
 					}
@@ -1383,6 +1388,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 *   7. Locale
 	 *   8. 以上所有类型的数组形式，比如 String[]、Date[]、int[] 等等
 	 * 除了要求非简单类型的属性外，还要求属性未在配置文件中配置过，也就是 pvs.contains(pd.getName()) = false。
+	 *
+	 *由此我们可以推断出，能自动注入的属性必须具备以下几点
+	 * （1）有对应的set方法
+	 * （2）非cglib生成的类的内部属性
+	 * （3）非通过spring中aware接口设置的属性，也就是说你可以注入容器内部属性，但是不能实现这个属性的aware接口
+	 * （4）非配置文件中手动注入的属性（property标签）
+	 * （5）非简单属性
 	 */
 	protected void autowireByName(String beanName, AbstractBeanDefinition mbd, BeanWrapper bw, MutablePropertyValues pvs) {
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
@@ -1415,7 +1427,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		TypeConverter converter = getCustomTypeConverter();
 		if (converter == null) converter = bw;
 		Set<String> autowiredBeanNames = new LinkedHashSet<>(4);
-		// 获取非简单类型的属性
+		// 获取非简单类型的属性 // 类似的，过滤出满足装配条件的Bean属性
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
 		for (String propertyName : propertyNames) {
 			try {
@@ -1449,22 +1461,33 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 	/**
 	 * Return an array of non-simple bean properties that are unsatisfied.
-	 * These are probably unsatisfied references to other beans in the
-	 * factory. Does not include simple properties like primitives or Strings.
-	 * @param mbd the merged bean definition the bean was created with
+	 * These are probably unsatisfied references to other beans in the factory.
+	 * Does not include simple properties like primitives or Strings.
+	 * @param mbd the merged bean definition the bean was created with   创建bean时适用的合并BeanDefinition
 	 * @param bw the BeanWrapper the bean was created with
 	 * @return an array of bean property names
 	 * @see org.springframework.beans.BeanUtils#isSimpleProperty
+	 * 返回不满足的非简单bean属性数组。
 	 * 这个方法会去推断所有需要注入的属性，由于set方法是spring定义的所谓writeMethod，所以能找到userDao
 	 * 非简单属性：就是类型为对象类型的属性，但是这里并不是将所有的对象类型都都会找到，比如 8 个原始包装类型，String 类型 ，Number类型、Date类型、URL类型、URI类型等都会被忽略
+	 * 获取bw中有setter方法 && 非简单类型属性 && mbd的PropertyValues中没有该pd的属性名的 PropertyDescriptor 属性名数组
 	 */
 	protected String[] unsatisfiedNonSimpleProperties(AbstractBeanDefinition mbd, BeanWrapper bw) {
+		// TreeSet:TreeSet底层是二叉树，可以对对象元素进行排序，但是自定义类需要实现comparable接口，重写comparaTo()方法。
 		Set<String> result = new TreeSet<>();
+		// 获取mdbd的所有属性值
 		PropertyValues pvs = mbd.getPropertyValues();
+		// PropertyDescriptor:表示JavaBean类通过存储器导出一个属性获取bw的所有属性描述对象
 		PropertyDescriptor[] pds = bw.getPropertyDescriptors();
+		// 遍历属性描述对象
 		for (PropertyDescriptor pd : pds) {
+			// 如果 pd有写入属性方法 && 该pd不是被排除在依赖项检查之外 && pvs没有该pd的属性名 && pd的属性类型不是"简单值类型"
 			// 有可写方法、依赖检测中没有被忽略、不是简单属性类型
-			if (pd.getWriteMethod() != null && !isExcludedFromDependencyCheck(pd) && !pvs.contains(pd.getName()) && !BeanUtils.isSimpleProperty(pd.getPropertyType())) {
+			if (pd.getWriteMethod() != null
+					&& !isExcludedFromDependencyCheck(pd)
+					&& !pvs.contains(pd.getName())
+					&& !BeanUtils.isSimpleProperty(pd.getPropertyType())) {
+				// 将pdd的属性名添加到result中
 				result.add(pd.getName());
 			}
 		}
@@ -1507,13 +1530,14 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 	/**
 	 * Determine whether the given bean property is excluded from dependency checks.
-	 * This implementation excludes properties defined by CGLIB and  properties whose type matches an ignored dependency type or which  are defined by an ignored dependency interface.
+	 * This implementation excludes properties defined by CGLIB and  properties whose type matches an ignored dependency type or which are defined by an ignored dependency interface.
 	 * @param pd the PropertyDescriptor of the bean property
 	 * @return whether the bean property is excluded
 	 * @see #ignoreDependencyType(Class)
 	 * @see #ignoreDependencyInterface(Class)
 	 */
 	protected boolean isExcludedFromDependencyCheck(PropertyDescriptor pd) {
+		//pd的属性是CGLIB定义的属性 || 该工厂的忽略依赖类型列表中包含该pd的属性类型 || pd的属性是ignoredDependencyInterfaces里面的接口定义的方法
 		return (AutowireUtils.isExcludedFromDependencyCheck(pd) || ignoredDependencyTypes.contains(pd.getPropertyType()) || AutowireUtils.isSetterDefinedInInterface(pd, ignoredDependencyInterfaces));
 	}
 
@@ -1560,6 +1584,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			if (mpvs.isConverted()) {
 				// Shortcut: use the pre-converted values as-is.
 				try {
+					// 如果已被设置转换完成，直接完成配置
 					bw.setPropertyValues(mpvs);
 					return;
 				}catch (BeansException ex) {
@@ -1572,7 +1597,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		TypeConverter converter = getCustomTypeConverter();
-		if (converter == null) converter = bw;
+		if (converter == null) {
+			converter = bw;
+		}
+		// 创建BeanDefinitionValueResolver解析器，用来解析未被解析的PropertyValue。
+		// 开始遍历检查original中的属性，对未被解析的先解析/已解析的直接加入deepCopy中，最后再填充到具体的Bean实例中
 		BeanDefinitionValueResolver valueResolver = new BeanDefinitionValueResolver(this, beanName, mbd, converter);
 		// Create a deep copy, resolving any references for values.
 		List<PropertyValue> deepCopy = new ArrayList<>(original.size());
@@ -1581,6 +1610,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		for (PropertyValue pv : original) {
 			// 如果属性值被转换过，则就不需要再次转换
 			if (pv.isConverted()) {
+				// 如果属性已经转化，直接添加
 				deepCopy.add(pv);
 			}else {
 				String propertyName = pv.getName();
@@ -1610,6 +1640,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				 * 对于 int 类型的配置，这里并未做转换，所以width = "280"，还是字符串。
 				 * 除了解析上面几种类型，该方法还会解析 <set/>、 <map/>、<array/> 等集合配置
 				 */
+				// 核心逻辑，解析获取实际的值
+				// 对于RuntimeReference，会解析拿到具体的beanName,最终通过getBean(beanName)拿到具体的对象
 				Object resolvedValue = valueResolver.resolveValueIfNecessary(pv, originalValue);
 				Object convertedValue = resolvedValue;
 				/*
@@ -1633,10 +1665,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				 * 关于 nested 类型的属性，大家还可以参考 Spring 的官方文档：
 				 *     https://docs.spring.io/spring/docs/4.3.17.RELEASE/spring-framework-reference/htmlsingle/#beans-beans-conventions
 				 */
+				// 判断是否可以转换
 				boolean convertible = bw.isWritableProperty(propertyName) && !PropertyAccessorUtils.isNestedOrIndexedProperty(propertyName);
 				// 对于一般的属性，convertible 通常为 true
 				if (convertible) {
 					// 对属性值的类型进行转换，比如将 String 类型的属性值 "123" 转为 Integer 类型的 123   Resourse 转换为 UrlResource
+					// 尝试进行转换
 					convertedValue = convertForProperty(resolvedValue, propertyName, bw, converter);
 				}
 				// Possibly store converted value in merged bean definition,
@@ -1645,6 +1679,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				 * 如果 originalValue 是通过 autowireByType 或 autowireByName 解析而来，
 				 * 那么此处条件成立，即 (resolvedValue == originalValue) = true
 				 */
+				// 避免需要重复转换，设定已转换
 				if (resolvedValue == originalValue) {
 					if (convertible) {
 						// 将 convertedValue 设置到 pv 中，后续再次创建同一个 bean 时，就无需再次进行转换了

@@ -578,6 +578,14 @@ public class BeanDefinitionParserDelegate {
 		}
 	}
 
+	/**
+	 * 将xml配置的autowire属性，字符串转换为对应的整型。
+	 * @param attValue xml bean标签中配置的 autowire="byName"
+	 * int AUTOWIRE_NO = 0;
+	 * int AUTOWIRE_BY_NAME = 1;
+	 * int AUTOWIRE_BY_TYPE = 2;
+	 * int AUTOWIRE_CONSTRUCTOR = 3;
+	*/
 	@SuppressWarnings("deprecation")
 	public int getAutowireMode(String attValue) {
 		String att = attValue;

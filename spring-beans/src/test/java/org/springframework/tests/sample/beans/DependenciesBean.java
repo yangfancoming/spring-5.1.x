@@ -55,5 +55,4 @@ public class DependenciesBean implements BeanFactoryAware {
 	public BeanFactory getBeanFactory() {
 		return beanFactory;
 	}
-
 }

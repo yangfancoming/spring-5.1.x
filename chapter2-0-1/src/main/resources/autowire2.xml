@@ -4,9 +4,11 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
 
 
+	<!-- 通过设置 autowire 属性，我们就不需要像上面那样显式配置依赖了 -->
+<!--	<bean name="service-with-autowire" class="com.goat.chapter201.autowire.item01.Service" autowire="byName"/>-->
+	<bean name="service-with-autowire" class="com.goat.chapter201.autowire.item01.Service" autowire="byName"/>
+
 	<bean name="mongoDao" class="com.goat.chapter201.autowire.MongoDao"/>
 	<bean name="mysqlDao" class="com.goat.chapter201.autowire.MysqlDao"/>
 
-	<!-- 通过设置 autowire 属性，我们就不需要像上面那样显式配置依赖了 -->
-	<bean name="service-with-autowire" class="com.goat.chapter201.autowire.item01.Service" autowire="byName"/>
 </beans>
