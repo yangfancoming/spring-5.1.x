@@ -1,4 +1,4 @@
-package com.goat.chapter201.bean.lazy.item02;
+package com.goat.chapter201.model;
 
 /**
  * Created by Administrator on 2021/7/7.
@@ -7,6 +7,6 @@ package com.goat.chapter201.bean.lazy.item02;
  * @ author  山羊来了
  * @ date 2021/7/7---10:01
  */
-public class B {
+public class A {
 
 }

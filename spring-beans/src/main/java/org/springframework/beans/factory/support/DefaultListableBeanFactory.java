@@ -1024,7 +1024,8 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			String beanName = candidateNames[0];
 			T t = (T) getBean(beanName, requiredType.toClass(), args);
 			return new NamedBeanHolder<>(beanName, t);
-		}else if (candidateNames.length > 1) {  // 如果合适的BeanName还是有多个的话
+		}else if (candidateNames.length > 1) {
+			// 如果合适的BeanName还是有多个的话
 			Map<String, Object> candidates = new LinkedHashMap<>(candidateNames.length);
 			for (String beanName : candidateNames) {
 				// 看看是不是已经创建多的单例Bean
@@ -1486,10 +1487,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		for (Map.Entry<String, Object> entry : candidates.entrySet()) {
 			String candidateBeanName = entry.getKey();
 			Object beanInstance = entry.getValue();
+			// 判断指定bean上是否标注有 @Primary 注解
 			if (isPrimary(candidateBeanName, beanInstance)) {
 				if (primaryBeanName != null) {
 					boolean candidateLocal = containsBeanDefinition(candidateBeanName);
 					boolean primaryLocal = containsBeanDefinition(primaryBeanName);
+					// 因为候选bean中最多只能有一个bd标注@Primary注解，所以如果有2个以上标注有@primary注解，则抛出异常
 					if (candidateLocal && primaryLocal) {
 						throw new NoUniqueBeanDefinitionException(requiredType, candidates.size(),"more than one 'primary' bean found among candidates: " + candidates.keySet());
 					}else if (candidateLocal) {
@@ -1539,17 +1542,22 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	/**
+	 * 判断指定bean上是否标注有 @Primary 注解
 	 * Return whether the bean definition for the given bean name has been marked as a primary bean.
 	 * @param beanName the name of the bean
 	 * @param beanInstance the corresponding bean instance (can be null)
 	 * @return whether the given bean qualifies as primary
 	 */
 	protected boolean isPrimary(String beanName, Object beanInstance) {
+		// 先确定容器中是否存在该bean
 		if (containsBeanDefinition(beanName)) {
+			// 从容器中获取该bean，判断该bean上是否标注有 @Primary 注解
 			return getMergedLocalBeanDefinition(beanName).isPrimary();
 		}
+		// 如果当前容器中没有找到对应bean，则去父容器中查找
 		BeanFactory parent = getParentBeanFactory();
-		return (parent instanceof DefaultListableBeanFactory && ((DefaultListableBeanFactory) parent).isPrimary(beanName, beanInstance));
+		// 递归调用 isPrimary
+		return (parent instanceof DefaultListableBeanFactory) && ((DefaultListableBeanFactory) parent).isPrimary(beanName, beanInstance);
 	}
 
 	/**

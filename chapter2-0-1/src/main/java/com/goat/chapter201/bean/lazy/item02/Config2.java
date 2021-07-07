@@ -1,5 +1,7 @@
 package com.goat.chapter201.bean.lazy.item02;
 
+import com.goat.chapter201.model.A;
+import com.goat.chapter201.model.B;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;

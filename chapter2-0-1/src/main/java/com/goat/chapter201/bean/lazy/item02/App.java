@@ -34,6 +34,5 @@ public class App {
 		ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
 		Assert.assertTrue(beanFactory.containsSingleton("a"));
 		Assert.assertFalse(beanFactory.containsSingleton("b"));
-
 	}
 }

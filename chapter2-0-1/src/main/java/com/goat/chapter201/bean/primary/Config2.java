@@ -1,9 +1,9 @@
-package com.goat.chapter201.bean.lazy.item02;
+package com.goat.chapter201.bean.primary;
 
 import com.goat.chapter201.model.A;
-import com.goat.chapter201.model.B;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 /**
  * Created by Administrator on 2021/7/7.
@@ -13,15 +13,16 @@ import org.springframework.context.annotation.Configuration;
  * @ date 2021/7/7---9:52
  */
 @Configuration
-public class Config1 {
+public class Config2 {
 
 	@Bean
-	public A a(){
+	public A a1(){
 		return new A();
 	}
 
 	@Bean
-	public B b(){
-		return new B();
+	@Primary
+	public A a2(){
+		return new A();
 	}
 }

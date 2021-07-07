@@ -1,7 +1,6 @@
-package com.goat.chapter201.bean.lazy.item02;
+package com.goat.chapter201.bean.primary;
 
 import com.goat.chapter201.model.A;
-import com.goat.chapter201.model.B;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,12 +15,12 @@ import org.springframework.context.annotation.Configuration;
 public class Config1 {
 
 	@Bean
-	public A a(){
+	public A a1(){
 		return new A();
 	}
 
 	@Bean
-	public B b(){
-		return new B();
+	public A a2(){
+		return new A();
 	}
 }

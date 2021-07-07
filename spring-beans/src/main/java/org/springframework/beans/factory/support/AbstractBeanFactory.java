@@ -846,7 +846,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		RootBeanDefinition mbd = mergedBeanDefinitions.get(beanName);
 		if (mbd != null) return mbd;
 		// 调用重载方法进行bean定义合并 //缓存中未找到，就到BeanFactory中寻找
-		return getMergedBeanDefinition(beanName, getBeanDefinition(beanName));
+		RootBeanDefinition mergedBeanDefinition = getMergedBeanDefinition(beanName, getBeanDefinition(beanName));
+		return mergedBeanDefinition;
 	}
 
 	/**
@@ -857,7 +858,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * @throws BeanDefinitionStoreException in case of an invalid bean definition
 	 */
 	protected RootBeanDefinition getMergedBeanDefinition(String beanName, BeanDefinition bd) throws BeanDefinitionStoreException {
-		return getMergedBeanDefinition(beanName, bd, null);
+		RootBeanDefinition mergedBeanDefinition = getMergedBeanDefinition(beanName, bd, null);
+		return mergedBeanDefinition;
 	}
 
 	/**

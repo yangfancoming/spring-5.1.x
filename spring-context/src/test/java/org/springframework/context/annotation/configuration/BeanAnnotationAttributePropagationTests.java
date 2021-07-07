@@ -1,9 +1,5 @@
-
-
 package org.springframework.context.annotation.configuration;
-
 import org.junit.Test;
-
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
@@ -19,11 +15,11 @@ import org.springframework.context.annotation.Primary;
 import static org.junit.Assert.*;
 
 /**
- * Unit tests proving that the various attributes available via the {@link Bean}
- * annotation are correctly reflected in the {@link BeanDefinition} created when processing the {@link Configuration} class.
- * Also includes tests proving that using {@link Lazy} and {@link Primary}
- * annotations in conjunction with Bean propagate their respective metadata
- * correctly into the resulting BeanDefinition
+ * Unit tests proving that the various attributes available via the {@link Bean} annotation are correctly reflected in the {@link BeanDefinition} created when processing the {@link Configuration} class.
+ * Also includes tests proving that using {@link Lazy} and {@link Primary} annotations in conjunction with Bean propagate their respective metadata correctly into the resulting BeanDefinition
+ *
+ * 单元测试证明通过{@link Bean}注解可用的各种属性 正确地反映在处理{@link Configuration}类时创建的{@link BeanDefinition}中。
+ * 还包括测试，证明使用{@link Lazy}和{@link Primary}注解与Bean一起正确地将各自的元数据传播到结果的BeanDefinition中
  */
 public class BeanAnnotationAttributePropagationTests {
 
@@ -69,7 +65,8 @@ public class BeanAnnotationAttributePropagationTests {
 
 	@Test
 	public void primaryMetadataIsPropagated() {
-		@Configuration class Config {
+		@Configuration
+		class Config {
 			@Primary @Bean
 			Object foo() { return null; }
 		}
@@ -132,5 +129,4 @@ public class BeanAnnotationAttributePropagationTests {
 		pp.postProcessBeanFactory(factory);
 		return (AbstractBeanDefinition) factory.getBeanDefinition("foo");
 	}
-
 }
