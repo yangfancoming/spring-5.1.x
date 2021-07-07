@@ -729,7 +729,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			 // 该方法的merge是指如果bean类继承有父类，那么就将它所有的父类的bd融合成一个RootBeanDefinition返回
 			 */
 			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName); // 拿到bean的定义信息
-			// 不是抽象类、是单例的且不是懒加载的 //bean不是抽象的，没有@Lazy注解，并且还是单例的
+			// 不是抽象类、是单例的且非懒加载的
 			if (!bd.isAbstract() && bd.isSingleton() && !bd.isLazyInit()) {
 				/**
 				 *  处理 FactoryBean

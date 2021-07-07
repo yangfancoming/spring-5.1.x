@@ -1,4 +1,4 @@
-package com.goat.chapter115.service;
+package com.goat.chapter201.bean.lazy.item01;
 
 /**
  * Created by 64274 on 2019/6/28.
@@ -16,5 +16,4 @@ public class LazyServiceImpl implements LazyService {
 	public String getMessage() {
 		return "懒加载实现类bean";
 	}
-
 }

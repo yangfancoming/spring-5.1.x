@@ -1,13 +1,8 @@
-
-
 package org.springframework.context.annotation;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
-
 import org.junit.Test;
-
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
@@ -43,9 +38,12 @@ public class LazyAutowiredAnnotationBeanPostProcessorTests {
 	}
 
 	@Test
-	public void testLazyResourceInjectionWithField() {
+	public void testLazyResourceInjectionWithField1() {
 		doTestLazyResourceInjection(FieldResourceInjectionBean.class);
+	}
 
+	@Test
+	public void testLazyResourceInjectionWithField() {
 		AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext();
 		RootBeanDefinition abd = new RootBeanDefinition(FieldResourceInjectionBean.class);
 		abd.setScope(RootBeanDefinition.SCOPE_PROTOTYPE);
@@ -148,7 +146,6 @@ public class LazyAutowiredAnnotationBeanPostProcessorTests {
 
 
 	public interface TestBeanHolder {
-
 		TestBean getTestBean();
 	}
 
@@ -161,6 +158,7 @@ public class LazyAutowiredAnnotationBeanPostProcessorTests {
 		@Autowired @Lazy
 		private List<TestBean> testBeans;
 
+		@Override
 		public TestBean getTestBean() {
 			return this.testBean;
 		}

@@ -1,4 +1,4 @@
-package com.goat.chapter115.service;
+package com.goat.chapter201.bean.lazy.item01;
 
 
 /**
@@ -8,8 +8,7 @@ package com.goat.chapter115.service;
  * @ author  山羊来了
  * @ date 2019/6/28---10:39
  */
-public interface WhatService {
+public interface LazyService {
 
 	String getMessage();
-
 }

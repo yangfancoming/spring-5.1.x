@@ -50,5 +50,4 @@ public @interface Lazy {
 	 * Whether lazy initialization should occur.
 	 */
 	boolean value() default true;
-
 }
