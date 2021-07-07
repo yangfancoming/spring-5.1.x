@@ -1040,7 +1040,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			// 有多个Bean实例的话 则取带有Primary注解或者带有Primary信息的Bean
 			String candidateName = determinePrimaryCandidate(candidates, requiredType.toClass());
 			if (candidateName == null) {
-				// 如果没有Primary注解或者Primary相关的信息，则去优先级高的Bean实例
+				// 如果没有Primary注解，则取@Priority 注解优先级高的Bean实例
 				candidateName = determineHighestPriorityCandidate(candidates, requiredType.toClass());
 			}
 			if (candidateName != null) {
@@ -1522,9 +1522,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			String candidateBeanName = entry.getKey();
 			Object beanInstance = entry.getValue();
 			if (beanInstance != null) {
+				// 获取指定类上的@Priority注解的value属性值。
 				Integer candidatePriority = getPriority(beanInstance);
 				if (candidatePriority != null) {
 					if (highestPriorityBeanName != null) {
+						// 如果候选集合中有@Priority(x)值相同的，则抛出异常
 						if (candidatePriority.equals(highestPriority)) {
 							throw new NoUniqueBeanDefinitionException(requiredType, candidates.size(),"Multiple beans found with the same priority ('" + highestPriority + "') among candidates: " + candidates.keySet());
 						}else if (candidatePriority < highestPriority) {
@@ -1561,10 +1563,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	/**
+	 * 获取指定类上的@Priority注解的value属性值。
 	 * Return the priority assigned for the given bean instance by the {@code javax.annotation.Priority} annotation.
 	 * The default implementation delegates to the specified {@link #setDependencyComparator dependency comparator},
-	 * checking its {@link OrderComparator#getPriority method} if it is an extension of
-	 * Spring's common {@link OrderComparator} - typically, an {@link org.springframework.core.annotation.AnnotationAwareOrderComparator}.
+	 * checking its {@link OrderComparator#getPriority method} if it is an extension of Spring's common {@link OrderComparator} - typically,
+	 * an {@link org.springframework.core.annotation.AnnotationAwareOrderComparator}.
 	 * If no such comparator is present, this implementation returns {@code null}.
 	 * @param beanInstance the bean instance to check (can be {@code null})
 	 * @return the priority assigned to that bean or {@code null} if none is set
@@ -1573,6 +1576,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	protected Integer getPriority(Object beanInstance) {
 		Comparator<Object> comparator = getDependencyComparator();
 		if (comparator instanceof OrderComparator) {
+			//  实现类 AnnotationAwareOrderComparator 获取指定类上的@Priority注解的value属性值。
 			return ((OrderComparator) comparator).getPriority(beanInstance);
 		}
 		return null;
@@ -1588,8 +1592,10 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 * i.e. whether the candidate points back to the original bean or to a factory method on the original bean.
 	 */
 	private boolean isSelfReference(@Nullable String beanName, @Nullable String candidateName) {
-		return (beanName != null && candidateName != null && (beanName.equals(candidateName) || (containsBeanDefinition(candidateName) &&
-						beanName.equals(getMergedLocalBeanDefinition(candidateName).getFactoryBeanName()))));
+		return (beanName != null && candidateName != null
+				&& (beanName.equals(candidateName)
+				|| (containsBeanDefinition(candidateName)
+				&& beanName.equals(getMergedLocalBeanDefinition(candidateName).getFactoryBeanName()))));
 	}
 
 	//  Raise a NoSuchBeanDefinitionException or BeanNotOfRequiredTypeException  for an unresolvable dependency.

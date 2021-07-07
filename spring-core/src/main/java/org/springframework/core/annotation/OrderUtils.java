@@ -22,6 +22,7 @@ public abstract class OrderUtils {
 	/** Cache marker for a non-annotated Class. */
 	private static final Object NOT_ANNOTATED = new Object();
 
+	// @Priority 注解
 	@Nullable
 	private static Class<? extends Annotation> priorityAnnotationType;
 
@@ -41,6 +42,7 @@ public abstract class OrderUtils {
 	private static final Map<Class<?>, Object> priorityCache = new ConcurrentReferenceHashMap<>();
 
 	/**
+	 * 获取指定类上的@Order注解的值，若没有@Order注解，则获取@Priority注解的值。（有缓存功能）
 	 * Return the order on the specified {@code type}, or the specified default value if none can be found.
 	 * Takes care of {@link Order @Order} and {@code @javax.annotation.Priority}.
 	 * @param type the type to handle
@@ -54,6 +56,7 @@ public abstract class OrderUtils {
 	}
 
 	/**
+	 * 获取指定类上的@Order注解的值，若没有@Order注解，则获取@Priority注解的值。（有缓存功能）
 	 * Return the order on the specified {@code type}, or the specified default value if none can be found.
 	 * Takes care of {@link Order @Order} and {@code @javax.annotation.Priority}.
 	 * @param type the type to handle
@@ -67,6 +70,7 @@ public abstract class OrderUtils {
 	}
 
 	/**
+	 * 获取指定类上的@Order注解的值，若没有@Order注解，则获取@Priority注解的值。（有缓存功能）
 	 * Return the order on the specified {@code type}. Takes care of {@link Order @Order} and {@code @javax.annotation.Priority}.
 	 * @param type the type to handle
 	 * @return the order value, or {@code null} if none can be found
@@ -78,11 +82,14 @@ public abstract class OrderUtils {
 		if (cached != null) {
 			return (cached instanceof Integer ? (Integer) cached : null);
 		}
+		// 获取指定类上的@Order注解
 		Order order = AnnotationUtils.findAnnotation(type, Order.class);
 		Integer result;
+		// 如果获取到@Order注解
 		if (order != null) {
 			result = order.value();
 		}else {
+			// 如果获取不到@Order注解，则获取@Priority注解的值
 			result = getPriority(type);
 		}
 		orderCache.put(type, (result != null ? result : NOT_ANNOTATED));
@@ -90,6 +97,7 @@ public abstract class OrderUtils {
 	}
 
 	/**
+	 * 获取指定类上的@Priority注解的value属性值。
 	 * Return the value of the {@code javax.annotation.Priority} annotation declared on the specified type, or {@code null} if none.
 	 * @param type the type to handle
 	 * @return the priority value if the annotation is declared, or {@code null} if none
@@ -101,13 +109,14 @@ public abstract class OrderUtils {
 		if (cached != null) {
 			return (cached instanceof Integer ? (Integer) cached : null);
 		}
+		// 获取指定类上，标注的指定注解。
 		Annotation priority = AnnotationUtils.findAnnotation(type, priorityAnnotationType);
 		Integer result = null;
 		if (priority != null) {
+			// 获取指定注解的value属性值
 			result = (Integer) AnnotationUtils.getValue(priority);
 		}
 		priorityCache.put(type, (result != null ? result : NOT_ANNOTATED));
 		return result;
 	}
-
 }

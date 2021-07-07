@@ -1,7 +1,4 @@
-
-
 package org.springframework.core.annotation;
-
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Repeatable;
 import java.lang.reflect.AnnotatedElement;
@@ -21,10 +18,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.core.BridgeMethodResolver;
 import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
@@ -563,8 +558,9 @@ public abstract class AnnotationUtils {
 	}
 
 	/**
-	 * Find a single {@link Annotation} of {@code annotationType} on the
-	 * supplied {@link Class}, traversing its interfaces, annotations, and
+	 * 获取指定类上，标注的指定注解。
+	 * Find a single {@link Annotation} of {@code annotationType} on the supplied {@link Class},
+	 * traversing its interfaces, annotations, and
 	 * superclasses if the annotation is not <em>directly present</em> on the given class itself.
 	 * This method explicitly handles class-level annotations which are not
 	 * declared as {@link java.lang.annotation.Inherited inherited} <em>as well as meta-annotations and annotations on interfaces</em>.
@@ -588,8 +584,7 @@ public abstract class AnnotationUtils {
 	 * Perform the actual work for {@link #findAnnotation(AnnotatedElement, Class)},honoring the {@code synthesize} flag.
 	 * @param clazz the class to look for annotations on
 	 * @param annotationType the type of annotation to look for
-	 * @param synthesize {@code true} if the result should be
-	 * {@linkplain #synthesizeAnnotation(Annotation) synthesized}
+	 * @param synthesize {@code true} if the result should be {@linkplain #synthesizeAnnotation(Annotation) synthesized}
 	 * @return the first matching annotation, or {@code null} if not found
 	 * @since 4.2.1
 	 */
@@ -821,8 +816,7 @@ public abstract class AnnotationUtils {
 	}
 
 	/**
-	 * Determine if the {@link Annotation} with the supplied name is defined
-	 * in the core JDK {@code java.lang.annotation} package.
+	 * Determine if the {@link Annotation} with the supplied name is defined  in the core JDK {@code java.lang.annotation} package.
 	 * @param annotationType the name of the annotation type to check
 	 * @return {@code true} if the annotation is in the {@code java.lang.annotation} package
 	 * @since 4.2
@@ -1189,11 +1183,11 @@ public abstract class AnnotationUtils {
 	}
 
 	/**
+	 * 获取指定注解的value属性值
 	 * Retrieve the <em>value</em> of the {@code value} attribute of a single-element Annotation, given an annotation instance.
 	 * @param annotation the annotation instance from which to retrieve the value
 	 * @return the attribute value, or {@code null} if not found unless the attribute
-	 * value cannot be retrieved due to an {@link AnnotationConfigurationException},
-	 * in which case such an exception will be rethrown
+	 * value cannot be retrieved due to an {@link AnnotationConfigurationException}, in which case such an exception will be rethrown
 	 * @see #getValue(Annotation, String)
 	 */
 	@Nullable
@@ -1202,12 +1196,12 @@ public abstract class AnnotationUtils {
 	}
 
 	/**
+	 * 获取指定注解的，指定属性的值。
 	 * Retrieve the <em>value</em> of a named attribute, given an annotation instance.
 	 * @param annotation the annotation instance from which to retrieve the value
 	 * @param attributeName the name of the attribute value to retrieve
 	 * @return the attribute value, or {@code null} if not found unless the attribute
-	 * value cannot be retrieved due to an {@link AnnotationConfigurationException},
-	 * in which case such an exception will be rethrown
+	 * value cannot be retrieved due to an {@link AnnotationConfigurationException},in which case such an exception will be rethrown
 	 * @see #getValue(Annotation)
 	 * @see #rethrowAnnotationConfigurationException(Throwable)
 	 */

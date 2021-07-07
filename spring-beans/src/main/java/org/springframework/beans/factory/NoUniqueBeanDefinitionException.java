@@ -1,10 +1,6 @@
-
-
 package org.springframework.beans.factory;
-
 import java.util.Arrays;
 import java.util.Collection;
-
 import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
@@ -12,8 +8,6 @@ import org.springframework.util.StringUtils;
 /**
  * Exception thrown when a {@code BeanFactory} is asked for a bean instance for which
  * multiple matching candidates have been found when only one matching bean was expected.
- *
-
  * @since 3.2.1
  * @see BeanFactory#getBean(Class)
  */
@@ -24,7 +18,6 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 
 	@Nullable
 	private final Collection<String> beanNamesFound;
-
 
 	/**
 	 * Create a new {@code NoUniqueBeanDefinitionException}.
@@ -66,8 +59,7 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 	 * @since 5.1
 	 */
 	public NoUniqueBeanDefinitionException(ResolvableType type, Collection<String> beanNamesFound) {
-		super(type, "expected single matching bean but found " + beanNamesFound.size() + ": " +
-				StringUtils.collectionToCommaDelimitedString(beanNamesFound));
+		super(type, "expected single matching bean but found " + beanNamesFound.size() + ": " + StringUtils.collectionToCommaDelimitedString(beanNamesFound));
 		this.numberOfBeansFound = beanNamesFound.size();
 		this.beanNamesFound = beanNamesFound;
 	}
@@ -103,5 +95,4 @@ public class NoUniqueBeanDefinitionException extends NoSuchBeanDefinitionExcepti
 	public Collection<String> getBeanNamesFound() {
 		return this.beanNamesFound;
 	}
-
 }
