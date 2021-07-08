@@ -18,7 +18,6 @@
 
 # itme04    @Import ImportSelector ImportBeanDefinitionRegistrar   等注解学习
 
-# itme05    FactoryBean
 
 # itme06    @Value 属性注入
 

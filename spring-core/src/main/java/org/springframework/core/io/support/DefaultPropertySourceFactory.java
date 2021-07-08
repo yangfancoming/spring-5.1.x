@@ -1,5 +1,3 @@
-
-
 package org.springframework.core.io.support;
 
 import java.io.IOException;

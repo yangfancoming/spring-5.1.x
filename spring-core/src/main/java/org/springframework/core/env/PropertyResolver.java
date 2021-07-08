@@ -70,7 +70,6 @@ public interface PropertyResolver {
 	<T> T getRequiredProperty(String key, Class<T> targetType) throws IllegalStateException;
 
 	/**
-	 * 如果未能成功解析 则不做任何处理，直接忽略！
 	 * 解析${...}这种类型的占位符，把他们替换为使用getProperty方法返回的结果，解析不了并且没有默认值的占位符会被忽略（原样输出）
 	 * Resolve ${...} placeholders in the given text, replacing them with corresponding property values as resolved by {@link #getProperty}.
 	 * Unresolvable placeholders with no default value are ignored and passed through unchanged.
@@ -79,17 +78,18 @@ public interface PropertyResolver {
 	 * @throws IllegalArgumentException if given text is {@code null}
 	 * @see #resolveRequiredPlaceholders
 	 * @see org.springframework.util.SystemPropertyUtils#resolvePlaceholders(String)
+	 * 如果未能成功解析 则不做任何处理，直接忽略！
 	 */
 	String resolvePlaceholders(String text);
 
 	/**
-	 * 如果未能成功解析 则抛出异常！
+	 * 严格解析${...}这种类型的占位符，把他们替换为使用getProperty方法返回的结果，解析不了则抛异常！
 	 * Resolve ${...} placeholders in the given text, replacing them with corresponding property values as resolved by {@link #getProperty}.
 	 * Unresolvable placeholders with no default value will cause an IllegalArgumentException to be thrown.
 	 * @return the resolved String (never {@code null})
 	 * @throws IllegalArgumentException if given text is {@code null} or if any placeholders are unresolvable
 	 * @see org.springframework.util.SystemPropertyUtils#resolvePlaceholders(String, boolean)
+	 *  如果未能成功解析 则抛出异常！
 	 */
 	String resolveRequiredPlaceholders(String text) throws IllegalArgumentException;
-
 }

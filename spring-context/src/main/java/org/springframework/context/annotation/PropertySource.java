@@ -1,7 +1,4 @@
-
-
 package org.springframework.context.annotation;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
@@ -13,9 +10,8 @@ import org.springframework.core.io.support.PropertySourceFactory;
 
 /**
  * Annotation providing a convenient and declarative mechanism for adding a
- * {@link org.springframework.core.env.PropertySource PropertySource} to Spring's
- * {@link org.springframework.core.env.Environment Environment}. To be used in
- * conjunction with @{@link Configuration} classes.
+ * {@link org.springframework.core.env.PropertySource PropertySource} to Spring's {@link org.springframework.core.env.Environment Environment}.
+ * To be used in conjunction with @{@link Configuration} classes.
  * <h3>Example usage</h3>
  * Given a file {@code app.properties} containing the key/value pair
  * {@code testbean.name=myTestBean}, the following {@code @Configuration} class
@@ -38,26 +34,21 @@ import org.springframework.core.io.support.PropertySourceFactory;
  *     }
  * }</pre>
  *
- * Notice that the {@code Environment} object is
- * {@link org.springframework.beans.factory.annotation.Autowired @Autowired} into the
- * configuration class and then used when populating the {@code TestBean} object. Given
- * the configuration above, a call to {@code testBean.getName()} will return "myTestBean".
+ * Notice that the {@code Environment} object is {@link org.springframework.beans.factory.annotation.Autowired @Autowired}
+ * into the configuration class and then used when populating the {@code TestBean} object.
+ * Given the configuration above, a call to {@code testBean.getName()} will return "myTestBean".
  *
  * <h3>Resolving <code>${...}</code> placeholders in {@code <bean>} and {@code @Value} annotations</h3>
  *
- * In order to resolve ${...} placeholders in {@code <bean>} definitions or {@code @Value}
- * annotations using properties from a {@code PropertySource}, you must ensure that an
- * appropriate <em>embedded value resolver</em> is registered in the {@code BeanFactory}
- * used by the {@code ApplicationContext}. This happens automatically when using
- * {@code <context:property-placeholder>} in XML. When using {@code @Configuration} classes
- * this can be achieved by explicitly registering a {@code PropertySourcesPlaceholderConfigurer}
- * via a {@code static} {@code @Bean} method. Note, however, that explicit registration
- * of a {@code PropertySourcesPlaceholderConfigurer} via a {@code static} {@code @Bean}
- * method is typically only required if you need to customize configuration such as the
- * placeholder syntax, etc. See the "Working with externalized values" section of
- * {@link Configuration @Configuration}'s javadocs and "a note on
- * BeanFactoryPostProcessor-returning {@code @Bean} methods" of {@link Bean @Bean}'s
- * javadocs for details and examples.
+ * In order to resolve ${...} placeholders in {@code <bean>} definitions or {@code @Value} annotations using properties from a {@code PropertySource},
+ * you must ensure that an appropriate <em>embedded value resolver</em> is registered in the {@code BeanFactory} used by the {@code ApplicationContext}.
+ * This happens automatically when using {@code <context:property-placeholder>} in XML.
+ * When using {@code @Configuration} classes  this can be achieved by explicitly registering a {@code PropertySourcesPlaceholderConfigurer}
+ * via a {@code static} {@code @Bean} method.
+ * Note, however, that explicit registration of a {@code PropertySourcesPlaceholderConfigurer} via a {@code static} {@code @Bean}
+ * method is typically only required if you need to customize configuration such as the placeholder syntax, etc.
+ * See the "Working with externalized values" section of {@link Configuration @Configuration}'s javadocs and "a note on
+ * BeanFactoryPostProcessor-returning {@code @Bean} methods" of {@link Bean @Bean}'s javadocs for details and examples.
  *
  * <h3>Resolving ${...} placeholders within {@code @PropertySource} resource locations</h3>
  *
@@ -140,8 +131,7 @@ import org.springframework.core.io.support.PropertySourceFactory;
 public @interface PropertySource {
 
 	/**
-	 * Indicate the name of this property source. If omitted, a name will
-	 * be generated based on the description of the underlying resource.
+	 * Indicate the name of this property source. If omitted, a name will be generated based on the description of the underlying resource.
 	 * @see org.springframework.core.env.PropertySource#getName()
 	 * @see org.springframework.core.io.Resource#getDescription()
 	 */
@@ -149,16 +139,13 @@ public @interface PropertySource {
 
 	/**
 	 * Indicate the resource location(s) of the properties file to be loaded.
-	 * Both traditional and XML-based properties file formats are supported
-	 * ; for example, {@code "classpath:/com/myco/app.properties"}
-	 * or {@code "file:/path/to/file.xml"}.
+	 * Both traditional and XML-based properties file formats are supported;
+	 * for example, {@code "classpath:/com/myco/app.properties"} or {@code "file:/path/to/file.xml"}.
 	 * Resource location wildcards (e.g. *&#42;/*.properties) are not permitted;
 	 * each location must evaluate to exactly one {@code .properties} resource.
-	 * ${...} placeholders will be resolved against any/all property sources already
-	 * registered with the {@code Environment}. See {@linkplain PropertySource above}
-	 * for examples.
-	 * Each location will be added to the enclosing {@code Environment} as its own
-	 * property source, and in the order declared.
+	 * ${...} placeholders will be resolved against any/all property sources already registered with the {@code Environment}.
+	 * See {@linkplain PropertySource above} for examples.
+	 * Each location will be added to the enclosing {@code Environment} as its own property source, and in the order declared.
 	 */
 	String[] value();
 
@@ -184,5 +171,4 @@ public @interface PropertySource {
 	 * @see org.springframework.core.io.support.ResourcePropertySource
 	 */
 	Class<? extends PropertySourceFactory> factory() default PropertySourceFactory.class;
-
 }

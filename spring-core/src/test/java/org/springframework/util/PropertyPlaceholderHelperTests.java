@@ -112,15 +112,15 @@ public class PropertyPlaceholderHelperTests {
 		Properties properties = PropertiesLoaderUtils.loadProperties(new ClassPathResource(PROPERTIES));
 		String a = "${name}${age}${sex}";
 		String b = "{name{age}{sex}}";
-		System.out.println("替换前:" + a);
-		System.out.println("替换后:" + helper.parseStringValue(a, placeholderName->{
+		System.out.println("a替换前:" + a);
+		System.out.println("a替换后:" + helper.parseStringValue(a, placeholderName->{
 			String value = properties.getProperty(placeholderName);
 			return value;
 		}, new HashSet<>()));
 
 		System.out.println("====================================================");
-		System.out.println("替换前:" + b);
-		System.out.println("替换后:" + helper.parseStringValue(b, placeholderName->{
+		System.out.println("b替换前:" + b);
+		System.out.println("b替换后:" + helper.parseStringValue(b, placeholderName->{
 			String value = properties.getProperty(placeholderName);
 			return value;
 		}, new HashSet<>()));

@@ -15,8 +15,6 @@ import org.springframework.core.env.Environment;
  *      <property name="name" value="goat"/>
  * 		<property name="age" value="18"/>
  * 	</bean>
- *
- *
 */
 public class App extends BaseTest {
 
@@ -28,7 +26,7 @@ public class App extends BaseTest {
 		System.out.println(valueTest);
 	}
 
-	// 通过 Environment 来查看 @PropertySource 导入的属性值
+	// 通过 Environment 来查看 @PropertySource 导入的内容
 	@Test
 	public void getEnvironment(){
 		Environment environment = ac.getEnvironment();

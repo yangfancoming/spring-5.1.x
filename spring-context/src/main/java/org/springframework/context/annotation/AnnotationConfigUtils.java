@@ -238,16 +238,26 @@ public abstract class AnnotationConfigUtils {
 		return AnnotationAttributes.fromMap(metadata.getAnnotationAttributes(annotationClassName, false));
 	}
 
+	/**
+	 * 获取指定类上的指定注解信息集合
+	 * @param metadata  默认实现类 StandardAnnotationMetadata
+	 * @param containerClass   容器注解   PropertySources    ComponentScans
+	 * @param annotationClass  直接注解   PropertySource     ComponentScan
+	*/
 	static Set<AnnotationAttributes> attributesForRepeatable(AnnotationMetadata metadata,Class<?> containerClass, Class<?> annotationClass) {
 		return attributesForRepeatable(metadata, containerClass.getName(), annotationClass.getName());
 	}
 
+	/**
+	 * 获取指定类上的指定注解信息集合
+	*/
 	@SuppressWarnings("unchecked")
 	static Set<AnnotationAttributes> attributesForRepeatable(AnnotationMetadata metadata, String containerClassName, String annotationClassName) {
+		// 准备返回值
 		Set<AnnotationAttributes> result = new LinkedHashSet<>();
-		// Direct annotation present?
+		// Direct annotation present?   将指定注解的所有属性和对应属性值添加到指定Set集合中
 		addAttributesIfNotNull(result, metadata.getAnnotationAttributes(annotationClassName, false));
-		// Container annotation present?
+		// Container annotation present?  处理容器注解的情况，因为一个容器注解可以包含多个直接注解。eg：@ComponentScans 和 @ComponentScan
 		Map<String, Object> container = metadata.getAnnotationAttributes(containerClassName, false);
 		if (container != null && container.containsKey("value")) {
 			for (Map<String, Object> containedAttributes : (Map<String, Object>[]) container.get("value")) {
@@ -258,6 +268,11 @@ public abstract class AnnotationConfigUtils {
 		return Collections.unmodifiableSet(result);
 	}
 
+	/**
+	 * 将注解的所有属性和对应属性值添加到指定Set集合中
+	 * @param result  待添加的集合
+	 * @param attributes 注解的所有属性和对应属性值
+	*/
 	private static void addAttributesIfNotNull(Set<AnnotationAttributes> result, @Nullable Map<String, Object> attributes) {
 		if (attributes != null) {
 			result.add(AnnotationAttributes.fromMap(attributes));

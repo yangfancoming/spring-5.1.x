@@ -1,5 +1,3 @@
-
-
 package org.springframework.context.annotation;
 
 import java.lang.annotation.Documented;
@@ -9,6 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * 聚合了多个@PropertySource注解的容器注解
  * Container annotation that aggregates several {@link PropertySource} annotations.
  *
  * Can be used natively, declaring several nested {@link PropertySource} annotations.
@@ -16,7 +15,6 @@ import java.lang.annotation.Target;
  * where {@link PropertySource} can simply be declared several times on the same
  * {@linkplain ElementType#TYPE type}, implicitly generating this container annotation.
  *
- * @author Phillip Webb
  * @since 4.0
  * @see PropertySource
  */
@@ -26,5 +24,4 @@ import java.lang.annotation.Target;
 public @interface PropertySources {
 
 	PropertySource[] value();
-
 }

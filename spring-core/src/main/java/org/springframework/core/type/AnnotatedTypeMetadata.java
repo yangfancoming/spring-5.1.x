@@ -36,7 +36,7 @@ public interface AnnotatedTypeMetadata {
 	Map<String, Object> getAnnotationAttributes(String annotationName);
 
 	/**
-	 * 获取指定注解的所有属性
+	 * 获取指定注解的所有属性和对应属性值
 	 * Retrieve the attributes of the annotation of the given type, if any (i.e. if defined on the underlying element,as direct annotation or meta-annotation),
 	 * also taking attribute overrides on composed annotations into account.
 	 * @param annotationName the fully qualified class name of the annotation type to look for  注解全类名

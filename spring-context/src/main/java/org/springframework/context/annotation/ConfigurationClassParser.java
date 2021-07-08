@@ -212,9 +212,12 @@ public class ConfigurationClassParser {
 			processMemberClasses(configClass, sourceClass);
 		}
 		// Process any 【@PropertySource】 annotations
+		// 获取指定主配置类上的所有【@PropertySource】注解信息集合
 		Set<AnnotationAttributes> annotationAttributes = AnnotationConfigUtils.attributesForRepeatable(sourceClass.getMetadata(), PropertySources.class, org.springframework.context.annotation.PropertySource.class);
+		// 循环解析每个@PropertySource注解
 		for (AnnotationAttributes propertySource :annotationAttributes ) {
 			if (environment instanceof ConfigurableEnvironment) {
+				//  解析【@PropertySource】注解
 				processPropertySource(propertySource);
 			}else {
 				logger.info("Ignoring @PropertySource annotation on [" + sourceClass.getMetadata().getClassName() + "]. Reason: Environment must implement ConfigurableEnvironment");
@@ -367,6 +370,7 @@ public class ConfigurationClassParser {
 	}
 
 	/**
+	 * 解析【@PropertySource】注解
 	 * Process the given <code>@PropertySource</code> annotation metadata.
 	 * @param propertySource metadata for the <code>@PropertySource</code> annotation found
 	 * @throws IOException if loading a property source failed
@@ -380,16 +384,21 @@ public class ConfigurationClassParser {
 		if (!StringUtils.hasLength(encoding)) {
 			encoding = null;
 		}
+		// 解析value属性
 		String[] locations = propertySource.getStringArray("value");
 		Assert.isTrue(locations.length > 0, "At least one @PropertySource(value) location is required");
 		boolean ignoreResourceNotFound = propertySource.getBoolean("ignoreResourceNotFound");
 
 		Class<? extends PropertySourceFactory> factoryClass = propertySource.getClass("factory");
-		PropertySourceFactory factory = (factoryClass == PropertySourceFactory.class ? DEFAULT_PROPERTY_SOURCE_FACTORY : BeanUtils.instantiateClass(factoryClass));
+		PropertySourceFactory factory = (factoryClass == PropertySourceFactory.class) ? DEFAULT_PROPERTY_SOURCE_FACTORY : BeanUtils.instantiateClass(factoryClass);
+		// 循环处理value属性值
 		for (String location : locations) {
 			try {
+				// 严格解析value属性值中的 	$[] $() ${}	占位符
 				String resolvedLocation = environment.resolveRequiredPlaceholders(location);
+				// 将经过严格解析后的路径文件信息，加载到内容
 				Resource resource = resourceLoader.getResource(resolvedLocation);
+				// 将内容进行存储
 				addPropertySource(factory.createPropertySource(name, new EncodedResource(resource, encoding)));
 			}catch (IllegalArgumentException | FileNotFoundException | UnknownHostException ex) {
 				// Placeholders not resolvable or resource not found when trying to open it

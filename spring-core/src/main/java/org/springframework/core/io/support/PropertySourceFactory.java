@@ -1,16 +1,11 @@
-
-
 package org.springframework.core.io.support;
 
 import java.io.IOException;
-
 import org.springframework.core.env.PropertySource;
 import org.springframework.lang.Nullable;
 
 /**
  * Strategy interface for creating resource-based {@link PropertySource} wrappers.
- *
-
  * @since 4.3
  * @see DefaultPropertySourceFactory
  */
@@ -24,5 +19,4 @@ public interface PropertySourceFactory {
 	 * @throws IOException if resource resolution failed
 	 */
 	PropertySource<?> createPropertySource(@Nullable String name, EncodedResource resource) throws IOException;
-
 }
