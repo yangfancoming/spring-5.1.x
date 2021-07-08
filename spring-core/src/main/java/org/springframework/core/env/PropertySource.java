@@ -1,10 +1,6 @@
-
-
 package org.springframework.core.env;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
@@ -36,6 +32,7 @@ public abstract class PropertySource<T> {
 	// 该属性源的名字
 	protected final String name;
 
+	// 待解析的属性源对象
 	protected final T source;
 
 	// Create a new {@code PropertySource} with the given name and source object.

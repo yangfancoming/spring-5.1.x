@@ -29,7 +29,7 @@ public abstract class PropertiesLoaderUtils {
 	private static final String XML_FILE_EXTENSION = ".xml";
 
 	/**
-	 * 加载资源文件，传入的是提供了编码的资源类（EncodedResource）
+	 * 加载指定资源文件，并转成Properties对象返回
 	 * Load properties from the given EncodedResource,
 	 * potentially defining a specific encoding for the properties file.
 	 * @see #fillProperties(java.util.Properties, EncodedResource)

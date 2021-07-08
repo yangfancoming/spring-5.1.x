@@ -1,13 +1,11 @@
-
-
 package org.springframework.core.env;
-
 import org.springframework.core.convert.support.ConfigurableConversionService;
 import org.springframework.lang.Nullable;
 
 /**
  * Configuration interface to be implemented by most if not all {@link PropertyResolver} types.
- *  Provides facilities for accessing and customizing the {@link org.springframework.core.convert.ConversionService ConversionService} used when converting property values from one type to another.
+ *  Provides facilities for accessing and customizing the {@link org.springframework.core.convert.ConversionService ConversionService}
+ *  used when converting property values from one type to another.
  * @since 3.1
  */
 public interface ConfigurablePropertyResolver extends PropertyResolver {
@@ -74,5 +72,4 @@ public interface ConfigurablePropertyResolver extends PropertyResolver {
 	 * 那么就可以在这里添加这个校验，在程序刚启动的时候就能发现问题
 	 */
 	void validateRequiredProperties() throws MissingRequiredPropertiesException;
-
 }

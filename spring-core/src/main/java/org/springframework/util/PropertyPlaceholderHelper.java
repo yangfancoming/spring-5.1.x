@@ -85,9 +85,10 @@ public class PropertyPlaceholderHelper {
 	}
 
 	/**
+	 * 使用指定回调函数的返回值，来替换指定字符串中的占位符
 	 * Replaces all placeholders of format {@code ${name}} with the value returned  from the supplied {@link PlaceholderResolver}.
-	 * @param value the value containing the placeholders to be replaced
-	 * @param placeholderResolver the {@code PlaceholderResolver} to use for replacement
+	 * @param value the value containing the placeholders to be replaced   待替换占位符的字符串
+	 * @param placeholderResolver the {@code PlaceholderResolver} to use for replacement  占位符解析器的回调函数
 	 * @return the supplied value with placeholders replaced inline
 	 */
 	public String replacePlaceholders(String value, PlaceholderResolver placeholderResolver) {
@@ -95,19 +96,26 @@ public class PropertyPlaceholderHelper {
 		return parseStringValue(value, placeholderResolver, null);
 	}
 
+	/**
+	 * 使用指定回调函数的返回值，来替换指定字符串中的占位符
+	 * @see org.springframework.util.PropertyPlaceholderHelperTests#testParseStringValue1() 【测试用例】
+	 * @return 返回替换后的字符串
+	*/
 	protected String parseStringValue(String value, PlaceholderResolver placeholderResolver, @Nullable Set<String> visitedPlaceholders) {
-		//获取路径中占位符前缀的索引
+		// 获取路径中占位符前缀的索引
 		int startIndex = value.indexOf(this.placeholderPrefix);
 		if (startIndex == -1) return value;
 		StringBuilder result = new StringBuilder(value);
-		//匹配到占位符前缀,进入循环体
+		// 匹配到占位符前缀,进入循环体
 		while (startIndex != -1) {
 			int endIndex = findPlaceholderEndIndex(result, startIndex);
 			if (endIndex != -1) {
-				//截取前缀占位符和后缀占位符之间的字符串placeholder
+				// 截取前缀占位符和后缀占位符之间的字符串placeholder
 				String placeholder = result.substring(startIndex + this.placeholderPrefix.length(), endIndex);
 				String originalPlaceholder = placeholder;
-				if (visitedPlaceholders == null) visitedPlaceholders = new HashSet<>(4);
+				if (visitedPlaceholders == null) {
+					visitedPlaceholders = new HashSet<>(4);
+				}
 				if (!visitedPlaceholders.add(originalPlaceholder)) {
 					throw new IllegalArgumentException("Circular placeholder reference '" + originalPlaceholder + "' in property definitions");
 				}

@@ -1,9 +1,5 @@
-
-
 package org.springframework.mock.env;
-
 import java.util.Properties;
-
 import org.springframework.core.env.PropertiesPropertySource;
 import org.springframework.core.env.PropertySource;
 
@@ -72,5 +68,4 @@ public class MockPropertySource extends PropertiesPropertySource {
 		this.setProperty(name, value);
 		return this;
 	}
-
 }

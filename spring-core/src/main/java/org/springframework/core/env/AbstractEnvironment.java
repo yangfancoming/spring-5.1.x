@@ -20,8 +20,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
- * Abstract base class for {@link Environment} implementations. Supports the notion of
- * reserved default profile names and enables specifying active and default profiles
+ * Abstract base class for {@link Environment} implementations. Supports the notion of reserved default profile names and enables specifying active and default profiles
  * through the {@link #ACTIVE_PROFILES_PROPERTY_NAME} and {@link #DEFAULT_PROFILES_PROPERTY_NAME} properties.
  * Concrete subclasses differ primarily on which {@link PropertySource} objects they add by default.
  * {@code AbstractEnvironment} adds none. Subclasses should contribute  property sources through the protected {@link #customizePropertySources(MutablePropertySources)}
@@ -102,10 +101,9 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	/**
 	 * Customize the set of {@link PropertySource} objects to be searched by this
 	 * {@code Environment} during calls to {@link #getProperty(String)} and related methods.
-	 * Subclasses that override this method are encouraged to add property
-	 * sources using {@link MutablePropertySources#addLast(PropertySource)} such that
-	 * further subclasses may call {@code super.customizePropertySources()} with
-	 * predictable results. For example:
+	 * Subclasses that override this method are encouraged to add property sources using {@link MutablePropertySources#addLast(PropertySource)} such that
+	 * further subclasses may call {@code super.customizePropertySources()} with predictable results.
+	 * For example:
 	 * <pre class="code">
 	 * public class Level1Environment extends AbstractEnvironment {
 	 *     &#064;Override
@@ -125,11 +123,10 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 *     }
 	 * }
 	 * </pre>
-	 * In this arrangement, properties will be resolved against sources A, B, C, D in that
-	 * order. That is to say that property source "A" has precedence over property source
-	 * "D". If the {@code Level2Environment} subclass wished to give property sources C
-	 * and D higher precedence than A and B, it could simply call
-	 * {@code super.customizePropertySources} after, rather than before adding its own:
+	 * In this arrangement, properties will be resolved against sources A, B, C, D in that order.
+	 * That is to say that property source "A" has precedence over property source "D".
+	 * If the {@code Level2Environment} subclass wished to give property sources C and D higher precedence than A and B,
+	 * it could simply call {@code super.customizePropertySources} after, rather than before adding its own:
 	 * <pre class="code">
 	 * public class Level2Environment extends Level1Environment {
 	 *     &#064;Override

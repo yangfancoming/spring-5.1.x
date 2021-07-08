@@ -1,9 +1,9 @@
-
-
 package org.springframework.util;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Properties;
 import static org.junit.Assert.assertEquals;
@@ -14,6 +14,8 @@ public class PropertyPlaceholderHelperTests {
 	private final PropertyPlaceholderHelper helper = new PropertyPlaceholderHelper("${", "}");
 
 	Properties props = new Properties();
+
+	public PropertyPlaceholderHelperTests() throws IOException {}
 
 	// 测试单属性 Properties
 	@Test
@@ -107,18 +109,22 @@ public class PropertyPlaceholderHelperTests {
 
 	private final static String PROPERTIES = "org/springframework/util/PropertyPlaceholderHelper.properties";
 
+	Properties properties = PropertiesLoaderUtils.loadProperties(new ClassPathResource(PROPERTIES));
+
+
 	@Test
-	public void test3()throws Exception {
-		Properties properties = PropertiesLoaderUtils.loadProperties(new ClassPathResource(PROPERTIES));
+	public void testParseStringValue1()  {
 		String a = "${name}${age}${sex}";
-		String b = "{name{age}{sex}}";
 		System.out.println("a替换前:" + a);
 		System.out.println("a替换后:" + helper.parseStringValue(a, placeholderName->{
 			String value = properties.getProperty(placeholderName);
 			return value;
 		}, new HashSet<>()));
+	}
 
-		System.out.println("====================================================");
+	@Test
+	public void testParseStringValue2() {
+		String b = "{name{age}{sex}}";
 		System.out.println("b替换前:" + b);
 		System.out.println("b替换后:" + helper.parseStringValue(b, placeholderName->{
 			String value = properties.getProperty(placeholderName);

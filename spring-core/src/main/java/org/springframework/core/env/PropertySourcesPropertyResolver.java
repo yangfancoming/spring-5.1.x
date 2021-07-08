@@ -1,7 +1,4 @@
-
-
 package org.springframework.core.env;
-
 import org.springframework.lang.Nullable;
 
 /**
@@ -15,8 +12,9 @@ import org.springframework.lang.Nullable;
  */
 public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 
+	// 待解析的属性源集合
 	@Nullable
-	private final PropertySources propertySources;// 数据源们~
+	private final PropertySources propertySources;
 
 	/**
 	 * Create a new resolver against the given property sources.
@@ -63,8 +61,13 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 		return getProperty(key, targetValueType, true);
 	}
 
-	// 最终依赖的都是 propertySource.getProperty(key);
-	// 方法拿到如果是字符串的话 就继续交给 value = resolveNestedPlaceholders((String) value);处理
+
+	/**
+	 * 根据指定key获取对应value
+	 * @param key
+	 * @param targetValueType  指定value返回值的类型
+	 * @param resolveNestedPlaceholders  指定value是否为嵌套占位符
+	*/
 	@Nullable
 	protected <T> T getProperty(String key, Class<T> targetValueType, boolean resolveNestedPlaceholders) {
 		if (this.propertySources != null) {
@@ -72,6 +75,7 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 				if (logger.isTraceEnabled()) logger.trace("Searching for key '" + key + "' in PropertySource '" + propertySource.getName() + "'");
 				Object value = propertySource.getProperty(key);
 				if (value != null) {
+					// 如果目标值为嵌套占位符，且是字符串的话 就继续处理
 					if (resolveNestedPlaceholders && value instanceof String) {
 						value = resolveNestedPlaceholders((String) value);
 					}
@@ -87,9 +91,8 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 	/**
 	 * Log the given key as found in the given {@link PropertySource}, resulting in the given value.
 	 * The default implementation writes a debug log message with key and source.
-	 * As of 4.3.3, this does not log the value anymore in order to avoid accidental
-	 * logging of sensitive settings. Subclasses may override this method to change
-	 * the log level and/or log message, including the property's value if desired.
+	 * As of 4.3.3, this does not log the value anymore in order to avoid accidental logging of sensitive settings.
+	 * Subclasses may override this method to change the log level and/or log message, including the property's value if desired.
 	 * @param key the key found
 	 * @param propertySource the {@code PropertySource} that the key has been found in
 	 * @param value the corresponding value
@@ -100,5 +103,4 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 			logger.debug("Found key '" + key + "' in PropertySource '" + propertySource.getName() + "' with value of type " + value.getClass().getSimpleName());
 		}
 	}
-
 }

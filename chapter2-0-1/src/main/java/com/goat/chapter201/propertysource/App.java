@@ -1,5 +1,4 @@
 package com.goat.chapter201.propertysource;
-
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -15,10 +14,11 @@ import org.springframework.core.io.support.PropertySourceFactory;
  */
 public class App {
 
-	ApplicationContext ac = new AnnotationConfigApplicationContext(Config.class);
+
 
 	/**
-	 * 处理 @PropertySource 注解
+	 * 单独解析 @PropertySource(value={"classpath:/value.properties"})
+	 * 处理 @PropertySource 注解  入口测试
 	 * @see ConfigurationClassParser#processPropertySource(org.springframework.core.annotation.AnnotationAttributes)
 	 * @see PropertyResolver#resolveRequiredPlaceholders(java.lang.String)
 	 * @see PropertySourceFactory#createPropertySource(java.lang.String, org.springframework.core.io.support.EncodedResource)
@@ -26,6 +26,17 @@ public class App {
 	*/
 	@Test
 	public void test(){
+		new AnnotationConfigApplicationContext(Config1.class);
+	}
 
+	/**
+	 *  解析后， 测试 @Value("${ValueTest.nickName}") 取值。
+	 * 处理 @Value 注解  出口测试
+	*/
+	@Test
+	public void getBean(){
+		ApplicationContext ac = new AnnotationConfigApplicationContext(Config2.class);
+//		ValueTest valueTest = (ValueTest) ac.getBean("valueTest");
+//		System.out.println(valueTest);
 	}
 }

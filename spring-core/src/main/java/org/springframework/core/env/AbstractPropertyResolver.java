@@ -1,13 +1,8 @@
-
-
 package org.springframework.core.env;
-
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.ConfigurableConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
@@ -177,14 +172,14 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		return value;
 	}
 
-	// 非严格解析
+	// 非严格解析${...}这种类型的占位符，把他们替换为使用getProperty方法返回的结果，解析不了并且没有默认值的占位符会被忽略（原样输出）
 	@Override
 	public String resolvePlaceholders(String text) {
 		if (nonStrictHelper == null) nonStrictHelper = createPlaceholderHelper(true);
 		return doResolvePlaceholders(text, nonStrictHelper);
 	}
 
-	// 严格解析
+	// 严格解析${...}这种类型的占位符，把他们替换为使用getProperty方法返回的结果，解析不了则抛异常！
 	@Override
 	public String resolveRequiredPlaceholders(String text) throws IllegalArgumentException {
 		if (strictHelper == null) strictHelper = createPlaceholderHelper(false);
@@ -192,12 +187,13 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	}
 
 	/**
-	 * Resolve placeholders within the given string, deferring to the value of
-	 * {@link #setIgnoreUnresolvableNestedPlaceholders} to determine whether any unresolvable placeholders should raise an exception or be ignored.
+	 * 解析嵌套占位符
+	 * Resolve placeholders within the given string, deferring to the value of {@link #setIgnoreUnresolvableNestedPlaceholders}
+	 * to determine whether any unresolvable placeholders should raise an exception or be ignored.
 	 * Invoked from {@link #getProperty} and its variants, implicitly resolving nested placeholders.
-	 * In contrast, {@link #resolvePlaceholders} and {@link #resolveRequiredPlaceholders} do <i>not</i> delegate
-	 * to this method but rather perform their own handling of unresolvable
-	 * placeholders, as specified by each of those methods.
+	 * In contrast, {@link #resolvePlaceholders} and {@link #resolveRequiredPlaceholders} do <i>not</i>
+	 * delegate to this method but rather perform their own handling of unresolvable placeholders, as specified by each of those methods.
+	 * @param value 一般情况下都是字符串类型
 	 * @since 3.2
 	 * @see #setIgnoreUnresolvableNestedPlaceholders
 	 */
@@ -205,11 +201,18 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		return (ignoreUnresolvableNestedPlaceholders ? resolvePlaceholders(value) : resolveRequiredPlaceholders(value));
 	}
 
+	/**
+	 * 创建占位符解析辅助器  默认配置为： "${ }"   ":"
+	*/
 	private PropertyPlaceholderHelper createPlaceholderHelper(boolean ignoreUnresolvablePlaceholders) {
 		return new PropertyPlaceholderHelper(placeholderPrefix, placeholderSuffix,valueSeparator, ignoreUnresolvablePlaceholders);
 	}
 
-	// 此处：最终都是委托给PropertyPlaceholderHelper去做  而getPropertyAsRawString是抽象方法  根据key返回一个字符串即可~
+	/**
+	 * 使用指定的占位符解析辅助器，解析指定占位符字符串。
+	 * @param text  待解析的占位符字符串
+	 * @param helper  使用指定的占位符解析辅助器
+	*/
 	private String doResolvePlaceholders(String text, PropertyPlaceholderHelper helper) {
 		return helper.replacePlaceholders(text, this::getPropertyAsRawString);
 	}

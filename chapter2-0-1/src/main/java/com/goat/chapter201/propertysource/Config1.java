@@ -9,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @PropertySource(value={"classpath:/value.properties"}) //  对应传统xml方式的 <context:property-placeholder location="classpath:person.properties"/>
 @Configuration
-public class Config {
+public class Config1 {
+
 
 }

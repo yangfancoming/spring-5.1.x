@@ -1,7 +1,4 @@
-
-
 package org.springframework.core.env;
-
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -34,5 +31,4 @@ public interface PropertySources extends Iterable<PropertySource<?>> {
 	 */
 	@Nullable
 	PropertySource<?> get(String name);
-
 }

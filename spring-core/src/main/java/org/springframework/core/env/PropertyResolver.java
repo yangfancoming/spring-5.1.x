@@ -1,7 +1,4 @@
-
-
 package org.springframework.core.env;
-
 import org.springframework.lang.Nullable;
 
 /**
@@ -13,8 +10,10 @@ import org.springframework.lang.Nullable;
  */
 public interface PropertyResolver {
 
-	//  Return whether the given property key is available for resolution, i.e. if the value for the given key is not {@code null}.
-	// 查看指定的key是否有对应的value   注意：若对应值是null的话 也是返回false
+	/**
+	 * 查看指定的key是否有对应的value   注意：若对应值是null的话 也是返回false
+	 * Return whether the given property key is available for resolution, i.e. if the value for the given key is not {@code null}.
+	*/
 	boolean containsProperty(String key);
 
 	/**
@@ -70,7 +69,7 @@ public interface PropertyResolver {
 	<T> T getRequiredProperty(String key, Class<T> targetType) throws IllegalStateException;
 
 	/**
-	 * 解析${...}这种类型的占位符，把他们替换为使用getProperty方法返回的结果，解析不了并且没有默认值的占位符会被忽略（原样输出）
+	 *  非严格解析${...}这种类型的占位符，把他们替换为使用getProperty方法返回的结果，解析不了并且没有默认值的占位符会被忽略（原样输出）
 	 * Resolve ${...} placeholders in the given text, replacing them with corresponding property values as resolved by {@link #getProperty}.
 	 * Unresolvable placeholders with no default value are ignored and passed through unchanged.
 	 * @param text the String to resolve

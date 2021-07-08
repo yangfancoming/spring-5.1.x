@@ -90,6 +90,7 @@ public class ConfigurationClassParser {
 
 	private final Map<String, ConfigurationClass> knownSuperclasses = new HashMap<>();
 
+	// 主配置类中 已加载的资源文件名称
 	private final List<String> propertySourceNames = new ArrayList<>();
 
 	private final ImportStack importStack = new ImportStack();
@@ -412,7 +413,7 @@ public class ConfigurationClassParser {
 	}
 
 	private void addPropertySource(PropertySource<?> propertySource) {
-		String name = propertySource.getName();
+		String name = propertySource.getName(); // 获取资源文件名
 		MutablePropertySources propertySources = ((ConfigurableEnvironment) environment).getPropertySources();
 		if (propertySourceNames.contains(name)) {
 			// We've already added a version, we need to extend it

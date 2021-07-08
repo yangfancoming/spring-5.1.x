@@ -1,14 +1,10 @@
-
-
 package org.springframework.core.env;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Stream;
-
 import org.springframework.lang.Nullable;
 
 /**
@@ -18,6 +14,7 @@ import org.springframework.lang.Nullable;
  * this is with regard to the order in which property sources will be searched when resolving a given property with a {@link PropertyResolver}.
  * @since 3.1
  * @see PropertySourcesPropertyResolver
+ * 可变数据源 PropertySources 接口的唯一实现类，持有一个数据源列表 propertySourceList（使用List集合 有顺序优先级之分）。
  */
 public class MutablePropertySources implements PropertySources {
 
@@ -89,7 +86,12 @@ public class MutablePropertySources implements PropertySources {
 		addAtIndex(index + 1, propertySource);
 	}
 
-	// Return the precedence of the given property source, {@code -1} if not found.
+	/**
+	 * 获取指定属性源在集合中的优先级
+	 * Return the precedence of the given property source, {@code -1} if not found.
+	 * @param propertySource
+	 * @return  返回-1  未找到指定数据源
+	*/
 	public int precedenceOf(PropertySource<?> propertySource) {
 		return propertySourceList.indexOf(propertySource);
 	}

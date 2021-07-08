@@ -1,11 +1,7 @@
-
-
 package org.springframework.core.env;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,16 +20,23 @@ public class PropertySourcesPropertyResolverTests {
 	private Properties testProperties;
 	private MutablePropertySources mutablePropertySources;
 
-	// doit 这里好蒙圈啊？？？
+	/**
+	 * 使用 ConfigurablePropertyResolver 解析器来解析指定数据源。
+	*/
 	@Before
 	public void setUp() {
-		mutablePropertySources = new MutablePropertySources();// 这句代码不能放在//2 那里否则报错  注意执行顺序！
+		// 新建可变数据源（持有数据源集合）
+		mutablePropertySources = new MutablePropertySources();
+		// 创建属性源解析器，输入带解析的属性源集合
 		propertyResolver = new PropertySourcesPropertyResolver(mutablePropertySources);
 		testProperties = new Properties();
-		//2
+		// 为属性源集合 添加待解析的属性源
 		mutablePropertySources.addFirst(new PropertiesPropertySource("testProperties", testProperties));
 	}
 
+	/**
+	 * 测试使用解析器 解析Properties属性源  containsProperty 方法
+	*/
 	@Test
 	public void containsProperty() {
 		Assert.assertFalse(propertyResolver.containsProperty("foo"));
@@ -41,6 +44,9 @@ public class PropertySourcesPropertyResolverTests {
 		Assert.assertTrue(propertyResolver.containsProperty("foo"));
 	}
 
+	/**
+	 * 测试 getProperty 获取的目标value中没有占位的情况
+	*/
 	@Test
 	public void getProperty() {
 		Assert.assertEquals(null,propertyResolver.getProperty("foo"));
@@ -48,6 +54,9 @@ public class PropertySourcesPropertyResolverTests {
 		Assert.assertEquals("bar",propertyResolver.getProperty("foo"));
 	}
 
+	/**
+	 * 测试 getProperty 获取的目标value中没有占位的情况，使用带默认值的情况
+	 */
 	@Test
 	public void getProperty_withDefaultValue() {
 		Assert.assertEquals("myDefault",propertyResolver.getProperty("foo", "myDefault"));
@@ -83,6 +92,9 @@ public class PropertySourcesPropertyResolverTests {
 		assertThat(propertyResolver.getProperty("foo", Integer.class, 42), equalTo(13));
 	}
 
+	/**
+	 * 测试 getProperty 获取的目标value为 String[] 的情况
+	 */
 	@Test
 	public void getProperty_withStringArrayConversion() {
 		testProperties.put("foo", "bar,baz");
