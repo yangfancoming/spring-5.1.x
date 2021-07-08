@@ -15,5 +15,4 @@ public interface SecurityContextProvider {
 	 * @return bean factory security control context
 	 */
 	AccessControlContext getAccessControlContext();
-
 }

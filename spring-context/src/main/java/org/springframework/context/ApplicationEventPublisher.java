@@ -1,5 +1,3 @@
-
-
 package org.springframework.context;
 
 /**
@@ -32,5 +30,4 @@ public interface ApplicationEventPublisher {
 	 * @see PayloadApplicationEvent
 	 */
 	void publishEvent(Object event);
-
 }

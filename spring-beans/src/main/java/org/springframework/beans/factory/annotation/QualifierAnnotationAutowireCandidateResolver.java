@@ -1,14 +1,10 @@
-
-
 package org.springframework.beans.factory.annotation;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-
 import org.springframework.beans.SimpleTypeConverter;
 import org.springframework.beans.TypeConverter;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -58,8 +54,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Create a new QualifierAnnotationAutowireCandidateResolver
-	 * for the given qualifier annotation type.
+	 * Create a new QualifierAnnotationAutowireCandidateResolver for the given qualifier annotation type.
 	 * @param qualifierType the qualifier annotation to look for
 	 */
 	public QualifierAnnotationAutowireCandidateResolver(Class<? extends Annotation> qualifierType) {
@@ -68,8 +63,7 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Create a new QualifierAnnotationAutowireCandidateResolver
-	 * for the given qualifier annotation types.
+	 * Create a new QualifierAnnotationAutowireCandidateResolver for the given qualifier annotation types.
 	 * @param qualifierTypes the qualifier annotations to look for
 	 */
 	public QualifierAnnotationAutowireCandidateResolver(Set<Class<? extends Annotation>> qualifierTypes) {
@@ -93,10 +87,8 @@ public class QualifierAnnotationAutowireCandidateResolver extends GenericTypeAwa
 	}
 
 	/**
-	 * Set the 'value' annotation type, to be used on fields, method parameters
-	 * and constructor parameters.
-	 * The default value annotation type is the Spring-provided
-	 * {@link Value} annotation.
+	 * Set the 'value' annotation type, to be used on fields, method parameters and constructor parameters.
+	 * The default value annotation type is the Spring-provided {@link Value} annotation.
 	 * This setter property exists so that developers can provide their own
 	 * (non-Spring-specific) annotation type to indicate a default value
 	 * expression for a specific argument.

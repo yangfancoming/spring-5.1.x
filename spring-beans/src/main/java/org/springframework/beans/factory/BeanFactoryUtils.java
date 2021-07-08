@@ -190,6 +190,7 @@ public abstract class BeanFactoryUtils {
 		String[] result = lbf.getBeanNamesForType(type, includeNonSingletons, allowEagerInit); // DefaultListableBeanFactory
 		if (lbf instanceof HierarchicalBeanFactory) {
 			HierarchicalBeanFactory hbf = (HierarchicalBeanFactory) lbf;
+			// 从父工厂中查找
 			if (hbf.getParentBeanFactory() instanceof ListableBeanFactory) {
 				String[] parentResult = beanNamesForTypeIncludingAncestors((ListableBeanFactory) hbf.getParentBeanFactory(), type, includeNonSingletons, allowEagerInit);
 				result = mergeNamesWithParent(result, parentResult, hbf);

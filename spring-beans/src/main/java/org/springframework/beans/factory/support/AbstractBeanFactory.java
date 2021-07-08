@@ -480,8 +480,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 
 	/**
-	 * Delegate the creation of the access control context to the
-	 * {@link #setSecurityContextProvider SecurityContextProvider}.
+	 * Delegate the creation of the access control context to the {@link #setSecurityContextProvider SecurityContextProvider}.
 	 */
 	@Override
 	public AccessControlContext getAccessControlContext() {

@@ -429,13 +429,14 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	private String[] doGetBeanNamesForType(ResolvableType type, boolean includeNonSingletons, boolean allowEagerInit) {
+		// 准备返回值
 		List<String> result = new ArrayList<>();
-		// 1.首先在 beanDefinitionNames 中去查找，再去手动注册bean集合（manualSingletonNames）中去查找
+		// 1.首先在容器的bean定义中去查找，再去手动注册bean集合（manualSingletonNames）中去查找
 		// Check all bean definitions.
 		for (String beanName : beanDefinitionNames) {
 			// Only consider bean as eligible if the bean name is not defined as alias for some other bean.
 			// 只考虑没有别名的bean， 有别名的bean直接忽略
-			// 如果是别名，跳过（这个集合会保存所有的主beanName，并且不会保存别名，别名由BeanFactory中别名map维护，这里个人认为是一种防御性编程）
+			// 如果是别名，跳过（beanDefinitionNames 这个集合会保存所有的主beanName，并且不会保存别名，别名由BeanFactory中别名map维护，这里个人认为是一种防御性编程）
 			if (!isAlias(beanName)) {// 不是别名
 				try {
 					// 根据beanName获取RootBeanDefinition
@@ -445,9 +446,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					// RootBeanDefinition中的Bean不是抽象类、非延迟初始化
 					//抽象的BeanDefinition是不做考虑，抽象的就是拿来继承的
 					//如果允许早期初始化，那么直接短路，进入方法体
-					//如果不允许早期初始化，那么需要进一步判断,如果是不允许早期初始化的，
-					//并且beanClass已经被加载或者它是可以早期初始化的，那么如果当前bean是工厂bean，并且指定的bean又是工厂
-					//那么这个bean就必须被早期初始化，也就是说就不符合我们制定的allowEagerInit为false的情况，直接跳过
 					if (!mbd.isAbstract() &&
 							(allowEagerInit || (mbd.hasBeanClass() || !mbd.isLazyInit() || isAllowEagerClassLoading()) && !requiresEagerInitForType(mbd.getFactoryBeanName()))) {
 						// In case of FactoryBean, match object created by FactoryBean.  // 是不是FactoryBean的子类
@@ -816,11 +814,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 					// 这一步是真正注册bean状态： 由 概念态--->内存态
 					logger.warn("【IOC容器中 添加BeanDefinition 内存态 --- 新建方式(创建中)】 beanName： " + beanName + "	value：" + beanDefinition.getBeanClassName());
 					beanDefinitionMap.put(beanName, beanDefinition);
+					// 这里没有直接使用 beanDefinitionNames.add(beanName);  而是用updatedDefinitions中间插一手，应该是由于线程安全问题。
 					List<String> updatedDefinitions = new ArrayList<>(beanDefinitionNames.size() + 1);
 					updatedDefinitions.addAll(beanDefinitionNames);
 					updatedDefinitions.add(beanName);
 					beanDefinitionNames = updatedDefinitions;
-					// doit  这里为啥不用 beanDefinitionNames.add(beanName);   非要updatedDefinitions中间插一手干嘛
+					// doit
 					removeManualSingletonName(beanName);
 				}
 			}else {
@@ -967,7 +966,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 				action.accept(manualSingletonNames);
 			}
 		}
-		logger.warn("【IOC容器 手动注册单例 manualSingletonNames  --- 】 beanName： " + manualSingletonNames);
 	}
 
 	// Remove any assumptions about by-type mappings.
@@ -1092,8 +1090,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	/**
-	 *
-	 *
 	 * 在依赖查找之前，想办法快速查找，如缓存 beanName、@Value 等直接获取注入的值，
 	 * 避免通过类型查找，最后才对集合依赖和单一依赖分别进行了处理。
 	 * 实际上，无论是集合依赖还是单一依赖查找都是调用 findAutowireCandidates 方法
@@ -1106,7 +1102,6 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 * 3.集合依赖查询：直接全部委托给 resolveMultipleBeans 方法。
 	 * 4.单个依赖查询：先调用 findAutowireCandidates 查找所有可用的依赖，
 	 * 		如果有多个依赖，则根据规则匹配： @Primary -> @Priority -> ③方法名称或字段名称。
-	 *
 	 * 	单个依赖查询是重点！！！
 	*/
 	/**
@@ -1443,6 +1438,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	/**
+	 * 在指定候选者集合中，根据@Primary和@Priority注解，筛选出唯一候选者。
 	 * Determine the autowire candidate in the given set of beans.
 	 * Looks for {@code @Primary} and {@code @Priority} (in that order).
 	 * @param candidates a Map of candidate names and candidate instances that match the required type, as returned by {@link #findAutowireCandidates}
@@ -1475,6 +1471,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	/**
+	 * 获取候选者集合中，唯一带有@Primary注解的候选者。
 	 * Determine the primary candidate in the given set of beans.
 	 * @param candidates a Map of candidate names and candidate instances (or candidate classes if not created yet) that match the required type
 	 * @param requiredType the target dependency type to match against
@@ -1507,6 +1504,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	}
 
 	/**
+	 * 获取候选者集合中，唯一带有@Priority注解的候选者。
 	 * Determine the candidate with the highest priority in the given set of beans.
 	 * Based on {@code @javax.annotation.Priority}. As defined by the related {@link org.springframework.core.Ordered} interface, the lowest value has  the highest priority.
 	 * @param candidates a Map of candidate names and candidate instances (or candidate classes if not created yet) that match the required type

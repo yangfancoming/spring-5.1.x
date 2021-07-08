@@ -1,13 +1,9 @@
-
-
 package org.springframework.beans.factory.xml;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.Properties;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanCreationException;
@@ -60,8 +56,7 @@ public class QualifierAnnotationTests {
 		context.refresh();
 		QualifiedByValueTestBean testBean = (QualifiedByValueTestBean) context.getBean("testBean");
 		Person person = testBean.getLarry();
-		assertEquals("Larry", person.getName());
-		System.out.println(person.getName());
+		assertEquals("GoatBean", person.getName());
 	}
 
 	// 通过 <bean id="larryBean"    注册 bean
@@ -162,26 +157,21 @@ public class QualifierAnnotationTests {
 		try {
 			context.refresh();
 			fail("should have thrown a BeanCreationException");
-		}
-		catch (BeanCreationException e) {
+		}catch (BeanCreationException e) {
 			assertTrue(e.getMessage().contains("found 6"));
 		}
 	}
 
 	@Test
 	public void testQualifiedByAttributesWithCustomQualifierRegistered() {
-		QualifierAnnotationAutowireCandidateResolver resolver = (QualifierAnnotationAutowireCandidateResolver)
-				context.getDefaultListableBeanFactory().getAutowireCandidateResolver();
+		QualifierAnnotationAutowireCandidateResolver resolver = (QualifierAnnotationAutowireCandidateResolver)context.getDefaultListableBeanFactory().getAutowireCandidateResolver();
 		resolver.addQualifierType(MultipleAttributeQualifier.class);
 		context.registerSingleton("testBean", MultiQualifierClient.class);
 		context.refresh();
-
 		MultiQualifierClient testBean = (MultiQualifierClient) context.getBean("testBean");
-
 		assertNotNull( testBean.factoryTheta);
 		assertNotNull( testBean.implTheta);
 	}
-
 
 	@SuppressWarnings("unused")
 	private static class NonQualifiedTestBean {
@@ -192,11 +182,11 @@ public class QualifierAnnotationTests {
 		}
 	}
 
-
 	private static class QualifiedByValueTestBean {
 		@Autowired
-		@Qualifier("larry") // sos  @Qualifier 注解区分大小写
+		@Qualifier("goatBean") // sos  @Qualifier 注解区分大小写
 		private Person larry;
+
 		public Person getLarry() {
 			return larry;
 		}
@@ -248,8 +238,10 @@ public class QualifierAnnotationTests {
 	}
 
 	private static class QualifiedByAliasTestBean {
+
 		@Autowired @Qualifier("stooge")
 		private Person stooge;
+
 		public Person getStooge() {
 			return stooge;
 		}
@@ -341,7 +333,6 @@ public class QualifierAnnotationTests {
 
 	private static final String IMPL_QUALIFIER = "IMPL";
 
-
 	public static class MultiQualifierClient {
 
 		@Autowired @Qualifier(FACTORY_QUALIFIER)
@@ -351,10 +342,8 @@ public class QualifierAnnotationTests {
 		public Theta implTheta;
 	}
 
-
 	public interface Theta {
 	}
-
 
 	@Qualifier(IMPL_QUALIFIER)
 	public static class ThetaImpl implements Theta {
@@ -379,5 +368,4 @@ public class QualifierAnnotationTests {
 			return true;
 		}
 	}
-
 }

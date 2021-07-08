@@ -178,8 +178,7 @@ public abstract class AbstractFactoryBean<T> implements FactoryBean<T>, BeanClas
 	}
 
 	/**
-	 * This abstract method declaration mirrors the method in the FactoryBean
-	 * interface, for a consistent offering of abstract template methods.
+	 * This abstract method declaration mirrors the method in the FactoryBean interface, for a consistent offering of abstract template methods.
 	 * @see org.springframework.beans.factory.FactoryBean#getObjectType()
 	 */
 	@Override
@@ -187,10 +186,8 @@ public abstract class AbstractFactoryBean<T> implements FactoryBean<T>, BeanClas
 	public abstract Class<?> getObjectType();
 
 	/**
-	 * Template method that subclasses must override to construct
-	 * the object returned by this factory.
-	 * Invoked on initialization of this FactoryBean in case of
-	 * a singleton; else, on each {@link #getObject()} call.
+	 * Template method that subclasses must override to construct the object returned by this factory.
+	 * Invoked on initialization of this FactoryBean in case of a singleton; else, on each {@link #getObject()} call.
 	 * @return the object returned by this factory
 	 * @throws Exception if an exception occurred during object creation
 	 * @see #getObject()
@@ -216,11 +213,9 @@ public abstract class AbstractFactoryBean<T> implements FactoryBean<T>, BeanClas
 	}
 
 	/**
-	 * Callback for destroying a singleton instance. Subclasses may
-	 * override this to destroy the previously created instance.
+	 * Callback for destroying a singleton instance. Subclasses may override this to destroy the previously created instance.
 	 * The default implementation is empty.
-	 * @param instance the singleton instance, as returned by
-	 * {@link #createInstance()}
+	 * @param instance the singleton instance, as returned by {@link #createInstance()}
 	 * @throws Exception in case of shutdown errors
 	 * @see #createInstance()
 	 */
