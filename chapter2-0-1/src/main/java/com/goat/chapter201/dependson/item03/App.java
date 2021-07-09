@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 /**
  * Created by Administrator on 2021/7/5.
- * @ Description: 测试 @DependsOn 注解
+ * @ Description: 测试 @DependsOn 注解的循环依赖问题
  * @ author  山羊来了
  * @ date 2021/7/5---17:36
  *

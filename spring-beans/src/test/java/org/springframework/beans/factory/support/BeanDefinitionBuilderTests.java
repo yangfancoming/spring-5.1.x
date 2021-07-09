@@ -1,14 +1,8 @@
-
-
 package org.springframework.beans.factory.support;
-
 import java.util.Arrays;
-
 import org.junit.Test;
-
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.tests.sample.beans.TestBean;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -20,6 +14,9 @@ public class BeanDefinitionBuilderTests {
 
 	}
 
+	/**
+	 * 测试 链式创建Bean定义
+	*/
 	@Test
 	public void tst() {
 		AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(Child.class)

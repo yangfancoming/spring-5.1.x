@@ -397,9 +397,9 @@ public class ConfigurationClassParser {
 			try {
 				// 严格解析value属性值中的 	$[] $() ${}	占位符
 				String resolvedLocation = environment.resolveRequiredPlaceholders(location);
-				// 将经过严格解析后的路径文件信息，加载到内容
+				// 将经过严格解析后的路径文件信息，加载到内存
 				Resource resource = resourceLoader.getResource(resolvedLocation);
-				// 将内容进行存储
+				// 将内容转换成 PropertySource 对象后，存储到 environment 的MutablePropertySources对象中
 				addPropertySource(factory.createPropertySource(name, new EncodedResource(resource, encoding)));
 			}catch (IllegalArgumentException | FileNotFoundException | UnknownHostException ex) {
 				// Placeholders not resolvable or resource not found when trying to open it
@@ -440,6 +440,7 @@ public class ConfigurationClassParser {
 			String firstProcessed = propertySourceNames.get(propertySourceNames.size() - 1);
 			propertySources.addBefore(firstProcessed, propertySource);
 		}
+		logger.warn("【IOC容器中 记录容器中已加载的资源文件 】 文件名： " + name);
 		propertySourceNames.add(name);
 	}
 

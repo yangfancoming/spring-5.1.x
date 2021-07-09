@@ -1,10 +1,6 @@
-
-
 package org.springframework.context.expression;
-
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanExpressionException;
 import org.springframework.beans.factory.config.BeanExpressionContext;
@@ -23,8 +19,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
- * Standard implementation of the
- * {@link org.springframework.beans.factory.config.BeanExpressionResolver}
+ * Standard implementation of the {@link org.springframework.beans.factory.config.BeanExpressionResolver}
  * interface, parsing and evaluating Spring EL using Spring's expression module.
  * @since 3.0
  * @see org.springframework.expression.ExpressionParser
@@ -63,7 +58,6 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 			return expressionSuffix;
 		}
 	};
-
 
 	/**
 	 * Create a new {@code StandardBeanExpressionResolver} with default settings.
@@ -150,5 +144,4 @@ public class StandardBeanExpressionResolver implements BeanExpressionResolver {
 	 */
 	protected void customizeEvaluationContext(StandardEvaluationContext evalContext) {
 	}
-
 }

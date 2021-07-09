@@ -334,7 +334,6 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				throw ex;
 			}
 		}
-
 		// Check if required type matches the type of the actual bean instance.
 		// 如果需要进行类型转换，则在此处进行转换。类型转换这一块我没细看，就不多说了。 // 返回bean前做最后的类型检查和转换
 		if (requiredType != null && !requiredType.isInstance(bean)) {

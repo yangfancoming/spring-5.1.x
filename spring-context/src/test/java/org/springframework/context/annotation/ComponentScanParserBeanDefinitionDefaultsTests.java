@@ -14,7 +14,6 @@ public class ComponentScanParserBeanDefinitionDefaultsTests {
 
 	private static final String LOCATION_PREFIX = "org/springframework/context/annotation/";
 
-
 	@Before
 	public void setUp() {
 		DefaultsTestBean.INIT_COUNT = 0;
@@ -110,6 +109,7 @@ public class ComponentScanParserBeanDefinitionDefaultsTests {
 	public void testAutowireByName() {
 		GenericApplicationContext context = new GenericApplicationContext();
 		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(context);
+		// org/springframework/context/annotation/defaultAutowireByNameTests.xml
 		reader.loadBeanDefinitions(LOCATION_PREFIX + "defaultAutowireByNameTests.xml");
 		context.refresh();
 		DefaultsTestBean bean = (DefaultsTestBean) context.getBean(TEST_BEAN_NAME);

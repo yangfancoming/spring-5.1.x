@@ -1,9 +1,5 @@
-
-
 package org.springframework.beans;
-
 import java.io.Serializable;
-
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
@@ -21,8 +17,10 @@ import org.springframework.util.ObjectUtils;
 @SuppressWarnings("serial")
 public class PropertyValue extends BeanMetadataAttributeAccessor implements Serializable {
 
+	// bean定义中的属性名
 	private final String name;
 
+	// 名称对应的bean实例
 	@Nullable
 	private final Object value;
 

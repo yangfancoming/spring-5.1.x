@@ -6,10 +6,13 @@
 				            http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-2.5.xsd"
         default-autowire="byName">
 
-	<context:component-scan base-package="org.springframework.context.annotation"
+	<context:component-scan
+			base-package="org.springframework.context.annotation"
             use-default-filters="false"
             annotation-config="false">
-        <context:include-filter type="assignable"
+
+        <context:include-filter
+				type="assignable"
                 expression="org.springframework.context.annotation.ComponentScanParserBeanDefinitionDefaultsTests$DefaultsTestBean"/>
     </context:component-scan>
 

@@ -1,7 +1,4 @@
-
-
 package org.springframework.beans;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +10,6 @@ import java.util.Set;
 import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.stream.Stream;
-
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
@@ -21,7 +17,7 @@ import org.springframework.util.StringUtils;
  * The default implementation of the {@link PropertyValues} interface.
  * Allows simple manipulation of properties, and provides constructors to support deep copy and construction from a Map.
  * @since 13 May 2001
- * 允许对属性进行简单的操作，并提供构造函数来支持从映射进行深度复制和构造。
+ * 允许对属性进行简单的操作，并提供构造函数来支持从映射进行深度复制和构造。  PropertyValues 接口的唯一直接实现类
  */
 @SuppressWarnings("serial")
 public class MutablePropertyValues implements PropertyValues, Serializable {

@@ -1266,7 +1266,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	protected void populateBean(String beanName, RootBeanDefinition mbd, @Nullable BeanWrapper bw) {
 		logger.warn("【IOC容器 进入  populateBean 方法  开始填充bean属性 --- 】 beanName： " + beanName);
 		if (bw == null) {
-			//如果mdb有需要设置的属性
+			//如果bw为空，且mdb有需要设置的属性，则抛出异常
 			if (mbd.hasPropertyValues()) {
 				throw new BeanCreationException(mbd.getResourceDescription(), beanName, "Cannot apply property values to null instance");
 			}else {
@@ -1306,21 +1306,17 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// 如果上面设置 continueWithPropertyPopulation = false，表明用户可能已经自己填充了bean的属性，不需要Spring帮忙填充了。此时直接返回即可
 		//如果不需要调用 populateBean 的后续逻辑，就结束改方法
 		if (!continueWithPropertyPopulation) return;
-		// 以对象的方式存储健值对,比存储在map会更加灵活
-		//PropertyValues：包含以一个或多个PropertyValue对象的容器，通常包括针对特定目标Bean的一次更新
-		//如果mdb有PropertyValues就获取其PropertyValues
-		PropertyValues pvs = (mbd.hasPropertyValues() ? mbd.getPropertyValues() : null);
-		// Spring扫描后管理的beans，如果你想要给他字段注入属性值，必须必须使用@Autowired 注解，从而交给后置处理器AutowiredAnnotationBeanPostProcessor#postProcessPropertyValues这个方法去处理
-		// 2. 依赖查找。根据 beanName 或 byType 查找可注入的属性值(依赖)。
-		// 如果 自动装配模式 为 按名称自动装配bean属性 或者 按类型自动装配bean属性
+		// 准备pvs属性源，最终使用其【给bean填充属性】。
+		PropertyValues pvs = mbd.hasPropertyValues() ? mbd.getPropertyValues() : null;
+		// Spring扫描后管理的beans，如果你想要给他字段注入属性值，必须使用@Autowired 注解，从而交给后置处理器AutowiredAnnotationBeanPostProcessor#postProcessPropertyValues这个方法去处理
+		// 2. 自动属性注入。根据自动装配模式 分为按 beanName 或 byType 查找可注入的属性值(依赖)。
 		if (mbd.getResolvedAutowireMode() == AUTOWIRE_BY_NAME || mbd.getResolvedAutowireMode() == AUTOWIRE_BY_TYPE) {
-			//MutablePropertyValues：PropertyValues接口的默认实现。允许对属性进行简单操作，并提供构造函数来支持从映射 进行深度复制和构造
 			MutablePropertyValues newPvs = new MutablePropertyValues(pvs);
 			// Add property values based on autowire by name if applicable.
-			// 通过属性名称注入依赖 // 根据autotowire的名称(如适用)添加属性值
+			// 通过属性名称自动注入
 			if (mbd.getResolvedAutowireMode() == AUTOWIRE_BY_NAME) {
 				logger.warn("【IOC容器 使用 autowireMode 类型为 ByName 进行属性注入  --- 】 beanName： " + beanName);
-				//通过bw的PropertyDescriptor属性名，查找出对应的Bean对象，将其添加到newPvs中
+				// 通过bw中的PropertyDescriptor属性名，查找出对应的Bean对象，将其添加到newPvs中
 				autowireByName(beanName, mbd, bw, newPvs);
 			}
 			// Add property values based on autowire by type if applicable.
@@ -1328,12 +1324,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// 根据自动装配的类型(如果适用)添加属性值
 			if (mbd.getResolvedAutowireMode() == AUTOWIRE_BY_TYPE) {
 				logger.warn("【IOC容器 使用 autowireMode 类型为 ByType 进行属性注入  --- 】 beanName： " + beanName);
-				// 它的步骤相对简单：显示BeanUtils.getWriteMethodParameter(pd)拿到set方法（所以，这里需要注意，若没有set方法，这里是注入不进去的，这个没@Autowired强大）
-				// 然后去解析去容器里面找对应的依赖，也是resolveDependency方法（最终由DefaultListableBeanFactory去实现的）
-				// 这里需要注意：注入的时候isSimpleProperty不会被注入的（包括基本数据类型、Integer、Long。。。
-				// 甚至还包括Enum、CharSequence(显然就包含了Spring)、Number、Date、URI、URL、Locale、Class等等）
-				// 但是标注@Autowired是能够注入的哦，哪怕是String、Integer等等
-				// 标注了@Autowired，没有找到反倒为报错 No qualifying bean of type 'java.lang.String' 。。。注意这些区别
 				//通过bw的PropertyDescriptor属性类型，查找出对应的Bean对象，将其添加到newPvs中
 				autowireByType(beanName, mbd, bw, newPvs);
 			}
@@ -1401,7 +1391,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (pvs != null) {
 			// 应用属性值到 bean 对象中
 			// 这里才是真正的设置到我们的实例对象里面（通过 PropertyValues）；之前postProcessPropertyValues这个还只是单纯的改变 PropertyValues
-			//应用给定的属性值，解决任何在这个bean工厂运行时其他bean的引用。必须使用深拷贝，所以我们 不会永久地修改这个属性
+			// 应用给定的属性值，解决任何在这个bean工厂运行时其他bean的引用。必须使用深拷贝，所以我们 不会永久地修改这个属性
 			applyPropertyValues(beanName, mbd, bw, pvs);
 		}
 	}
@@ -1412,28 +1402,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @param mbd bean definition to update through autowiring -- 通过自动装配来更新BeanDefinition
 	 * @param bw the BeanWrapper from which we can obtain information about the bean  -- 我们可以从中获取关于bean的信息的BeanWrapper
 	 * @param pvs the PropertyValues to register wired objects with -- 要向其注册连接对象的 PropertyValues
-	 *
-	 * 获取非简单类型属性的名称，且该属性未被配置在配置文件中。这里从反面解释一下什么是"非简单类型"
-	 * 属性，我们先来看看 Spring 认为的"简单类型"属性有哪些，如下：
-	 *   1. CharSequence 接口的实现类，比如 String
-	 *   2. Enum
-	 *   3. Date
-	 *   4. URI/URL
-	 *   5. Number 的继承类，比如 Integer/Long
-	 *   6. byte/short/int... 等基本类型
-	 *   7. Locale
-	 *   8. 以上所有类型的数组形式，比如 String[]、Date[]、int[] 等等
-	 * 除了要求非简单类型的属性外，还要求属性未在配置文件中配置过，也就是 pvs.contains(pd.getName()) = false。
-	 *
-	 *由此我们可以推断出，能自动注入的属性必须具备以下几点
-	 * （1）有对应的set方法
-	 * （2）非cglib生成的类的内部属性
-	 * （3）非通过spring中aware接口设置的属性，也就是说你可以注入容器内部属性，但是不能实现这个属性的aware接口
-	 * （4）非配置文件中手动注入的属性（property标签）
-	 * （5）非简单属性
 	 */
 	protected void autowireByName(String beanName, AbstractBeanDefinition mbd, BeanWrapper bw, MutablePropertyValues pvs) {
-		//获取bw中有setter方法 && 非简单类型属性 && mbd的PropertyValues中没有该pd的属性名的 PropertyDescriptor 属性名数组
+		// 获取bw中有setter方法 && 非简单类型属性 && mbd的PropertyValues中没有该pd的属性名的
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
 		for (String propertyName : propertyNames) {
 			// 检测是否存在与 propertyName 相关的 bean 或 BeanDefinition。若存在，则调用 BeanFactory.getBean 方法获取 bean 实例
@@ -1457,6 +1428,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 	}
 
+
 	/**
 	 * Abstract method defining "autowire by type" (bean properties by type) behavior.
 	 * This is like PicoContainer default, in which there must be exactly one bean of the property type in the bean factory.
@@ -1465,12 +1437,17 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @param mbd the merged bean definition to update through autowiring
 	 * @param bw the BeanWrapper from which we can obtain information about the bean
 	 * @param pvs the PropertyValues to register wired objects with
+	 *  它的步骤相对简单：显示BeanUtils.getWriteMethodParameter(pd)拿到set方法（所以，这里需要注意，若没有set方法，这里是注入不进去的，这个没@Autowired强大）
+	 *  然后去容器里面找对应的依赖，也是resolveDependency方法（最终由DefaultListableBeanFactory去实现的）
+	 *  这里需要注意：注入的时候isSimpleProperty不会被注入的（包括基本数据类型、Integer、Long。。。
+	 *  甚至还包括Enum、CharSequence(显然就包含了Spring)、Number、Date、URI、URL、Locale、Class等等）
+	 *  但是标注@Autowired是能够注入的哦，哪怕是String、Integer等等。标注了@Autowired，没有找到反倒为报错 No qualifying bean of type 'java.lang.String' 。。。注意这些区别
 	 */
 	protected void autowireByType(String beanName, AbstractBeanDefinition mbd, BeanWrapper bw, MutablePropertyValues pvs) {
 		TypeConverter converter = getCustomTypeConverter();
 		if (converter == null) converter = bw;
 		Set<String> autowiredBeanNames = new LinkedHashSet<>(4);
-		// 获取非简单类型的属性 // 类似的，过滤出满足装配条件的Bean属性
+		// 获取bw中有setter方法 && 非简单类型属性 && mbd的PropertyValues中没有该pd的属性名
 		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
 		for (String propertyName : propertyNames) {
 			try {
@@ -1503,6 +1480,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	}
 
 	/**
+	 * 获取bw中有setter方法 && 非简单类型属性 && mbd的PropertyValues中没有该pd的属性名
 	 * Return an array of non-simple bean properties that are unsatisfied.
 	 * These are probably unsatisfied references to other beans in the factory.
 	 * Does not include simple properties like primitives or Strings.
@@ -1512,8 +1490,25 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 * @see org.springframework.beans.BeanUtils#isSimpleProperty
 	 * 返回不满足的非简单bean属性数组。
 	 * 这个方法会去推断所有需要注入的属性，由于set方法是spring定义的所谓writeMethod，所以能找到userDao
-	 * 非简单属性：就是类型为对象类型的属性，但是这里并不是将所有的对象类型都都会找到，比如 8 个原始包装类型，String 类型 ，Number类型、Date类型、URL类型、URI类型等都会被忽略
-	 * 获取bw中有setter方法 && 非简单类型属性 && mbd的PropertyValues中没有该pd的属性名的 PropertyDescriptor 属性名数组
+	 *
+	 * 获取非简单类型属性的名称，且该属性未被配置在配置文件中。这里从反面解释一下什么是"非简单类型"
+	 * 属性，我们先来看看 Spring 认为的"简单类型"属性有哪些，如下：
+	 *   1. CharSequence 接口的实现类，比如 String
+	 *   2. Enum
+	 *   3. Date
+	 *   4. URI/URL
+	 *   5. Number 的继承类，比如 Integer/Long
+	 *   6. 8种基本类型 和8中包装类型
+	 *   7. Locale
+	 *   8. 以上所有类型的数组形式，比如 String[]、Date[]、int[] 等等
+	 * 除了要求非简单类型的属性外，还要求属性未在配置文件中配置过，也就是 pvs.contains(pd.getName()) = false。
+	 *
+	 *由此我们可以推断出，能自动注入的属性必须具备以下几点
+	 * （1）有对应的set方法
+	 * （2）非cglib生成的类的内部属性
+	 * （3）非通过spring中aware接口设置的属性，也就是说你可以注入容器内部属性，但是不能实现这个属性的aware接口
+	 * （4）非配置文件中手动注入的属性（property标签）
+	 * （5）非简单属性
 	 */
 	protected String[] unsatisfiedNonSimpleProperties(AbstractBeanDefinition mbd, BeanWrapper bw) {
 		// TreeSet:TreeSet底层是二叉树，可以对对象元素进行排序，但是自定义类需要实现comparable接口，重写comparaTo()方法。

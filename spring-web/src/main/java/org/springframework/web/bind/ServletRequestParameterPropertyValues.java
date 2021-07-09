@@ -1,26 +1,17 @@
-
-
 package org.springframework.web.bind;
-
 import javax.servlet.ServletRequest;
-
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.lang.Nullable;
 import org.springframework.web.util.WebUtils;
 
 /**
  * PropertyValues implementation created from parameters in a ServletRequest.
- * Can look for all property values beginning with a certain prefix and
- * prefix separator (default is "_").
+ * Can look for all property values beginning with a certain prefix and prefix separator (default is "_").
  *
  * For example, with a prefix of "spring", "spring_param1" and
  * "spring_param2" result in a Map with "param1" and "param2" as keys.
  *
- * This class is not immutable to be able to efficiently remove property
- * values that should be ignored for binding.
- *
- * @author Rod Johnson
-
+ * This class is not immutable to be able to efficiently remove property values that should be ignored for binding.
  * @see org.springframework.web.util.WebUtils#getParametersStartingWith
  */
 @SuppressWarnings("serial")
@@ -60,11 +51,7 @@ public class ServletRequestParameterPropertyValues extends MutablePropertyValues
 	 * @param prefixSeparator separator delimiting prefix (e.g. "spring")
 	 * and the rest of the parameter name ("param1", "param2")
 	 */
-	public ServletRequestParameterPropertyValues(
-			ServletRequest request, @Nullable String prefix, @Nullable String prefixSeparator) {
-
-		super(WebUtils.getParametersStartingWith(
-				request, (prefix != null ? prefix + prefixSeparator : null)));
+	public ServletRequestParameterPropertyValues(ServletRequest request, @Nullable String prefix, @Nullable String prefixSeparator) {
+		super(WebUtils.getParametersStartingWith(request, (prefix != null ? prefix + prefixSeparator : null)));
 	}
-
 }

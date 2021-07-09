@@ -1,7 +1,6 @@
 package com.goat.chapter201.autowire.item02;
 
 import com.goat.chapter201.autowire.Dao;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by 64274 on 2019/8/16.
@@ -12,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class Service {
 
-	@Autowired
 	private Dao mysqlDao;
 
-	@Autowired
 	private Dao mongoDao;
 
 	public Dao getMysqlDao() {

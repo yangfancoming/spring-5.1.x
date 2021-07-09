@@ -1,7 +1,4 @@
-
-
 package org.springframework.beans.factory.support;
-
 import java.io.IOException;
 import java.io.NotSerializableException;
 import java.io.ObjectInputStream;
@@ -30,7 +27,6 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 import javax.inject.Provider;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.TypeConverter;
@@ -996,12 +992,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	@Nullable
 	private <T> NamedBeanHolder<T> resolveNamedBean(ResolvableType requiredType, @Nullable Object[] args, boolean nonUniqueAsNull) throws BeansException {
 		Assert.notNull(requiredType, "Required type must not be null");
-		/**
-		 * 		这个方法是根据传入的Class类型来获取BeanName，因为我们有一个接口有多个实现类的情况(多态)，
-		 * 		所以这里返回的是一个String数组。这个过程也比较复杂。
-		 * 		这里需要注意的是，我们调用getBean方法传入的type为com.zkn.spring.learn.service.FactoryBeanService类型，但是我们没有在Spring容器中注入FactoryBeanService类型的Bean
-		 * 		正常来说我们在这里是获取不到beanName呢。但是事实是不是这样呢？看下面我们对getBeanNamesForType的分析
-		*/
+		// 这个方法是根据传入的Class类型来获取BeanName，因为我们有一个接口有多个实现类的情况(多态)，所以这里返回的是一个String数组。
 		String[] candidateNames = getBeanNamesForType(requiredType);
 		// 如果有多个BeanName，则挑选合适的BeanName
 		if (candidateNames.length > 1) {
