@@ -1094,13 +1094,11 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 	 * 4.单个依赖查询：先调用 findAutowireCandidates 查找所有可用的依赖，
 	 * 		如果有多个依赖，则根据规则匹配： @Primary -> @Priority -> ③方法名称或字段名称。
 	 * 	单个依赖查询是重点！！！
-	*/
-	/**
 	 * @param  descriptor          DependencyDescriptor 这个类实现了对字段、方法参数、构造器参数的进行依赖注入时的统一访问方式，你可以简单的认为是对这三种类型的封装。
 	 * @param  beanName  外层的 beanName
 	 * @param  autowiredBeanNames  根据类型查找可能有多个，autowiredBeanNames 就是指查找到的 beanName 集合，Spring 支持 Array、Map、Collection 的注入。
 	 * @param  typeConverter       类型转换器，BeanWrapper 自己就是一个转换器。
-	 */
+	*/
 	@Nullable
 	public Object doResolveDependency(DependencyDescriptor descriptor, @Nullable String beanName, @Nullable Set<String> autowiredBeanNames, @Nullable TypeConverter typeConverter) throws BeansException {
 		// 将当前正在解决的依赖存放到 ThreadLocal 中，作用以后再研究？？？

@@ -121,7 +121,8 @@ public class DefaultListableBeanFactoryTests {
 		Properties p = new Properties();
 		// 没实例化
 		assertFalse(KnowsIfInstantiated.wasInstantiated());
-		String name = KnowsIfInstantiated.class.getName();// org.springframework.beans.factory.DefaultListableBeanFactoryTests$KnowsIfInstantiated
+		// org.springframework.beans.factory.DefaultListableBeanFactoryTests$KnowsIfInstantiated
+		String name = KnowsIfInstantiated.class.getName();
 		p.setProperty("x1.(class)", name);
 		(new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
 		// 还没实例化
@@ -469,19 +470,20 @@ public class DefaultListableBeanFactoryTests {
 	public void testEmpty() {
 		ListableBeanFactory lbf = new DefaultListableBeanFactory();
 		assertTrue("No beans defined --> array != null", lbf.getBeanDefinitionNames() != null);
-		assertTrue("No beans defined after no arg constructor", lbf.getBeanDefinitionNames().length == 0);
-		assertTrue("No beans defined after no arg constructor", lbf.getBeanDefinitionCount() == 0);
+		assertTrue("No beans defined after no arg constructor", lbf.getBeanDefinitionNames().length == 0 && lbf.getBeanDefinitionCount() == 0);
 	}
 
 	// 测试 使用空属性的Properties对象进行bean注册 是无效的注册
 	@Test
 	public void testEmptyPropertiesPopulation() {
-		Properties p = new Properties();
-		(new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
+		PropertiesBeanDefinitionReader propertiesBeanDefinitionReader = new PropertiesBeanDefinitionReader(lbf);
+		propertiesBeanDefinitionReader.registerBeanDefinitions(new Properties());
 		assertTrue("No beans defined after ignorable invalid", lbf.getBeanDefinitionCount() == 0);
 	}
 
-	// 测试 使用无效属性的Properties对象进行bean注册  也是将被忽略的
+	/**
+	 * 测试 使用Properties注册bd。 使用无效属性的Properties对象进行bean注册  也是将被忽略的
+	*/
 	@Test
 	public void testHarmlessIgnorableRubbish() {
 		Properties p = new Properties();
@@ -491,6 +493,11 @@ public class DefaultListableBeanFactoryTests {
 		assertTrue("No beans defined after harmless ignorable rubbish", lbf.getBeanDefinitionCount() == 0);
 	}
 
+	/**
+	 * 测试 "(class)"
+	 * 测试 使用Properties注册bd。在【不使用】前缀的情况下，进行注册。
+	 * @see PropertiesBeanDefinitionReader#CLASS_KEY
+	 */
 	@Test
 	public void testPropertiesPopulationWithNullPrefix() {
 		Properties p = new Properties();
@@ -499,10 +506,11 @@ public class DefaultListableBeanFactoryTests {
 		p.setProperty("test.age", "48");
 		// 测试 使用null作为前缀 进行bean注册
 		int count = (new PropertiesBeanDefinitionReader(lbf)).registerBeanDefinitions(p);
-		assertTrue("1 beans registered, not " + count, count == 1);
+		assertTrue(count == 1);
 		testSingleTestBean(lbf);
 	}
 
+	// 测试 使用Properties注册bd。在【使用】前缀的情况下，进行注册。
 	@Test
 	public void testPropertiesPopulationWithPrefix() {
 		String PREFIX = "beans.";
@@ -516,6 +524,10 @@ public class DefaultListableBeanFactoryTests {
 		testSingleTestBean(lbf);
 	}
 
+	/**
+	 * 测试 "(ref)"
+	 * @see PropertiesBeanDefinitionReader#REF_SUFFIX
+	*/
 	@Test
 	public void testSimpleReference() {
 		String PREFIX = "beans.";

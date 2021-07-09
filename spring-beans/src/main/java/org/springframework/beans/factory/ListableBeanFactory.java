@@ -76,12 +76,12 @@ public interface ListableBeanFactory extends BeanFactory {
 	int getBeanDefinitionCount();
 
 	/**
+	 * 获取工厂中定义的所有db的name  一样不考虑父factory和其他factory注册的单例bean
 	 * Return the names of all beans defined in this factory.
 	 * Does not consider any hierarchy this factory may participate in,and ignores any singleton beans that have been registered by other means than bean definitions.
 	 * @return the names of all beans defined in this factory,or an empty array if none defined
-	 *
 	 */
-	String[] getBeanDefinitionNames();  // 获取工厂中定义的所有bean 的name  一样不考虑父factory和其他factory注册的单例bean
+	String[] getBeanDefinitionNames();
 
 	/**
 	 * Return the names of beans matching the given type (including subclasses),

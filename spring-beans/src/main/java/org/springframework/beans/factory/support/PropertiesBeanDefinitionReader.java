@@ -1,7 +1,4 @@
-
-
 package org.springframework.beans.factory.support;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -10,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.beans.PropertyAccessor;
@@ -29,7 +25,6 @@ import org.springframework.util.StringUtils;
  * Bean definition reader for a simple properties format.
  * Provides bean definition registration methods for Map/Properties and ResourceBundle. Typically applied to a DefaultListableBeanFactory.
  * <b>Example:</b>
- * <pre class="code">
  * employee.(class)=MyClass       // bean is of class MyClass
  * employee.(abstract)=true       // this bean can't be instantiated directly
  * employee.group=Insurance       // real property
@@ -263,9 +258,9 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * Register bean definitions contained in a Map. Ignore ineligible properties.
-	 * @param map a map of {@code name} to {@code property} (String or Object). Property
-	 * values will be strings if coming from a Properties file etc. Property names
-	 * (keys) <b>must</b> be Strings. Class keys must be Strings.
+	 * @param map a map of {@code name} to {@code property} (String or Object).
+	 * Property values will be strings if coming from a Properties file etc.
+	 * Property names (keys) <b>must</b> be Strings. Class keys must be Strings.
 	 * @param prefix a filter within the keys in the map: e.g. 'beans.' (can be empty or {@code null})
 	 * @return the number of bean definitions found
 	 * @throws BeansException in case of loading or parsing errors
@@ -286,15 +281,18 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	public int registerBeanDefinitions(Map<?, ?> map, @Nullable String prefix, String resourceDescription) throws BeansException {
 		if (prefix == null) prefix = "";
 		int beanCount = 0;
+		// 循环检测map参数中的key，必须都为String类型，否则抛异常
 		for (Object key : map.keySet()) {
 			if (!(key instanceof String)) {
 				throw new IllegalArgumentException("Illegal key [" + key + "]: only Strings allowed");
 			}
+			// keyString的出现值格式为： test.xxx  或是  beans.test.xxx
 			String keyString = (String) key;
+			// 这里注意下 prefix 为 "" 时，条件永远为true
 			if (keyString.startsWith(prefix)) {
-				// Key is of form: prefix<name>.property
+				// Key is of form: prefix<name>.property  如果有前缀再这里干掉前缀： beans.test.(class) ---> test.(class)
 				String nameAndProperty = keyString.substring(prefix.length());
-				// Find dot before property name, ignoring dots in property keys.
+				// Find dot before property name, ignoring dots in property keys. 找到.之前的属性名
 				int sepIdx;
 				int propKeyIdx = nameAndProperty.indexOf(PropertyAccessor.PROPERTY_KEY_PREFIX);
 				if (propKeyIdx != -1) {
@@ -303,8 +301,10 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 					sepIdx = nameAndProperty.lastIndexOf(SEPARATOR);
 				}
 				if (sepIdx != -1) {
-					String beanName = nameAndProperty.substring(0, sepIdx); // x1.(class) ---> x1
+					// 获取到bean名称  x1.(class) ---> x1   test.xxx ---> test
+					String beanName = nameAndProperty.substring(0, sepIdx);
 					if (logger.isTraceEnabled()) logger.trace("Found bean name '" + beanName + "'");
+					// 如果容器中没有该bd，则对其进行注册，【此种注册方式，不会进行bd覆盖，因为一旦检测到名称已经存在则直接跳过了】
 					if (!getRegistry().containsBeanDefinition(beanName)) {
 						// If we haven't already registered it...
 						registerBeanDefinition(beanName, map, prefix + beanName, resourceDescription);
@@ -390,6 +390,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 			bd.setLazyInit(lazyInit);
 			bd.setConstructorArgumentValues(cas);
 			bd.setPropertyValues(pvs);
+			// 获取父类中的bean工厂，真正注册bean定义的地方。
 			getRegistry().registerBeanDefinition(beanName, bd);
 		}catch (ClassNotFoundException ex) {
 			throw new CannotLoadBeanClassException(resourceDescription, beanName, className, ex);
@@ -419,5 +420,4 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 		}
 		return val;
 	}
-
 }

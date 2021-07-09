@@ -1,14 +1,9 @@
-
-
 package org.springframework.beans.factory.support;
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.EnvironmentCapable;
@@ -21,10 +16,12 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 为所有BeanDefinitionReader接口实现类的抽象父类
  * Abstract base class for bean definition readers which implement the {@link BeanDefinitionReader} interface.
  * Provides common properties like the bean factory to work on and the class loader to use for loading bean classes.
  * @since 11.12.2003
  * @see BeanDefinitionReaderUtils
+ * 其作用是提供公共属性，就好比容器使用类加载器来加载类。
  * AbstractBeanDefinitionReader 中实现了3个loadBeanDefinitions 留下了一个 loadBeanDefinitions(Resource resource) 给子类实现。
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader, EnvironmentCapable {
@@ -32,6 +29,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	/** Logger available to subclasses. */
 	protected final Log logger = LogFactory.getLog(getClass());
 
+	// bd读取器持有的bean容器
 	private final BeanDefinitionRegistry registry;
 
 	@Nullable
