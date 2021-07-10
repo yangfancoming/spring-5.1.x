@@ -1,8 +1,5 @@
-
 package org.springframework.util;
-
 import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Properties;
@@ -11,6 +8,18 @@ import java.util.Set;
 import static org.junit.Assert.*;
 
 public class StringUtilsTests {
+
+
+	//  测试 trimWhitespace 只干掉字符串的头尾空白符
+	@Test
+	public void testTrimWhitespace() {
+		// 干掉尾部空白
+		assertEquals("Jordan", StringUtils.trimWhitespace("Jordan   "));
+		// 干掉头部空白
+		assertEquals("Jordan", StringUtils.trimWhitespace("    Jordan"));
+		// 其他位置的空白 干不掉
+		assertEquals("Jor   dan", StringUtils.trimWhitespace("Jor   dan"));
+	}
 
 	@Test
 	public void testTrimAllWhitespace() {

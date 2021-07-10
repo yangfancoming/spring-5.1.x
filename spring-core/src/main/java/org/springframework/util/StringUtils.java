@@ -1,7 +1,4 @@
-
-
 package org.springframework.util;
-
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -168,11 +165,12 @@ public abstract class StringUtils {
 	// General convenience methods for working with Strings  【字符串头尾操作】
 	//---------------------------------------------------------------------
 	/**
+	 * 只干掉字符串的头尾空白符
 	 * Trim leading and trailing whitespace from the given String.
-	 *  只干掉字符串的头尾空白符
 	 * @param str the String to check
 	 * @return the trimmed String
 	 * @see java.lang.Character#isWhitespace
+	 * @see org.springframework.util.StringUtilsTests#testTrimWhitespace() 【测试用例】
 	 */
 	public static String trimWhitespace(String str) {
 		if (!hasLength(str)) return str;
@@ -188,11 +186,12 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * Trim all whitespace from the given String:leading, trailing, and in between characters.
 	 * 干掉所有空白符： 包括 首尾空白和中间空白
+	 * Trim all whitespace from the given String:leading, trailing, and in between characters.
 	 * @param str the String to check
 	 * @return the trimmed String
 	 * @see java.lang.Character#isWhitespace
+	 * @see org.springframework.util.StringUtilsTests#testTrimAllWhitespace() 【测试用例】
 	 */
 	public static String trimAllWhitespace(String str) {
 		if (!hasLength(str)) return str;

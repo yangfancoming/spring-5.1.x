@@ -1,6 +1,4 @@
-
 package org.mybatis.spring.mapper;
-
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;

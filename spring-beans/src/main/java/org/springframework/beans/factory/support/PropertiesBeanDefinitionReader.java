@@ -259,8 +259,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	/**
 	 * Register bean definitions contained in a Map. Ignore ineligible properties.
 	 * @param map a map of {@code name} to {@code property} (String or Object).
-	 * Property values will be strings if coming from a Properties file etc.
-	 * Property names (keys) <b>must</b> be Strings. Class keys must be Strings.
+	 * Property values will be strings if coming from a Properties file etc.Property names (keys) <b>must</b> be Strings. Class keys must be Strings.
 	 * @param prefix a filter within the keys in the map: e.g. 'beans.' (can be empty or {@code null})
 	 * @return the number of bean definitions found
 	 * @throws BeansException in case of loading or parsing errors
@@ -271,7 +270,8 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 
 	/**
 	 * Register bean definitions contained in a Map. Ignore ineligible properties.
-	 * @param map a map of {@code name} to {@code property} (String or Object). Property  values will be strings if coming from a Properties file etc. Property names (keys) <b>must</b> be Strings. Class keys must be Strings.
+	 * @param map a map of {@code name} to {@code property} (String or Object).
+	 * Property  values will be strings if coming from a Properties file etc. Property names (keys) <b>must</b> be Strings. Class keys must be Strings.
 	 * @param prefix a filter within the keys in the map: e.g. 'beans.' (can be empty or {@code null})
 	 * @param resourceDescription description of the resource that the Map came from (for logging purposes)
 	 * @return the number of bean definitions found
@@ -281,7 +281,12 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	public int registerBeanDefinitions(Map<?, ?> map, @Nullable String prefix, String resourceDescription) throws BeansException {
 		if (prefix == null) prefix = "";
 		int beanCount = 0;
-		// 循环检测map参数中的key，必须都为String类型，否则抛异常
+		/**
+		 *  循环检测map参数中的key，必须都为String类型，否则抛异常
+		 * "beans.test.name" -> "Tony"
+		 * "beans.test.age" -> "0x30"
+		 * "beans.test.(class)" -> "org.springframework.tests.sample.beans.TestBean"
+		*/
 		for (Object key : map.keySet()) {
 			if (!(key instanceof String)) {
 				throw new IllegalArgumentException("Illegal key [" + key + "]: only Strings allowed");
@@ -328,6 +333,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 	 * @throws BeansException if the bean definition could not be parsed or registered
 	 */
 	protected void registerBeanDefinition(String beanName, Map<?, ?> map, String prefix, String resourceDescription) throws BeansException {
+		// 存储"(class)"属性
 		String className = null;
 		String parent = null;
 		String scope = GenericBeanDefinition.SCOPE_SINGLETON;
@@ -335,9 +341,16 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 		boolean lazyInit = false;
 		ConstructorArgumentValues cas = new ConstructorArgumentValues();
 		MutablePropertyValues pvs = new MutablePropertyValues();
+		/**
+		 * "beans.test.name" -> "Tony"
+		 * "beans.test.age" -> "0x30"
+		 * "beans.test.(class)" -> "org.springframework.tests.sample.beans.TestBean"
+		*/
 		for (Map.Entry<?, ?> entry : map.entrySet()) {
+			// 取出 "beans.test.name" -> "Tony" 中的 "beans.test.name"
 			String key = StringUtils.trimWhitespace((String) entry.getKey());
 			if (key.startsWith(prefix + SEPARATOR)) {
+				// 取出 "beans.test.name" 中的  name  （就是最后一段的属性名）  取出属性后，与所有内置常量属性进行匹配，匹配上就赋值，匹配不上的则存入pvs中。
 				String property = key.substring(prefix.length() + SEPARATOR.length());
 				if (CLASS_KEY.equals(property)) {
 					className = StringUtils.trimWhitespace((String) entry.getValue());
@@ -383,6 +396,7 @@ public class PropertiesBeanDefinitionReader extends AbstractBeanDefinitionReader
 		if (parent == null && className == null && !beanName.equals(this.defaultParentBean)) {
 			parent = this.defaultParentBean;
 		}
+		// 前面解析完毕，设置好信息之后，下面开始向容器中注册bd。
 		try {
 			AbstractBeanDefinition bd = BeanDefinitionReaderUtils.createBeanDefinition(parent, className, getBeanClassLoader());
 			bd.setScope(scope);

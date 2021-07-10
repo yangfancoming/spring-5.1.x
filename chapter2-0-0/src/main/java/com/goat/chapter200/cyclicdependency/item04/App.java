@@ -6,7 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 /**
  * Created by Administrator on 2020/4/3.
  *
- * @ Description: TODO
+ * @ Description: 延时加载方式  解决循环依赖
  * @ author  山羊来了
  * @ date 2020/4/3---15:15
  */

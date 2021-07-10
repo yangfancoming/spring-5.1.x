@@ -1,7 +1,4 @@
-
-
 package org.springframework.beans.factory.config;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanMetadataElement;

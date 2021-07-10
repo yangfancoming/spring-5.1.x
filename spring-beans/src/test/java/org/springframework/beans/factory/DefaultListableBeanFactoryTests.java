@@ -510,7 +510,11 @@ public class DefaultListableBeanFactoryTests {
 		testSingleTestBean(lbf);
 	}
 
-	// 测试 使用Properties注册bd。在【使用】前缀的情况下，进行注册。
+	/**
+	 * 测试 "(class)"
+	 * 测试 使用Properties注册bd。在【使用】前缀的情况下，进行注册。
+	 * @see PropertiesBeanDefinitionReader#CLASS_KEY
+	 */
 	@Test
 	public void testPropertiesPopulationWithPrefix() {
 		String PREFIX = "beans.";

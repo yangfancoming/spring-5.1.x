@@ -1,7 +1,4 @@
-
-
 package org.springframework.context.annotation;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -10,10 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.aop.interceptor.SimpleTraceInterceptor;
 import org.springframework.aop.scope.ScopedObject;

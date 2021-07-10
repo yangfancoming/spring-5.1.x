@@ -45,7 +45,8 @@ public interface BeanDefinitionReader {
 	ClassLoader getBeanClassLoader();
 
 	/**
-	 * Return the BeanNameGenerator to use for anonymous beans (without explicit bean name specified).// 生成Bean名称的名字生成器（若没有指定名称的话，会调用它生成）
+	 * 生成Bean名称的名字生成器（若没有指定名称的话，会调用它生成）
+	 * Return the BeanNameGenerator to use for anonymous beans (without explicit bean name specified).
 	 */
 	BeanNameGenerator getBeanNameGenerator();
 
@@ -53,6 +54,7 @@ public interface BeanDefinitionReader {
 	//  核心方法，loadbean定义进来，然后注册到上面的register 里面去
 	//---------------------------------------------------------------------
 	/**
+	 * 以Resource形式，读取bean定义信息
 	 * Load bean definitions from the specified resource.
 	 * @param resource the resource descriptor
 	 * @return the number of bean definitions found
@@ -61,6 +63,7 @@ public interface BeanDefinitionReader {
 	int loadBeanDefinitions(Resource resource) throws BeanDefinitionStoreException;
 
 	/**
+	 * 以Resource形式，读取bean定义信息
 	 * Load bean definitions from the specified resources.
 	 * @param resources the resource descriptors
 	 * @return the number of bean definitions found
@@ -69,6 +72,7 @@ public interface BeanDefinitionReader {
 	int loadBeanDefinitions(Resource... resources) throws BeanDefinitionStoreException;
 
 	/**
+	 * 以资源文件路径形式，读取bean定义信息
 	 * Load bean definitions from the specified resource location.
 	 * The location can also be a location pattern, provided that the ResourceLoader of this bean definition reader is a ResourcePatternResolver.
 	 * @param location the resource location, to be loaded with the ResourceLoader (or ResourcePatternResolver) of this bean definition reader
@@ -81,6 +85,7 @@ public interface BeanDefinitionReader {
 	int loadBeanDefinitions(String location) throws BeanDefinitionStoreException;
 
 	/**
+	 * 以资源文件路径形式，读取bean定义信息
 	 * Load bean definitions from the specified resource locations.
 	 * @param locations the resource locations, to be loaded with the ResourceLoader (or ResourcePatternResolver) of this bean definition reader
 	 * @return the number of bean definitions found
