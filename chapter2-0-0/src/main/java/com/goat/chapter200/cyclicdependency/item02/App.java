@@ -18,6 +18,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  *
  * 由于2.构造方法注入，是将对象的实例化和初始化两步，合二为一了，所以无法解决。
  * 由于1.set 方法注入，是将对象的实例化和初始化分开的两个步骤，因此可以解决。
+ * 提前暴露对象，该对象指的是 已经完成了实例化，但是并未完成初始化的，将其添加到二级缓冲池，进行提前暴露。
  */
 public class App {
 
