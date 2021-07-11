@@ -40,6 +40,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	@Nullable
 	private String valueSeparator = SystemPropertyUtils.VALUE_SEPARATOR;
 
+	// 存储需要严格校检的属性，是否有对应的值，如果没有则会抛出异常
 	private final Set<String> requiredProperties = new LinkedHashSet<>();
 
 	//---------------------------------------------------------------------
@@ -111,7 +112,10 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		this.ignoreUnresolvableNestedPlaceholders = ignoreUnresolvableNestedPlaceholders;
 	}
 
-	// 添加应用所必须的属性！   全局唯一入口
+	/**
+	 *  添加应用所必须的属性！   全局唯一入口
+	 * @see com.goat.chapter201.extend.MyApplicationContext#initPropertySources() 【测试用例】
+	*/
 	@Override
 	public void setRequiredProperties(String... requiredProperties) {
 		for (String key : requiredProperties) {
@@ -124,7 +128,9 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		MissingRequiredPropertiesException ex = new MissingRequiredPropertiesException();
 		for (String key : requiredProperties) {
 			// 如果存在属性缺失，记录下来
-			if (this.getProperty(key) == null) ex.addMissingRequiredProperty(key);
+			if (this.getProperty(key) == null) {
+				ex.addMissingRequiredProperty(key);
+			}
 		}
 		// 存在缺失属性则抛出异常
 		if (!ex.getMissingRequiredProperties().isEmpty()) {

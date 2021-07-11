@@ -1,9 +1,5 @@
-
-
 package org.springframework.context.support;
-
 import java.io.IOException;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -37,11 +33,11 @@ import org.springframework.lang.Nullable;
  */
 public abstract class AbstractRefreshableApplicationContext extends AbstractApplicationContext {
 
-	// 是否允许 BeanDefinition 覆盖 ，是指是否允对一个名字相同但definition不同进行重新注册，默认是true。
+	// 是否允许 BeanDefinition 覆盖 ，是指是否允对一个名字相同但definition不同进行重新注册，这里默认为null
 	@Nullable
 	private Boolean allowBeanDefinitionOverriding;
 
-	// 否允许循环引用，是指是否允许Bean之间循环引用，默认是true.
+	// 否允许循环引用，是指是否允许Bean之间循环引用，这里默认为null.
 	@Nullable
 	private Boolean allowCircularReferences;
 
@@ -186,6 +182,8 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	 * BeanDefinition 的覆盖问题可能会有开发者碰到这个坑，就是在配置文件中定义 bean 时使用了相同的 id 或 name，
 	 * 默认情况下，allowBeanDefinitionOverriding 属性为 null，如果在同一配置文件中重复了，会抛错，但是如果不是同一配置文件中，会发生覆盖。
 	 * 循环引用也很好理解：A 依赖 B，而 B 依赖 A。或 A 依赖 B，B 依赖 C，而 C 依赖 A。
+	 * 这里 allowBeanDefinitionOverriding 和 allowCircularReferences 默认为null，若想自定义更改，则需要重写该方法，均设置为true后，再调用父类该方法
+	 * @see com.goat.chapter201.extend.MyApplicationContext#customizeBeanFactory(org.springframework.beans.factory.support.DefaultListableBeanFactory) 【测试用例】
 	 */
 	protected void customizeBeanFactory(DefaultListableBeanFactory beanFactory) {
 		if (allowBeanDefinitionOverriding != null) {

@@ -1,17 +1,12 @@
-
-
 package org.springframework.beans.factory.xml;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLDecoder;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.lang.Nullable;
@@ -91,5 +86,4 @@ public class ResourceEntityResolver extends DelegatingEntityResolver {
 		}
 		return source;
 	}
-
 }

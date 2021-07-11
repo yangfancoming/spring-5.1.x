@@ -64,6 +64,8 @@ public interface ConfigurablePropertyResolver extends PropertyResolver {
 	void setRequiredProperties(String... requiredProperties);
 
 	/**
+	 * 校检requiredProperties中是否有对应的值，如果没有则会抛出异常
+	 * @see AbstractPropertyResolver#requiredProperties
 	 * Validate that each of the properties specified by {@link #setRequiredProperties} is present and resolves to a non-{@code null} value.
 	 * @throws MissingRequiredPropertiesException if any of the required properties are not resolvable.
 	 * 检查环境变量的核心方法为，简单来说就是如果存在环境变量的value 为空的时候就抛异常，然后停止启动Spring

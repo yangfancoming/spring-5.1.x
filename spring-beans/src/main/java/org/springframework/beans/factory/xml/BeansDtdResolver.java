@@ -1,15 +1,10 @@
-
-
 package org.springframework.beans.factory.xml;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
-
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.lang.Nullable;
@@ -59,5 +54,4 @@ public class BeansDtdResolver implements EntityResolver {
 	public String toString() {
 		return "EntityResolver for spring-beans DTD";
 	}
-
 }
