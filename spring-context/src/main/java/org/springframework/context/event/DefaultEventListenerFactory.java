@@ -1,7 +1,4 @@
-
-
 package org.springframework.context.event;
-
 import java.lang.reflect.Method;
 
 import org.springframework.context.ApplicationListener;
@@ -10,10 +7,7 @@ import org.springframework.core.Ordered;
 /**
  * Default {@link EventListenerFactory} implementation that supports the
  * regular {@link EventListener} annotation.
- *
  * Used as "catch-all" implementation by default.
- *
- * @author Stephane Nicoll
  * @since 4.2
  */
 public class DefaultEventListenerFactory implements EventListenerFactory, Ordered {
@@ -39,5 +33,4 @@ public class DefaultEventListenerFactory implements EventListenerFactory, Ordere
 	public ApplicationListener<?> createApplicationListener(String beanName, Class<?> type, Method method) {
 		return new ApplicationListenerMethodAdapter(beanName, type, method);
 	}
-
 }

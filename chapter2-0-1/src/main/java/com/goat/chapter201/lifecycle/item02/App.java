@@ -14,12 +14,16 @@ import java.util.Arrays;
  */
 public class App {
 
+	ApplicationContext ac = new AnnotationConfigApplicationContext(Config.class);
+
 	@Test
-	public void test1(){
-		ApplicationContext ac = new AnnotationConfigApplicationContext(Config.class);
+	public void test(){
 		String[] str= ac.getBeanDefinitionNames();
 		Arrays.stream(str).forEach(x->System.out.println("***---***	 " + x));
+	}
 
+	@Test
+	public void test1(){
 		Baby baby = ac.getBean(Baby.class);
 		baby.hello();
 

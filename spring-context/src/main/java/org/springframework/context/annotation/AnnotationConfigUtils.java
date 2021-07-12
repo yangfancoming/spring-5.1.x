@@ -1,12 +1,8 @@
-
-
 package org.springframework.context.annotation;
-
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -116,21 +112,23 @@ public abstract class AnnotationConfigUtils {
 		// Spring 4.2之后这个改成6我觉得更准确点
 		Set<BeanDefinitionHolder> beanDefs = new LinkedHashSet<>(8);
 		if (!registry.containsBeanDefinition(CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME)) {
-			RootBeanDefinition def = new RootBeanDefinition(ConfigurationClassPostProcessor.class); // 这个类是重点！！！
+			// 这个类是重点！！！ 用来处理@Configuration，@Import，@ImportResource和类内部的@Bean 注解
+			RootBeanDefinition def = new RootBeanDefinition(ConfigurationClassPostProcessor.class); //
 			def.setSource(source);
-//			beanDefs.add(registerPostProcessor(registry, def, CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME));
+			beanDefs.add(registerPostProcessor(registry, def, CONFIGURATION_ANNOTATION_PROCESSOR_BEAN_NAME));
 		}
 		if (!registry.containsBeanDefinition(AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME)) {
+			// 用来处理@Autowired注解和@Value注解的
 			RootBeanDefinition def = new RootBeanDefinition(AutowiredAnnotationBeanPostProcessor.class);
 			def.setSource(source);
-//			beanDefs.add(registerPostProcessor(registry, def, AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME));
+			beanDefs.add(registerPostProcessor(registry, def, AUTOWIRED_ANNOTATION_PROCESSOR_BEAN_NAME));
 		}
-		// 支持JSR-250的一些注解：@Resource、@PostConstruct、@PreDestroy等
 		// Check for JSR-250 support, and if present add the CommonAnnotationBeanPostProcessor.
 		if (jsr250Present && !registry.containsBeanDefinition(COMMON_ANNOTATION_PROCESSOR_BEAN_NAME)) {
+			// 支持JSR-250的一些注解：@Resource、@PostConstruct、@PreDestroy等
 			RootBeanDefinition def = new RootBeanDefinition(CommonAnnotationBeanPostProcessor.class);
 			def.setSource(source);
-//			beanDefs.add(registerPostProcessor(registry, def, COMMON_ANNOTATION_PROCESSOR_BEAN_NAME));
+			beanDefs.add(registerPostProcessor(registry, def, COMMON_ANNOTATION_PROCESSOR_BEAN_NAME));
 		}
 		// 若导入了对JPA的支持，那就注册JPA相关注解的处理器
 		// Check for JPA support, and if present add the PersistenceAnnotationBeanPostProcessor.
