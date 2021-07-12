@@ -9,7 +9,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
  * Created by Administrator on 2021/7/11.
- * @ Description: TODO
+ * @ Description: 测试 重写上下文的抽象方法 initPropertySources 和 customizeBeanFactory
  * @ author  山羊来了
  * @ date 2021/7/11---12:43
  */
