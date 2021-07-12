@@ -93,7 +93,6 @@ public abstract class AnnotationConfigUtils {
 	 * @param registry the registry to operate on
 	 * @param source the configuration source element (already extracted) that this registration was triggered from. May be {@code null}.
 	 * @return a Set of BeanDefinitionHolders, containing all bean definitions that have actually been registered by this call
-	 * 为了测试  去掉spring内部bd的注册
 	 */
 	public static Set<BeanDefinitionHolder> registerAnnotationConfigProcessors(BeanDefinitionRegistry registry, @Nullable Object source) {
 		// 获取beanFactory，把我们的beanFactory从registry里解析出来
@@ -107,7 +106,6 @@ public abstract class AnnotationConfigUtils {
 				beanFactory.setAutowireCandidateResolver(new ContextAnnotationAutowireCandidateResolver());
 			}
 		}
-		// 这里初始长度放4  是因为大多数情况下，我们只会注册4个BeanPostProcessor 如下(不多说了)
 		// BeanDefinitionHolder解释：持有name和aliases,为注册做准备
 		// Spring 4.2之后这个改成6我觉得更准确点
 		Set<BeanDefinitionHolder> beanDefs = new LinkedHashSet<>(8);
@@ -140,7 +138,7 @@ public abstract class AnnotationConfigUtils {
 				throw new IllegalStateException("Cannot load optional framework class: " + PERSISTENCE_ANNOTATION_PROCESSOR_CLASS_NAME, ex);
 			}
 			def.setSource(source);
-//			beanDefs.add(registerPostProcessor(registry, def, PERSISTENCE_ANNOTATION_PROCESSOR_BEAN_NAME));
+			beanDefs.add(registerPostProcessor(registry, def, PERSISTENCE_ANNOTATION_PROCESSOR_BEAN_NAME));
 		}
 		// 下面两个类，是Spring4.2之后加入进来的，为了更好的使用Spring的事件而提供支持
 		// 支持了@EventListener注解，我们可以通过此注解更方便的监听事件了（Spring4.2之后）
@@ -148,12 +146,12 @@ public abstract class AnnotationConfigUtils {
 		if (!registry.containsBeanDefinition(EVENT_LISTENER_PROCESSOR_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition(EventListenerMethodProcessor.class);
 			def.setSource(source);
-//			beanDefs.add(registerPostProcessor(registry, def, EVENT_LISTENER_PROCESSOR_BEAN_NAME));
+			beanDefs.add(registerPostProcessor(registry, def, EVENT_LISTENER_PROCESSOR_BEAN_NAME));
 		}
 		if (!registry.containsBeanDefinition(EVENT_LISTENER_FACTORY_BEAN_NAME)) {
 			RootBeanDefinition def = new RootBeanDefinition(DefaultEventListenerFactory.class);
 			def.setSource(source);
-//			beanDefs.add(registerPostProcessor(registry, def, EVENT_LISTENER_FACTORY_BEAN_NAME));
+			beanDefs.add(registerPostProcessor(registry, def, EVENT_LISTENER_FACTORY_BEAN_NAME));
 		}
 		return beanDefs;
 	}
