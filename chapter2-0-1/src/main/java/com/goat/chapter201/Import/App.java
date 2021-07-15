@@ -1,7 +1,6 @@
 package com.goat.chapter201.Import;
 
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
@@ -22,7 +21,7 @@ public class App {
 
 	@Test
 	public void ImportConfig(){
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig.class);
+		new AnnotationConfigApplicationContext(ImportConfig.class);
 	}
 
 	/**
@@ -31,7 +30,7 @@ public class App {
 	*/
 	@Test
 	public void ImportConfig1(){
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig1.class);
+		new AnnotationConfigApplicationContext(ImportConfig1.class);
 	}
 
 	/**
@@ -40,7 +39,7 @@ public class App {
 	 */
 	@Test
 	public void test(){
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig2.class);
+		new AnnotationConfigApplicationContext(ImportConfig2.class);
 	}
 
 	/**
@@ -48,17 +47,22 @@ public class App {
 	 */
 	@Test
 	public void ImportSelectorConfig(){
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportSelectorConfig.class);
+		new AnnotationConfigApplicationContext(ImportSelectorConfig.class);
 	}
 
 	/**
 	 * ImportBeanDefinitionRegistrar 导入组件
 	*/
 	@Test
-	public void ImportBeanDefinitionRegistrarConfig(){
-		ApplicationContext ac = new AnnotationConfigApplicationContext(ImportBeanDefinitionRegistrarConfig.class);
+	public void ImportBeanDefinitionRegistrarConfig1(){
+		new AnnotationConfigApplicationContext(ImportBeanDefinitionRegistrarConfig1.class);
 	}
 
+	@Test
+	public void ImportBeanDefinitionRegistrarConfig2(){
+		new AnnotationConfigApplicationContext(ImportBeanDefinitionRegistrarConfig2.class);
+	}
+	
 	/**
 	 * DeferredImportSelector 导入组件
 	 * @see ConfigurationClassParser#processImports(org.springframework.context.annotation.ConfigurationClass, org.springframework.context.annotation.ConfigurationClassParser.SourceClass, java.util.Collection, boolean)
@@ -66,7 +70,6 @@ public class App {
 	 */
 	@Test
 	public void deferredImportSelectorTest(){
-		ApplicationContext ac = new AnnotationConfigApplicationContext(DeferredImportSelectorConfig.class);
+		new AnnotationConfigApplicationContext(DeferredImportSelectorConfig.class);
 	}
-
 }

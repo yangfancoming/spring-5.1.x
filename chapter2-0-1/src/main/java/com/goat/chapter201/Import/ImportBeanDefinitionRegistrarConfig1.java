@@ -1,8 +1,6 @@
 package com.goat.chapter201.Import;
 
 
-import com.goat.chapter201.model.Blue;
-import com.goat.chapter201.model.Red;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -11,10 +9,10 @@ import org.springframework.context.annotation.Import;
  * @ author  山羊来了
  * @ date 2020/3/17---17:08
  */
-@Import({Blue.class, Red.class,MyImportBeanDefinitionRegistrar.class})
-public class ImportBeanDefinitionRegistrarConfig {
+@Import({MyImportBeanDefinitionRegistrar.class})
+public class ImportBeanDefinitionRegistrarConfig1 {
 
-	public ImportBeanDefinitionRegistrarConfig() {
+	public ImportBeanDefinitionRegistrarConfig1() {
 		System.out.println("ImportBeanDefinitionRegistrarConfig 无参构造函数 执行");
 	}
 }

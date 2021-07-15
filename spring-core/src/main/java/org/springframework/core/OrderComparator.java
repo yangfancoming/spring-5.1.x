@@ -1,7 +1,4 @@
-
-
 package org.springframework.core;
-
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -175,7 +172,6 @@ public class OrderComparator implements Comparator<Object> {
 	 */
 	@FunctionalInterface
 	public interface OrderSourceProvider {
-
 		/**
 		 * Return an order source for the specified object, i.e. an object that
 		 * should be checked for an order value as a replacement to the given object.
@@ -188,5 +184,4 @@ public class OrderComparator implements Comparator<Object> {
 		@Nullable
 		Object getOrderSource(Object obj);
 	}
-
 }

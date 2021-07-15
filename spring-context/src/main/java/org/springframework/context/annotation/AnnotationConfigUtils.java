@@ -89,6 +89,7 @@ public abstract class AnnotationConfigUtils {
 	}
 
 	/**
+	 * 向registry中注册 系统注解的处理类。包括：@Configuration，@Import，@ImportResource，@Bean，@Autowired ，@Value，@Resource、@PostConstruct、@PreDestroy等。
 	 * Register all relevant annotation post processors in the given registry.
 	 * @param registry the registry to operate on
 	 * @param source the configuration source element (already extracted) that this registration was triggered from. May be {@code null}.
@@ -162,6 +163,9 @@ public abstract class AnnotationConfigUtils {
 		return new BeanDefinitionHolder(definition, beanName);
 	}
 
+	/**
+	 *  将指定的registry转换成beanFactory
+	*/
 	@Nullable
 	private static DefaultListableBeanFactory unwrapDefaultListableBeanFactory(BeanDefinitionRegistry registry) {
 		if (registry instanceof DefaultListableBeanFactory) {
