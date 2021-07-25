@@ -102,6 +102,7 @@ public abstract class BeanUtils {
 	}
 
 	/**
+	 * 使用指定类的最优构造函数进行实例化
 	 * Instantiate a class using its no-arg constructor and return the new instance as the specified assignable type.
 	 * Useful in cases where the type of the class to instantiate (clazz) is not available, but the type desired (assignableTo) is known.
 	 * Note that this method tries to set the constructor accessible if given a non-accessible (that is, non-public) constructor.
