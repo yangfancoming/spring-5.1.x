@@ -693,7 +693,6 @@ public class ConfigurationClassParser {
 				deferredImportSelectors = new ArrayList<>();
 			}
 		}
-
 	}
 
 

@@ -101,6 +101,7 @@ public abstract class OrderUtils {
 	 * Return the value of the {@code javax.annotation.Priority} annotation declared on the specified type, or {@code null} if none.
 	 * @param type the type to handle
 	 * @return the priority value if the annotation is declared, or {@code null} if none
+	 * @see org.springframework.core.annotation.OrderUtilsTests#getPriorityValueNoAnnotation() 【测试用例】
 	 */
 	@Nullable
 	public static Integer getPriority(Class<?> type) {

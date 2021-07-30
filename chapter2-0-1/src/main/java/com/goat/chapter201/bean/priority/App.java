@@ -19,7 +19,7 @@ public class App {
 	 * @see DefaultListableBeanFactory#getBean(Class)
 	 * @see DefaultListableBeanFactory#determinePrimaryCandidate(java.util.Map, Class)
 	 * @see DefaultListableBeanFactory#determineHighestPriorityCandidate(java.util.Map, Class)
-	 * 经过 determinePrimaryCandidate 和 determineHighestPriorityCandidate  都未能从多个候选者中，筛选出优先bean的话，则抛出异常。
+	 * 经过 determinePrimaryCandidate 和 determineHighestPriorityCandidate  都未能从多个候选者中筛选出优先bean的话，则抛出异常。
 	 * No qualifying bean of type 'com.goat.chapter201.bean.primary.A' available: 【expected single matching bean but found 2: a1,a2】
 	 */
 

@@ -30,5 +30,4 @@ public class Config1 {
 	public class UserServiceImpl2 implements UserService {
 
 	}
-
 }

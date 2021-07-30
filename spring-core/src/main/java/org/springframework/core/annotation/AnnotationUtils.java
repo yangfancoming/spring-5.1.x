@@ -571,8 +571,8 @@ public abstract class AnnotationUtils {
 	 * <li>Recursively search through the superclass hierarchy of the given class.
 	 * Note: in this context, the term <em>recursively</em> means that the search
 	 * process continues by returning to step #1 with the current interface, annotation, or superclass as the class to look for annotations on.
-	 * @param clazz the class to look for annotations on
-	 * @param annotationType the type of annotation to look for
+	 * @param clazz the class to look for annotations on    指定要在哪个类中进行查找
+	 * @param annotationType the type of annotation to look for   指定要查找的注解类型
 	 * @return the first matching annotation, or {@code null} if not found
 	 */
 	@Nullable
@@ -1226,8 +1226,7 @@ public abstract class AnnotationUtils {
 	}
 
 	/**
-	 * Retrieve the <em>default value</em> of the {@code value} attribute
-	 * of a single-element Annotation, given an annotation instance.
+	 * Retrieve the <em>default value</em> of the {@code value} attribute of a single-element Annotation, given an annotation instance.
 	 * @param annotation the annotation instance from which to retrieve the default value
 	 * @return the default value, or {@code null} if not found
 	 * @see #getDefaultValue(Annotation, String)
@@ -1485,11 +1484,9 @@ public abstract class AnnotationUtils {
 	}
 
 	/**
-	 * Determine if annotations of the supplied {@code annotationType} are
-	 * <em>synthesizable</em> (i.e. in need of being wrapped in a dynamic
-	 * proxy that provides functionality above that of a standard JDK annotation).
-	 * Specifically, an annotation is <em>synthesizable</em> if it declares
-	 * any attributes that are configured as <em>aliased pairs</em> via
+	 * Determine if annotations of the supplied {@code annotationType} are <em>synthesizable</em>
+	 * (i.e. in need of being wrapped in a dynamic proxy that provides functionality above that of a standard JDK annotation).
+	 * Specifically, an annotation is <em>synthesizable</em> if it declares any attributes that are configured as <em>aliased pairs</em> via
 	 * {@link AliasFor @AliasFor} or if any nested annotations used by the annotation declare such <em>aliased pairs</em>.
 	 * @since 4.2
 	 * @see SynthesizedAnnotation
@@ -1528,12 +1525,10 @@ public abstract class AnnotationUtils {
 	}
 
 	/**
-	 * Get the names of the aliased attributes configured via
-	 * {@link AliasFor @AliasFor} for the supplied annotation {@code attribute}.
+	 * Get the names of the aliased attributes configured via {@link AliasFor @AliasFor} for the supplied annotation {@code attribute}.
 	 * @param attribute the attribute to find aliases for
 	 * @return the names of the aliased attributes (never {@code null}, though potentially <em>empty</em>)
-	 * @throws IllegalArgumentException if the supplied attribute method is
-	 * {@code null} or not from an annotation
+	 * @throws IllegalArgumentException if the supplied attribute method is  {@code null} or not from an annotation
 	 * @throws AnnotationConfigurationException if invalid configuration of {@code @AliasFor} is detected
 	 * @since 4.2
 	 * @see #getAttributeOverrideName(Method, Class)
@@ -1559,8 +1554,7 @@ public abstract class AnnotationUtils {
 	}
 
 	/**
-	 * Get all methods declared in the supplied {@code annotationType} that
-	 * match Java's requirements for annotation <em>attributes</em>.
+	 * Get all methods declared in the supplied {@code annotationType} that match Java's requirements for annotation <em>attributes</em>.
 	 * All methods in the returned list will be
 	 * {@linkplain ReflectionUtils#makeAccessible(Method) made accessible}.
 	 * @param annotationType the type in which to search for attribute methods (never {@code null})
@@ -1632,8 +1626,8 @@ public abstract class AnnotationUtils {
 	}
 
 	/**
-	 * If the supplied throwable is an {@link AnnotationConfigurationException},it will be cast to an {@code AnnotationConfigurationException} and thrown,allowing it to propagate to the caller.
-	 * Otherwise, this method does nothing.
+	 * If the supplied throwable is an {@link AnnotationConfigurationException},it will be cast to an {@code AnnotationConfigurationException} and thrown,
+	 * allowing it to propagate to the caller.Otherwise, this method does nothing.
 	 * @param ex the throwable to inspect
 	 * @since 4.2
 	 */
@@ -2032,5 +2026,4 @@ public abstract class AnnotationUtils {
 			this.defaultValue = defaultValue;
 		}
 	}
-
 }

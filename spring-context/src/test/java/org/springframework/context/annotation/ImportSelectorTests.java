@@ -1,7 +1,4 @@
-
-
 package org.springframework.context.annotation;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -16,13 +13,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-
 import org.hamcrest.Matcher;
 import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.BeanFactory;
@@ -182,7 +177,7 @@ public class ImportSelectorTests {
 	}
 
 
-	private static class SampleImportSelector implements ImportSelector,BeanClassLoaderAware, ResourceLoaderAware, BeanFactoryAware, EnvironmentAware {
+	private static class SampleImportSelector implements ImportSelector, BeanClassLoaderAware, ResourceLoaderAware, BeanFactoryAware, EnvironmentAware {
 		static ClassLoader classLoader;
 		static ResourceLoader resourceLoader;
 		static BeanFactory beanFactory;
@@ -257,6 +252,7 @@ public class ImportSelectorTests {
 			ImportSelectorTests.importFrom.put(getClass(), importingClassMetadata.getClassName());
 			return new String[] { DeferredImportedSelector1.class.getName() };
 		}
+		// 最低优先级
 		@Override
 		public int getOrder() {
 			return Ordered.LOWEST_PRECEDENCE;
@@ -264,7 +260,7 @@ public class ImportSelectorTests {
 	}
 
 
-	@Order(Ordered.HIGHEST_PRECEDENCE)
+	@Order(Ordered.HIGHEST_PRECEDENCE) // 最高优先级
 	public static class DeferredImportSelector2 implements DeferredImportSelector {
 		@Override
 		public String[] selectImports(AnnotationMetadata importingClassMetadata) {
