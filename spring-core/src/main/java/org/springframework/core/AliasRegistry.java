@@ -1,5 +1,3 @@
-
-
 package org.springframework.core;
 
 /**
@@ -39,5 +37,4 @@ public interface AliasRegistry { // 定义了对别名 alias 的简单增删改�
 	 * @return the aliases, or an empty array if none
 	 */
 	String[] getAliases(String name);
-
 }

@@ -1,5 +1,3 @@
-
-
 package org.springframework.beans.factory.config;
 
 import java.beans.PropertyEditor;

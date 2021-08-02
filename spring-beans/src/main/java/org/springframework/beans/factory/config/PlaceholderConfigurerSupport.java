@@ -1,7 +1,4 @@
-
-
 package org.springframework.beans.factory.config;
-
 import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -205,5 +202,4 @@ public abstract class PlaceholderConfigurerSupport extends PropertyResourceConfi
 		// New in Spring 3.0: resolve placeholders in embedded values such as annotation attributes.
 		beanFactoryToProcess.addEmbeddedValueResolver(valueResolver);
 	}
-
 }

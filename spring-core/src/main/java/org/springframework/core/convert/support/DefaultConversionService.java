@@ -1,7 +1,4 @@
-
-
 package org.springframework.core.convert.support;
-
 import java.nio.charset.Charset;
 import java.util.Currency;
 import java.util.Locale;

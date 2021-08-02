@@ -1,5 +1,3 @@
-
-
 package org.springframework.util;
 
 import org.springframework.lang.Nullable;
@@ -24,5 +22,4 @@ public interface StringValueResolver {
 	 */
 	@Nullable
 	String resolveStringValue(String strVal);
-
 }

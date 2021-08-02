@@ -1,7 +1,4 @@
-
-
 package org.springframework.beans.factory;
-
 import org.springframework.beans.BeansException;
 import org.springframework.util.ClassUtils;
 
@@ -34,7 +31,6 @@ public class BeanNotOfRequiredTypeException extends BeansException {
 		this.actualType = actualType;
 	}
 
-
 	/**
 	 * Return the name of the instance that was of the wrong type.
 	 */
@@ -55,5 +51,4 @@ public class BeanNotOfRequiredTypeException extends BeansException {
 	public Class<?> getActualType() {
 		return this.actualType;
 	}
-
 }

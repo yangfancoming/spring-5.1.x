@@ -428,11 +428,11 @@ public class ClassUtilsTests {
 		}
 
 		public static void staticMethod() {
-			System.out.println("staticMethod  is  invoked!");
+			System.out.println("noArgCalled  is  invoked!");
 			noArgCalled = true;
 		}
 		public static void staticMethod(String anArg) {
-			System.out.println("staticMethod  is  invoked!");
+			System.out.println("overloadedCalled  is  invoked!");
 			overloadedCalled = true;
 		}
 		public static void argStaticMethod(String anArg) {

@@ -1,7 +1,4 @@
-
-
 package org.springframework.util;
-
 import java.beans.Introspector;
 import java.io.Closeable;
 import java.io.Externalizable;
@@ -904,7 +901,7 @@ public abstract class ClassUtils {
 	}
 
 	/**
-	 * 根据类名得到包名
+	 * 根据全限定类名得到包名
 	 * Determine the name of the package of the given fully-qualified class name,
 	 * e.g. "java.lang" for the {@code java.lang.String} class name.
 	 * @param fqClassName the fully-qualified class name
@@ -1247,6 +1244,7 @@ public abstract class ClassUtils {
 	 * @param args the parameter types to the method
 	 * @return the static method, or {@code null} if no static method was found
 	 * @throws IllegalArgumentException if the method name is blank or the clazz is null
+	 * @see org.springframework.util.ClassUtilsTests#testNoArgsStaticMethod()  【测试用例】
 	 */
 	@Nullable
 	public static Method getStaticMethod(Class<?> clazz, String methodName, Class<?>... args) {
@@ -1260,5 +1258,4 @@ public abstract class ClassUtils {
 			return null;
 		}
 	}
-
 }
