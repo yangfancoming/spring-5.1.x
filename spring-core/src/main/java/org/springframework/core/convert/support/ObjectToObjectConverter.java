@@ -171,7 +171,6 @@ final class ObjectToObjectConverter implements ConditionalGenericConverter {
 			// Do not accept the String.valueOf(Object) method
 			return null;
 		}
-
 		Method method = ClassUtils.getStaticMethod(targetClass, "valueOf", sourceClass);
 		if (method == null) {
 			method = ClassUtils.getStaticMethod(targetClass, "of", sourceClass);

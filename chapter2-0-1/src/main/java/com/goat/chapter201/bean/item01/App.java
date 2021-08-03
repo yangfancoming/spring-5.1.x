@@ -70,7 +70,6 @@ public class App {
 	 * @see AbstractAutowireCapableBeanFactory#applyBeanPostProcessorsAfterInitialization(java.lang.Object, java.lang.String)
 	 */
 
-
 	@Test
 	public void test1(){
 		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:beans.xml");

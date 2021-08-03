@@ -455,5 +455,4 @@ public class ClassUtilsTests {
 		public void print(String header, String[] messages) {}
 		void print(String header, String[] messages, String footer) {}
 	}
-
 }

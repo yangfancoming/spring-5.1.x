@@ -698,12 +698,14 @@ public abstract class ClassUtils {
 	}
 
 	/**
+	 * 取出两个指定类的共同父类。
 	 * Determine the common ancestor of the given classes, if any.
 	 * @param clazz1 the class to introspect
 	 * @param clazz2 the other class to introspect
 	 * @return the common ancestor (i.e. common superclass, one interface extending the other),
 	 * or {@code null} if none found. If any of the given classes is {@code null}, the other class will be returned.
 	 * @since 3.2.6
+	 * @see org.springframework.util.ClassUtilsTests#testDetermineCommonAncestor() 【测试用例】
 	 */
 	@Nullable
 	public static Class<?> determineCommonAncestor(@Nullable Class<?> clazz1, @Nullable Class<?> clazz2) {

@@ -1,11 +1,7 @@
-
-
 package org.springframework.core;
-
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
@@ -13,9 +9,6 @@ import org.springframework.util.Assert;
  * Base class for decorating ClassLoaders such as {@link OverridingClassLoader}
  * and {@link org.springframework.instrument.classloading.ShadowingClassLoader},
  * providing common handling of excluded packages and classes.
- *
-
- * @author Rod Johnson
  * @since 2.5.2
  */
 public abstract class DecoratingClassLoader extends ClassLoader {
@@ -23,7 +16,6 @@ public abstract class DecoratingClassLoader extends ClassLoader {
 	static {
 		ClassLoader.registerAsParallelCapable();
 	}
-
 
 	private final Set<String> excludedPackages = Collections.newSetFromMap(new ConcurrentHashMap<>(8));
 
@@ -37,8 +29,7 @@ public abstract class DecoratingClassLoader extends ClassLoader {
 	}
 
 	/**
-	 * Create a new DecoratingClassLoader using the given parent ClassLoader
-	 * for delegation.
+	 * Create a new DecoratingClassLoader using the given parent ClassLoader for delegation.
 	 */
 	public DecoratingClassLoader(@Nullable ClassLoader parent) {
 		super(parent);
@@ -58,8 +49,7 @@ public abstract class DecoratingClassLoader extends ClassLoader {
 
 	/**
 	 * Add a class name to exclude from decoration (e.g. overriding).
-	 * Any class name registered here will be handled by the parent
-	 * ClassLoader in the usual fashion.
+	 * Any class name registered here will be handled by the parent ClassLoader in the usual fashion.
 	 * @param className the class name to exclude
 	 */
 	public void excludeClass(String className) {
@@ -68,8 +58,7 @@ public abstract class DecoratingClassLoader extends ClassLoader {
 	}
 
 	/**
-	 * Determine whether the specified class is excluded from decoration
-	 * by this class loader.
+	 * Determine whether the specified class is excluded from decoration by this class loader.
 	 * The default implementation checks against excluded packages and classes.
 	 * @param className the class name to check
 	 * @return whether the specified class is eligible
@@ -87,5 +76,4 @@ public abstract class DecoratingClassLoader extends ClassLoader {
 		}
 		return false;
 	}
-
 }
