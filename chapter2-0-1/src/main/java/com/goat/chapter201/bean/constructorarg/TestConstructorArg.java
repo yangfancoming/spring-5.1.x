@@ -1,4 +1,4 @@
-package com.goat.chapter201.constructorarg;
+package com.goat.chapter201.bean.constructorarg;
 
 /**
  * 测试 constructor-arg 属性
@@ -7,7 +7,21 @@ public class TestConstructorArg {
 
 	private String name;
 
+	private String nickName;
+
 	private int age;
+
+
+	public TestConstructorArg(int age) {
+		this.age = age;
+		System.out.println("调用 单参 age 构造函数");
+	}
+
+	public TestConstructorArg(String name) {
+		this.name = name;
+		System.out.println("调用 单参 name 构造函数");
+	}
+
 	/**
 	 * 记得要设定构造函数，根据 index 下标去找变量
 	 * @param name	名字
@@ -16,6 +30,21 @@ public class TestConstructorArg {
 	public TestConstructorArg(String name, int age) {
 		this.name = name;
 		this.age = age;
+		System.out.println("调用 双参构造函数");
+	}
+
+	public TestConstructorArg(String name, String nickName, int age) {
+		this.name = name;
+		this.nickName = nickName;
+		this.age = age;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getName() {
