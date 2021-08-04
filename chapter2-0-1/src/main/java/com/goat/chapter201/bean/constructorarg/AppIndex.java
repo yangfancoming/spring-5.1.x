@@ -7,10 +7,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 /**
- * <constructor-arg> 标签测试用例
+ * <constructor-arg> 标签  使用index下标
  * 源码搜索串：parseConstructorArgElements(ele, bd);
+ * 缺点是 如果有2个单参构造函数，使用index=0，则只能使用其中一个，若想使用另一个，那么需要借助type
 */
-public class App {
+public class AppIndex {
 
 
 	// 测试 双参构造函数

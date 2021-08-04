@@ -22,6 +22,11 @@ public class TestConstructorArg {
 		System.out.println("调用 单参 name 构造函数");
 	}
 
+	public TestConstructorArg(String name, String nickName) {
+		this.name = name;
+		this.nickName = nickName;
+	}
+
 	/**
 	 * 记得要设定构造函数，根据 index 下标去找变量
 	 * @param name	名字
@@ -65,6 +70,6 @@ public class TestConstructorArg {
 
 	@Override
 	public String toString() {
-		return "TestConstructorArg{" + "name='" + name + '\'' + ", age=" + age + '}';
+		return "TestConstructorArg{" + "name='" + name + '\'' + ", nickName='" + nickName + '\'' + ", age=" + age + '}';
 	}
 }
