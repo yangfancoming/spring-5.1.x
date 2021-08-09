@@ -1,5 +1,3 @@
-
-
 package org.springframework.core;
 
 import java.util.ArrayList;
@@ -20,6 +18,7 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import org.springframework.util.LinkedMultiValueMap;
@@ -36,8 +35,7 @@ import static org.springframework.core.CollectionFactory.*;
 public class CollectionFactoryTests {
 
 	/**
-	 * The test demonstrates that the generics-based API for
-	 * {@link CollectionFactory#createApproximateCollection(Object, int)} is not type-safe.
+	 * The test demonstrates that the generics-based API for {@link CollectionFactory#createApproximateCollection(Object, int)} is not type-safe.
 	 * Specifically, the parameterized type {@code E} is not bound to
 	 * the type of elements contained in the {@code collection} argument
 	 * passed to {@code createApproximateCollection()}. Thus casting the
@@ -55,18 +53,18 @@ public class CollectionFactoryTests {
 			fail("Should have thrown a ClassCastException");
 		}catch (ClassCastException e) {
 			/* expected */
+			System.out.println(e.getMessage());
+			Assert.assertEquals(0,ints.size());
 		}
 	}
 
 	@Test
 	public void createCollectionIsNotTypeSafeForEnumSet() {
 		Collection<Integer> ints = createCollection(EnumSet.class, Color.class, 3);
-		// Use a try-catch block to ensure that the exception is thrown as a result of the
-		// next line and not as a result of the previous line.
+		// Use a try-catch block to ensure that the exception is thrown as a result of the next line and not as a result of the previous line.
 		try {
-			// Note that ints is of type Collection<Integer>, but the collection returned
-			// by createCollection() is of type Collection<Color>. Thus, 42 cannot be cast
-			// to a Color.
+			// Note that ints is of type Collection<Integer>, but the collection returned by createCollection() is of type Collection<Color>.
+			// Thus, 42 cannot be cast to a Color.
 			ints.add(42);
 			fail("Should have thrown a ClassCastException");
 		}catch (ClassCastException e) {

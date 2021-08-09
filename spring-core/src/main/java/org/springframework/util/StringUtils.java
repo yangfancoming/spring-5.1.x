@@ -761,7 +761,7 @@ public abstract class StringUtils {
 	// Convenience methods for working with String arrays
 	//---------------------------------------------------------------------
 	/**
-	 * 把字符串集合变成字符串数组
+	 * 把字符串集合转成字符串数组
 	 * Copy the given {@link Collection} into a String array.
 	 * The {@code Collection} must contain String elements only.
 	 * @param collection the {@code Collection} to copy (potentially {@code null} or empty)
@@ -772,7 +772,7 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * 把字符串枚举类型变成字符串数组
+	 * 把字符串枚举类型转成字符串数组
 	 * Copy the given {@link Enumeration} into a String array.
 	 * The {@code Enumeration} must contain String elements only.
 	 * @param enumeration the {@code Enumeration} to copy (potentially {@code null} or empty)
@@ -1083,7 +1083,7 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * 集合变成指定字符串连接的字符串；
+	 * 集合转成指定字符串连接的字符串；
 	 * Convert a {@code Collection} into a delimited String (e.g. CSV).
 	 * 		List<String> list = Arrays.asList("1","2","3");
 	 * 		StringUtils.collectionToDelimitedString(list, "*") ===> 1*2*3
@@ -1097,7 +1097,7 @@ public abstract class StringUtils {
 	}
 
 	/**
-	 * 集合变成逗号连接的字符串；
+	 * 集合转成逗号连接的字符串；
 	 * Convert a {@code Collection} into a delimited String (e.g., CSV).
 	 * Useful for {@code toString()} implementations.
 	 * @param coll the {@code Collection} to convert (potentially {@code null} or empty)

@@ -1,5 +1,3 @@
-
-
 package org.springframework.test.context;
 
 import java.io.Serializable;
@@ -13,7 +11,6 @@ import org.springframework.test.annotation.DirtiesContext.HierarchyMode;
 /**
  * {@code TestContext} encapsulates the context in which a test is executed,
  * agnostic of the actual testing framework in use.
- *
  * As of Spring Framework 5.0, concrete implementations are highly encouraged
  * to implement a <em>copy constructor</em> in order to allow the immutable state
  * and attributes of a {@code TestContext} to be used as a template for additional
@@ -21,8 +18,6 @@ import org.springframework.test.annotation.DirtiesContext.HierarchyMode;
  * single argument of the type of the concrete implementation. Any implementation
  * that does not provide a copy constructor will likely fail in an environment
  * that executes tests concurrently.
- *
- * @author Sam Brannen
  * @since 2.5
  * @see TestContextManager
  * @see TestExecutionListener
@@ -95,5 +90,4 @@ public interface TestContext extends AttributeAccessor, Serializable {
 	 * or {@code null} if no exception was thrown
 	 */
 	void updateState(@Nullable Object testInstance, @Nullable Method testMethod, @Nullable Throwable testException);
-
 }

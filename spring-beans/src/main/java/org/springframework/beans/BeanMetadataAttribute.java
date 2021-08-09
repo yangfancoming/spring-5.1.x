@@ -1,5 +1,3 @@
-
-
 package org.springframework.beans;
 
 import org.springframework.lang.Nullable;

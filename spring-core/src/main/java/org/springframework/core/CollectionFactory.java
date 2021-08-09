@@ -1,5 +1,3 @@
-
-
 package org.springframework.core;
 
 import java.util.ArrayList;
@@ -30,13 +28,7 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * Factory for collections that is aware of common Java and Spring collection types.
- *
  * Mainly for internal use within the framework.
- *
-
- * @author Arjen Poutsma
- * @author Oliver Gierke
- * @author Sam Brannen
  * @since 1.1.1
  */
 public final class CollectionFactory {
@@ -47,7 +39,7 @@ public final class CollectionFactory {
 
 
 	static {
-		// Standard collection interfaces
+		// Standard collection interfaces  标准集合接口
 		approximableCollectionTypes.add(Collection.class);
 		approximableCollectionTypes.add(List.class);
 		approximableCollectionTypes.add(Set.class);
@@ -57,7 +49,7 @@ public final class CollectionFactory {
 		approximableMapTypes.add(SortedMap.class);
 		approximableMapTypes.add(NavigableMap.class);
 
-		// Common concrete collection classes
+		// Common concrete collection classes  具体集合实现类
 		approximableCollectionTypes.add(ArrayList.class);
 		approximableCollectionTypes.add(LinkedList.class);
 		approximableCollectionTypes.add(HashSet.class);
@@ -87,11 +79,9 @@ public final class CollectionFactory {
 
 	/**
 	 * Create the most approximate collection for the given collection.
-	 * <strong>Warning</strong>: Since the parameterized type {@code E} is
-	 * not bound to the type of elements contained in the supplied
-	 * {@code collection}, type safety cannot be guaranteed if the supplied
-	 * {@code collection} is an {@link EnumSet}. In such scenarios, the caller
-	 * is responsible for ensuring that the element type for the supplied
+	 * <strong>Warning</strong>: Since the parameterized type {@code E} is not bound to the type of elements contained in the supplied {@code collection},
+	 * type safety cannot be guaranteed if the supplied {@code collection} is an {@link EnumSet}.
+	 * In such scenarios, the caller is responsible for ensuring that the element type for the supplied
 	 * {@code collection} is an enum type matching type {@code E}. As an
 	 * alternative, the caller may wish to treat the return value as a raw
 	 * collection or collection of {@link Object}.
@@ -109,33 +99,27 @@ public final class CollectionFactory {
 	public static <E> Collection<E> createApproximateCollection(@Nullable Object collection, int capacity) {
 		if (collection instanceof LinkedList) {
 			return new LinkedList<>();
-		}
-		else if (collection instanceof List) {
+		}else if (collection instanceof List) {
 			return new ArrayList<>(capacity);
-		}
-		else if (collection instanceof EnumSet) {
+		}else if (collection instanceof EnumSet) {
 			// Cast is necessary for compilation in Eclipse 4.4.1.
 			Collection<E> enumSet = (Collection<E>) EnumSet.copyOf((EnumSet) collection);
 			enumSet.clear();
 			return enumSet;
-		}
-		else if (collection instanceof SortedSet) {
+		}else if (collection instanceof SortedSet) {
 			return new TreeSet<>(((SortedSet<E>) collection).comparator());
-		}
-		else {
+		}else {
 			return new LinkedHashSet<>(capacity);
 		}
 	}
 
 	/**
 	 * Create the most appropriate collection for the given collection type.
-	 * Delegates to {@link #createCollection(Class, Class, int)} with a
-	 * {@code null} element type.
+	 * Delegates to {@link #createCollection(Class, Class, int)} with a {@code null} element type.
 	 * @param collectionType the desired type of the target collection (never {@code null})
 	 * @param capacity the initial capacity
 	 * @return a new collection instance
-	 * @throws IllegalArgumentException if the supplied {@code collectionType}
-	 * is {@code null} or of type {@link EnumSet}
+	 * @throws IllegalArgumentException if the supplied {@code collectionType} is {@code null} or of type {@link EnumSet}
 	 */
 	public static <E> Collection<E> createCollection(Class<?> collectionType, int capacity) {
 		return createCollection(collectionType, null, capacity);
@@ -170,32 +154,25 @@ public final class CollectionFactory {
 		if (collectionType.isInterface()) {
 			if (Set.class == collectionType || Collection.class == collectionType) {
 				return new LinkedHashSet<>(capacity);
-			}
-			else if (List.class == collectionType) {
+			}else if (List.class == collectionType) {
 				return new ArrayList<>(capacity);
-			}
-			else if (SortedSet.class == collectionType || NavigableSet.class == collectionType) {
+			}else if (SortedSet.class == collectionType || NavigableSet.class == collectionType) {
 				return new TreeSet<>();
-			}
-			else {
+			}else {
 				throw new IllegalArgumentException("Unsupported Collection interface: " + collectionType.getName());
 			}
-		}
-		else if (EnumSet.class.isAssignableFrom(collectionType)) {
+		}else if (EnumSet.class.isAssignableFrom(collectionType)) {
 			Assert.notNull(elementType, "Cannot create EnumSet for unknown element type");
 			// Cast is necessary for compilation in Eclipse 4.4.1.
 			return (Collection<E>) EnumSet.noneOf(asEnumType(elementType));
-		}
-		else {
+		}else {
 			if (!Collection.class.isAssignableFrom(collectionType)) {
 				throw new IllegalArgumentException("Unsupported Collection type: " + collectionType.getName());
 			}
 			try {
 				return (Collection<E>) ReflectionUtils.accessibleConstructor(collectionType).newInstance();
-			}
-			catch (Throwable ex) {
-				throw new IllegalArgumentException(
-					"Could not instantiate Collection type: " + collectionType.getName(), ex);
+			}catch (Throwable ex) {
+				throw new IllegalArgumentException("Could not instantiate Collection type: " + collectionType.getName(), ex);
 			}
 		}
 	}
@@ -339,5 +316,4 @@ public final class CollectionFactory {
 		}
 		return enumType.asSubclass(Enum.class);
 	}
-
 }

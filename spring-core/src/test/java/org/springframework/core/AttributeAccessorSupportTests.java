@@ -1,12 +1,8 @@
-
-
 package org.springframework.core;
-
 import java.util.Arrays;
-
 import org.junit.Test;
-
 import static org.junit.Assert.*;
+
 
 
 public class AttributeAccessorSupportTests {
