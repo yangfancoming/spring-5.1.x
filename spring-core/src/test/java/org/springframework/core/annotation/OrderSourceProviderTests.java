@@ -167,5 +167,4 @@ public class OrderSourceProviderTests {
 			return order;
 		}
 	}
-
 }

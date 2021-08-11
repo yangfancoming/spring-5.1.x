@@ -1,5 +1,3 @@
-
-
 package org.springframework.test.web.client.samples.matchers;
 
 import java.net.URI;

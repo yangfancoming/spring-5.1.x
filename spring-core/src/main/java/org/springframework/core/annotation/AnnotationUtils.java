@@ -2001,8 +2001,7 @@ public abstract class AnnotationUtils {
 			boolean valueDeclared = StringUtils.hasText(value);
 			// Ensure user did not declare both 'value' and 'attribute' in @AliasFor
 			if (attributeDeclared && valueDeclared) {
-				String msg = String.format("In @AliasFor declared on attribute '%s' in annotation [%s], attribute 'attribute' and its alias 'value' are present with values of [%s] and [%s], " +
-								"but only one is permitted.",
+				String msg = String.format("In @AliasFor declared on attribute '%s' in annotation [%s], attribute 'attribute' and its alias 'value' are present with values of [%s] and [%s],but only one is permitted.",
 						attribute.getName(), attribute.getDeclaringClass().getName(), attributeName, value);
 				throw new AnnotationConfigurationException(msg);
 			}

@@ -1,5 +1,3 @@
-
-
 package org.springframework.http.client;
 
 import java.io.IOException;
@@ -16,9 +14,6 @@ import org.springframework.util.Assert;
 
 /**
  * {@link ClientHttpRequestFactory} implementation that uses standard JDK facilities.
- *
- * @author Arjen Poutsma
-
  * @since 3.0
  * @see java.net.HttpURLConnection
  * @see HttpComponentsClientHttpRequestFactory
@@ -27,7 +22,6 @@ import org.springframework.util.Assert;
 public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory, AsyncClientHttpRequestFactory {
 
 	private static final int DEFAULT_CHUNK_SIZE = 4096;
-
 
 	@Nullable
 	private Proxy proxy;
@@ -191,25 +185,17 @@ public class SimpleClientHttpRequestFactory implements ClientHttpRequestFactory,
 		if (this.readTimeout >= 0) {
 			connection.setReadTimeout(this.readTimeout);
 		}
-
 		connection.setDoInput(true);
-
 		if ("GET".equals(httpMethod)) {
 			connection.setInstanceFollowRedirects(true);
-		}
-		else {
+		}else {
 			connection.setInstanceFollowRedirects(false);
 		}
-
-		if ("POST".equals(httpMethod) || "PUT".equals(httpMethod) ||
-				"PATCH".equals(httpMethod) || "DELETE".equals(httpMethod)) {
+		if ("POST".equals(httpMethod) || "PUT".equals(httpMethod) || "PATCH".equals(httpMethod) || "DELETE".equals(httpMethod)) {
 			connection.setDoOutput(true);
-		}
-		else {
+		}else {
 			connection.setDoOutput(false);
 		}
-
 		connection.setRequestMethod(httpMethod);
 	}
-
 }

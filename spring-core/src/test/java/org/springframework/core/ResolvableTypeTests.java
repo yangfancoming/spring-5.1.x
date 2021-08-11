@@ -1567,5 +1567,4 @@ public class ResolvableTypeTests {
 
 		Set<Integer> set;
 	}
-
 }

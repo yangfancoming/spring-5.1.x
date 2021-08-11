@@ -1,5 +1,3 @@
-
-
 package org.springframework.core.annotation;
 
 import java.lang.annotation.Annotation;
@@ -15,10 +13,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
- * Implementation of the {@link AnnotationAttributeExtractor} strategy that
- * is backed by a {@link Map}.
- *
- * @author Sam Brannen
+ * Implementation of the {@link AnnotationAttributeExtractor} strategy that is backed by a {@link Map}.
  * @since 4.2
  * @see Annotation
  * @see AliasFor
@@ -38,12 +33,9 @@ class MapAnnotationAttributeExtractor extends AbstractAliasAwareAnnotationAttrib
 	 * @param annotatedElement the element that is annotated with the annotation
 	 * of the supplied type; may be {@code null} if unknown
 	 */
-	MapAnnotationAttributeExtractor(Map<String, Object> attributes, Class<? extends Annotation> annotationType,
-			@Nullable AnnotatedElement annotatedElement) {
-
+	MapAnnotationAttributeExtractor(Map<String, Object> attributes, Class<? extends Annotation> annotationType,@Nullable AnnotatedElement annotatedElement) {
 		super(annotationType, annotatedElement, enrichAndValidateAttributes(attributes, annotationType));
 	}
-
 
 	@Override
 	@Nullable
@@ -158,5 +150,4 @@ class MapAnnotationAttributeExtractor extends AbstractAliasAwareAnnotationAttrib
 
 		return attributes;
 	}
-
 }
