@@ -27,9 +27,8 @@ public class ReadConfigApp {
 	// Spring 方式读取配置文件
 	@Test
 	public void testFillProperties() throws IOException {
-		Properties ret = new Properties();
-		PropertiesLoaderUtils.fillProperties(ret,new ClassPathResource("config.properties"));
-		Assert.assertEquals("{salt=123, q=goat, to=zh, from=en}",ret.toString());
-
+		Properties properties = new Properties();
+		PropertiesLoaderUtils.fillProperties(properties,new ClassPathResource("config.properties"));
+		Assert.assertEquals("{salt=123, q=goat, to=zh, from=en}",properties.toString());
 	}
 }

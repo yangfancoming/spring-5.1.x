@@ -21,7 +21,7 @@ public class ConfigUtil {
      */
     public static Properties getProperties(String file){
         InputStream is = ConfigUtil.class.getClassLoader().getResourceAsStream(file);
-        BufferedReader br= new BufferedReader(new InputStreamReader(is));
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
         Properties props = new Properties();
         try {
             props.load(br);
