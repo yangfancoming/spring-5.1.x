@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "https://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+<beans>
+	<!--报错内容：SAXParseException; lineNumber: 9; columnNumber: 80; 类型为 ID 的属性值 "testId" 在文档内必须是唯一的-->
+	<bean id="testId" class="com.goat.chapter201.bean.singleton.CompactDiscImpl" />
+	<bean id="testId" class="com.goat.chapter201.bean.singleton.CompactDiscImpl" />
+</beans>
