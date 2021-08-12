@@ -1,4 +1,4 @@
-package com.goat.chapter200.cyclicdependency.item02;
+package com.goat.chapter201.cyclicdependency.item03;
 
 import org.springframework.stereotype.Service;
 
@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
  *
  * @ Description: TODO
  * @ author  山羊来了
- * @ date 2020/4/3---15:15
+ * @ date 2020/4/3---15:26
  */
 @Service
-public class B {
-	public B(A a) {
-	}
+public class C {
+
 }

@@ -2,8 +2,6 @@ package com.goat.chapter103;
 
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.DefaultResourceLoader;
-import org.springframework.core.io.Resource;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 

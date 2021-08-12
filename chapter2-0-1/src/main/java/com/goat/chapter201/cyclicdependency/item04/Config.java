@@ -1,4 +1,4 @@
-package com.goat.chapter200.cyclicdependency.item04;
+package com.goat.chapter201.cyclicdependency.item04;
 
 
 import org.springframework.context.annotation.ComponentScan;

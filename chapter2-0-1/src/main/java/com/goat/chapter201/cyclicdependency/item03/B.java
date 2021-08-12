@@ -1,4 +1,4 @@
-package com.goat.chapter200.cyclicdependency.item03;
+package com.goat.chapter201.cyclicdependency.item03;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

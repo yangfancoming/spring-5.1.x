@@ -1,4 +1,4 @@
-package com.goat.chapter200.cyclicdependency.item01;
+package com.goat.chapter201.cyclicdependency.item01;
 
 import org.junit.Test;
 

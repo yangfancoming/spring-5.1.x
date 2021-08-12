@@ -1,4 +1,4 @@
-package com.goat.chapter200.cyclicdependency.item04;
+package com.goat.chapter201.cyclicdependency.item04;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  */
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Service
-public class A {
+public class B {
 	@Autowired
-	private B b;
+	private A a;
 }

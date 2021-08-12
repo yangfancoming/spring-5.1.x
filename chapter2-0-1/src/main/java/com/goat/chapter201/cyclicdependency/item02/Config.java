@@ -1,4 +1,4 @@
-package com.goat.chapter200.cyclicdependency.item03;
+package com.goat.chapter201.cyclicdependency.item02;
 
 
 import org.springframework.context.annotation.ComponentScan;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @ author  山羊来了
  * @ date 2020/4/3---15:16
  */
-@ComponentScan("com.goat.chapter200.cyclicdependency.item03")
+@ComponentScan("com.goat.chapter200.cyclicdependency.item02")
 public class Config {
 
 

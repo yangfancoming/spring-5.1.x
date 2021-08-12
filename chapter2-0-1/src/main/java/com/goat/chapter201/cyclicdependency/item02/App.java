@@ -1,4 +1,4 @@
-package com.goat.chapter200.cyclicdependency.item02;
+package com.goat.chapter201.cyclicdependency.item02;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

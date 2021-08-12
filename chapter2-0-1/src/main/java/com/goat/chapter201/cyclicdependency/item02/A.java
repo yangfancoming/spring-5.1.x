@@ -1,4 +1,4 @@
-package com.goat.chapter200.cyclicdependency.item02;
+package com.goat.chapter201.cyclicdependency.item02;
 
 import org.springframework.stereotype.Service;
 
