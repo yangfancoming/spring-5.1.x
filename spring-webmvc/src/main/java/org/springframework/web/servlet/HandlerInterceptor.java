@@ -10,12 +10,12 @@ import org.springframework.web.method.HandlerMethod;
 
 /**
  * Workflow interface that allows for customized handler execution chains.
- * Applications can register any number of existing or custom interceptors
- * for certain groups of handlers, to add common preprocessing behavior without needing to modify each handler implementation.
+ * Applications can register any number of existing or custom interceptors for certain groups of handlers,
+ * to add common preprocessing behavior without needing to modify each handler implementation.
  *
- * A HandlerInterceptor gets called before the appropriate HandlerAdapter
- * triggers the execution of the handler itself. This mechanism can be used
- * for a large field of preprocessing aspects, e.g. for authorization checks,or common handler behavior like locale or theme changes.
+ * A HandlerInterceptor gets called before the appropriate HandlerAdapter triggers the execution of the handler itself.
+ * This mechanism can be used for a large field of preprocessing aspects,
+ * e.g. for authorization checks,or common handler behavior like locale or theme changes.
  * Its main purpose is to allow for factoring out repetitive handler code.
  *
  *
