@@ -4,18 +4,12 @@ package org.springframework.web.accept;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
 import org.junit.Test;
-
 import org.springframework.http.MediaType;
-
 import static org.junit.Assert.*;
 
 /**
  * Test fixture for {@link MappingMediaTypeFileExtensionResolver}.
- *
- *
- * @author Melissa Hartsock
  */
 public class MappingMediaTypeFileExtensionResolverTests {
 
@@ -34,7 +28,6 @@ public class MappingMediaTypeFileExtensionResolverTests {
 		Map<String, MediaType> mapping = Collections.singletonMap("json", MediaType.APPLICATION_JSON);
 		MappingMediaTypeFileExtensionResolver resolver = new MappingMediaTypeFileExtensionResolver(mapping);
 		List<String> extensions = resolver.resolveFileExtensions(MediaType.TEXT_HTML);
-
 		assertTrue(extensions.isEmpty());
 	}
 
@@ -47,7 +40,6 @@ public class MappingMediaTypeFileExtensionResolverTests {
 		Map<String, MediaType> mapping = Collections.singletonMap("json", MediaType.APPLICATION_JSON);
 		MappingMediaTypeFileExtensionResolver resolver = new MappingMediaTypeFileExtensionResolver(mapping);
 		MediaType mediaType = resolver.lookupMediaType("JSON");
-
 		assertEquals(MediaType.APPLICATION_JSON, mediaType);
 	}
 

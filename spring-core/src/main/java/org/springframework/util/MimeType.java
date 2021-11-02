@@ -18,17 +18,13 @@ import java.util.TreeSet;
 import org.springframework.lang.Nullable;
 
 /**
- * Represents a MIME Type, as originally defined in RFC 2046 and subsequently
- * used in other Internet protocols including HTTP.
+ * Represents a MIME Type, as originally defined in RFC 2046 and subsequently used in other Internet protocols including HTTP.
  *
- * This class, however, does not contain support for the q-parameters used
- * in HTTP content negotiation. Those can be found in the subclass
- * {@code org.springframework.http.MediaType} in the {@code spring-web} module.
- *
+ * This class, however, does not contain support for the q-parameters used in HTTP content negotiation.
+ * Those can be found in the subclass {@code org.springframework.http.MediaType} in the {@code spring-web} module.
  * Consists of a {@linkplain #getType() type} and a {@linkplain #getSubtype() subtype}.
- * Also has functionality to parse MIME Type values from a {@code String} using
- * {@link #valueOf(String)}. For more parsing options see {@link MimeTypeUtils}.
-
+ * Also has functionality to parse MIME Type values from a {@code String} using {@link #valueOf(String)}.
+ * For more parsing options see {@link MimeTypeUtils}.
  * @since 4.0
  * @see MimeTypeUtils
  */

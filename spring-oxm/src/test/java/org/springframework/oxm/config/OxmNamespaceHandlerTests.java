@@ -12,16 +12,10 @@ import static org.junit.Assert.*;
 
 /**
  * Tests the {@link OxmNamespaceHandler} class.
- *
- * @author Arjen Poustma
- * @author Jakub Narloch
- * @author Sam Brannen
  */
 public class OxmNamespaceHandlerTests {
 
-	private final ApplicationContext applicationContext =
-			new ClassPathXmlApplicationContext("oxmNamespaceHandlerTest.xml", getClass());
-
+	private final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("oxmNamespaceHandlerTest.xml", getClass());
 
 	@Test
 	public void jaxb2ContextPathMarshaller() {

@@ -18,13 +18,11 @@ import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.context.request.NativeWebRequest;
 
 /**
- * Base class for {@code ContentNegotiationStrategy} implementations with the
- * steps to resolve a request to media types.
+ * Base class for {@code ContentNegotiationStrategy} implementations with the steps to resolve a request to media types.
  *
- * First a key (e.g. "json", "pdf") must be extracted from the request (e.g.
- * file extension, query param). The key must then be resolved to media type(s)
- * through the base class {@link MappingMediaTypeFileExtensionResolver} which
- * stores such mappings.
+ * First a key (e.g. "json", "pdf") must be extracted from the request (e.g. file extension, query param).
+ * The key must then be resolved to media type(s)
+ * through the base class {@link MappingMediaTypeFileExtensionResolver} which stores such mappings.
  *
  * The method {@link #handleNoMatch} allow sub-classes to plug in additional
  * ways of looking up media types (e.g. through the Java Activation framework,
@@ -35,8 +33,7 @@ import org.springframework.web.context.request.NativeWebRequest;
  *
  * @since 3.2
  */
-public abstract class AbstractMappingContentNegotiationStrategy extends MappingMediaTypeFileExtensionResolver
-		implements ContentNegotiationStrategy {
+public abstract class AbstractMappingContentNegotiationStrategy extends MappingMediaTypeFileExtensionResolver implements ContentNegotiationStrategy {
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
@@ -93,9 +90,7 @@ public abstract class AbstractMappingContentNegotiationStrategy extends MappingM
 	 * an already extracted key.
 	 * @since 3.2.16
 	 */
-	public List<MediaType> resolveMediaTypeKey(NativeWebRequest webRequest, @Nullable String key)
-			throws HttpMediaTypeNotAcceptableException {
-
+	public List<MediaType> resolveMediaTypeKey(NativeWebRequest webRequest, @Nullable String key) throws HttpMediaTypeNotAcceptableException {
 		if (StringUtils.hasText(key)) {
 			MediaType mediaType = lookupMediaType(key);
 			if (mediaType != null) {
@@ -133,9 +128,7 @@ public abstract class AbstractMappingContentNegotiationStrategy extends MappingM
 	 * this method it will be added to the cache in the base class.
 	 */
 	@Nullable
-	protected MediaType handleNoMatch(NativeWebRequest request, String key)
-			throws HttpMediaTypeNotAcceptableException {
-
+	protected MediaType handleNoMatch(NativeWebRequest request, String key) throws HttpMediaTypeNotAcceptableException {
 		if (!isUseRegisteredExtensionsOnly()) {
 			Optional<MediaType> mediaType = MediaTypeFactory.getMediaType("file." + key);
 			if (mediaType.isPresent()) {
