@@ -3,59 +3,59 @@
   <ID>JAVA</ID>
   <OriginalElement>org.springframework.web.servlet.DispatcherServlet</OriginalElement>
   <nodes>
-    <node x="594.0" y="79.0">org.mybatis.spring.mapper.MapperScannerConfigurer</node>
-    <node x="132.0" y="0.0">org.springframework.context.ApplicationListener</node>
-    <node x="678.0" y="0.0">org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor</node>
-    <node x="312.0" y="0.0">org.springframework.beans.factory.InitializingBean</node>
-    <node x="0.0" y="0.0">org.springframework.beans.factory.FactoryBean</node>
-    <node x="126.0" y="79.0">org.mybatis.spring.SqlSessionFactoryBean</node>
-    <node x="954.0" y="0.0">org.springframework.beans.factory.BeanNameAware</node>
-    <node x="474.0" y="0.0">org.springframework.context.ApplicationContextAware</node>
+    <node x="300.0" y="79.0">org.mybatis.spring.mapper.MapperScannerConfigurer</node>
+    <node x="918.0" y="0.0">org.springframework.context.ApplicationListener</node>
+    <node x="144.0" y="0.0">org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor</node>
+    <node x="624.0" y="0.0">org.springframework.beans.factory.InitializingBean</node>
+    <node x="786.0" y="0.0">org.springframework.beans.factory.FactoryBean</node>
+    <node x="756.0" y="79.0">org.mybatis.spring.SqlSessionFactoryBean</node>
+    <node x="0.0" y="0.0">org.springframework.beans.factory.BeanNameAware</node>
+    <node x="420.0" y="0.0">org.springframework.context.ApplicationContextAware</node>
   </nodes>
   <notes />
   <edges>
     <edge source="org.mybatis.spring.mapper.MapperScannerConfigurer" target="org.springframework.context.ApplicationContextAware">
-      <point x="-23.0" y="-14.5" />
-      <point x="663.0" y="49.0" />
-      <point x="566.0" y="49.0" />
+      <point x="23.0" y="-14.5" />
+      <point x="415.0" y="49.0" />
+      <point x="512.0" y="49.0" />
       <point x="0.0" y="14.5" />
     </edge>
     <edge source="org.mybatis.spring.SqlSessionFactoryBean" target="org.springframework.context.ApplicationListener">
-      <point x="0.0" y="-14.5" />
+      <point x="57.333333333333314" y="-14.5" />
+      <point x="899.3333333333333" y="59.0" />
+      <point x="998.0" y="59.0" />
       <point x="0.0" y="14.5" />
     </edge>
     <edge source="org.mybatis.spring.SqlSessionFactoryBean" target="org.springframework.beans.factory.FactoryBean">
-      <point x="-57.33333333333337" y="-14.5" />
-      <point x="154.66666666666663" y="59.0" />
-      <point x="56.0" y="59.0" />
-      <point x="0.0" y="14.5" />
-    </edge>
-    <edge source="org.mybatis.spring.mapper.MapperScannerConfigurer" target="org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor">
-      <point x="23.0" y="-14.5" />
-      <point x="709.0" y="49.0" />
-      <point x="806.0" y="49.0" />
+      <point x="0.0" y="-14.5" />
       <point x="0.0" y="14.5" />
     </edge>
     <edge source="org.mybatis.spring.mapper.MapperScannerConfigurer" target="org.springframework.beans.factory.InitializingBean">
-      <point x="-69.0" y="-14.5" />
-      <point x="617.0" y="59.0" />
-      <point x="418.5" y="59.0" />
-      <point x="35.5" y="14.5" />
-    </edge>
-    <edge source="org.mybatis.spring.SqlSessionFactoryBean" target="org.springframework.beans.factory.InitializingBean">
-      <point x="57.33333333333337" y="-14.5" />
-      <point x="269.33333333333337" y="59.0" />
-      <point x="347.5" y="59.0" />
+      <point x="69.0" y="-14.5" />
+      <point x="461.0" y="59.0" />
+      <point x="659.5" y="59.0" />
       <point x="-35.5" y="14.5" />
     </edge>
+    <edge source="org.mybatis.spring.mapper.MapperScannerConfigurer" target="org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor">
+      <point x="-23.0" y="-14.5" />
+      <point x="369.0" y="49.0" />
+      <point x="272.0" y="49.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="org.mybatis.spring.SqlSessionFactoryBean" target="org.springframework.beans.factory.InitializingBean">
+      <point x="-57.33333333333334" y="-14.5" />
+      <point x="784.6666666666666" y="59.0" />
+      <point x="730.5" y="59.0" />
+      <point x="35.5" y="14.5" />
+    </edge>
     <edge source="org.mybatis.spring.mapper.MapperScannerConfigurer" target="org.springframework.beans.factory.BeanNameAware">
-      <point x="69.0" y="-14.5" />
-      <point x="755.0" y="59.0" />
-      <point x="1016.0" y="59.0" />
+      <point x="-69.0" y="-14.5" />
+      <point x="323.0" y="59.0" />
+      <point x="62.0" y="59.0" />
       <point x="0.0" y="14.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="227.0" y="54.0" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="743.0" y="438.5" />
   <SelectedNodes>
     <node>org.springframework.context.ApplicationContextAware</node>
   </SelectedNodes>

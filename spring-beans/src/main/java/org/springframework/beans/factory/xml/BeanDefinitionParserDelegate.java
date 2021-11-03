@@ -403,6 +403,7 @@ public class BeanDefinitionParserDelegate {
 		String className = null;
 		if (ele.hasAttribute(CLASS_ATTRIBUTE)) {
 			className = ele.getAttribute(CLASS_ATTRIBUTE).trim();// com.goat.chapter200.CompactDiscImpl
+			logger.warn("【 IOC容器 bean读取器 概念态 ---  】 bean的ClassName： " + className);
 		}
 		// 2、解析parent属性 // 获取 parent 属性的值
 		String parent = null;

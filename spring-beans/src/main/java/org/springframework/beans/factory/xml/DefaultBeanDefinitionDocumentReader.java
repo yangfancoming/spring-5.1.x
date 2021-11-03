@@ -164,7 +164,8 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 				Node node = nl.item(i);
 				if (node instanceof Element) {
 					Element ele = (Element) node;
-					if (delegate.isDefaultNamespace(ele)) { // 解析 属于默认命名空间的标签
+					if (delegate.isDefaultNamespace(ele)) {
+						// 解析 属于默认命名空间的标签
 						parseDefaultElement(ele, delegate);
 					}else {
 						// 解析属于自定义命名空间的标签，如： <mvc />、<task />、<context />、<aop />、<tx:annotation-driven />

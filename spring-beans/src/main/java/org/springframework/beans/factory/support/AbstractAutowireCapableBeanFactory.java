@@ -363,7 +363,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			if (current == null) return result;
 			result = current;
 		}
-		logger.warn("【IOC容器 BeanPostProcessor  after 处理  成熟态 ---  】 beanName： " + beanName);
+		logger.warn("【IOC容器 BeanPostProcessor  after 处理  成熟态 ---  】 beanName： " + beanName + "		实际对象：" + result);
 		return result;
 	}
 
