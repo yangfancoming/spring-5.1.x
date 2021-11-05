@@ -11,6 +11,8 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.core.io.ClassPathResource;
 
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -26,6 +28,14 @@ public class FactoryBeanLookupTests {
 		beanFactory = new DefaultListableBeanFactory();
 		new XmlBeanDefinitionReader((BeanDefinitionRegistry) beanFactory).loadBeanDefinitions(
 				new ClassPathResource("FactoryBeanLookupTests-context.xml", this.getClass()));
+	}
+
+	// 自定义测试  查看容器中已加载的bean集合
+	@Test
+	public void myTest() {
+		ListableBeanFactory listableBeanFactory = (ListableBeanFactory)beanFactory;
+		String[] str = listableBeanFactory.getBeanDefinitionNames();
+		Arrays.stream(str).forEach(x->System.out.println("***---***" + x));
 	}
 
 	@Test

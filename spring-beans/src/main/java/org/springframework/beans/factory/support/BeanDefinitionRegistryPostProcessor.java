@@ -13,7 +13,7 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
  * BeanDefinitionRegistryPostProcessor 在BeanFactoryPostProcessor执行之前。更侧重于修改bean定义的注册信息，
  * BeanFactoryPostProcessor 更侧重于修改Bean工厂的信息，虽然也可以直接注册bean对象。
  *
- * 官网的建议是BeanDefinitionRegistryPostProcessor用来添加额外的bd，而BeanFactoryPostProcessor用来修改bd。
+ * 官网的建议是BeanDefinitionRegistryPostProcessor用来添加额外的bd，而 BeanFactoryPostProcessor 用来修改bd。
  * *对标准{@link BeanFactoryPostProcessor}SPI的扩展，允许在常规BeanFactoryPostProcessor检测启动之前注册进一步的bean定义。
  * *特别地，BeanDefinitionRegistryPostProcessor可以注册更多的bean定义，这些定义反过来定义BeanFactoryPostProcessor实例。
  */
