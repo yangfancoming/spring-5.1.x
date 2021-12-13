@@ -26,8 +26,9 @@ public class FactoryBeanLookupTests {
 	@Before
 	public void setUp() {
 		beanFactory = new DefaultListableBeanFactory();
-		new XmlBeanDefinitionReader((BeanDefinitionRegistry) beanFactory).loadBeanDefinitions(
-				new ClassPathResource("FactoryBeanLookupTests-context.xml", this.getClass()));
+		new XmlBeanDefinitionReader((BeanDefinitionRegistry) beanFactory)
+				.loadBeanDefinitions(new ClassPathResource("FactoryBeanLookupTests-context.xml", this.getClass()));
+
 	}
 
 	// 自定义测试  查看容器中已加载的bean集合

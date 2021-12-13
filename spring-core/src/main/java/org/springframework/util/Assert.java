@@ -160,7 +160,9 @@ public abstract class Assert {
 	 * @throws IllegalArgumentException if the object is {@code null}
 	 */
 	public static void notNull(@Nullable Object object, String message) {
-		if (object == null) throw new IllegalArgumentException(message);
+		if (object == null) {
+			throw new IllegalArgumentException(message);
+		}
 	}
 
 	/**
