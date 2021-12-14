@@ -21,7 +21,7 @@ public class Spring2App {
 
 	@Test
 	public void test() {
-		String[] str= context.getBeanDefinitionNames();
+		String[] str = context.getBeanDefinitionNames();
 		Arrays.stream(str).forEach(x->System.out.println("***---***	 " + x));
 	}
 

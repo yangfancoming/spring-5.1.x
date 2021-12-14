@@ -12,6 +12,6 @@ import java.util.Map;
  * @ author  山羊来了
  * @ date 2019/10/7---19:29
  */
-public interface BookMapper extends IFoo{
+public interface BookMapper extends FooMapper {
 	public List<Map> selectById();
 }

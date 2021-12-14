@@ -1,6 +1,6 @@
 
 package com.goat.chapter650.dao;
 
-public interface IFoo {
+public interface FooMapper {
 
 }

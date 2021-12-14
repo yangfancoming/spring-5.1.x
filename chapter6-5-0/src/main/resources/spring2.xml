@@ -32,7 +32,7 @@
 	<!--【MapperScannerConfigurer 包扫描 方式二 】 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.goat.chapter650.dao" />
-		<property name="markerInterface" value="com.goat.chapter650.dao.IFoo" />
+		<property name="markerInterface" value="com.goat.chapter650.dao.FooMapper" />
 		<property name="sqlSessionFactoryBeanName" value="mySqlSessionFactory" />
 	</bean>
 
