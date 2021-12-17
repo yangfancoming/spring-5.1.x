@@ -2,6 +2,7 @@ package com.goat.chapter651;
 
 
 import com.goat.chapter651.config.AppConfig;
+import com.goat.chapter651.dao.BookMapper;
 import com.goat.chapter651.service.BookService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +18,9 @@ public class App {
 	@Test
 	public void test0(){
 		ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
-		System.out.println(ac);
+		BookService bookService = ac.getBean(BookService.class);
+		BookMapper maper = bookService.getMaper();
+		System.out.println(maper);
 	}
 
 	// 容器初始化 并执行mybatis查询

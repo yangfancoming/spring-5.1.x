@@ -219,8 +219,8 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 	// 重写 【ClassPathBeanDefinitionScanner】 的doScan方法
 	//---------------------------------------------------------------------
 	/**
-	 * Calls the parent search that will search and register all the candidates. Then the registered objects are post
-	 * processed to set them as MapperFactoryBeans
+	 * Calls the parent search that will search and register all the candidates.
+	 * Then the registered objects are post processed to set them as MapperFactoryBeans
 	 */
 	@Override
 	public Set<BeanDefinitionHolder> doScan(String... basePackages) {

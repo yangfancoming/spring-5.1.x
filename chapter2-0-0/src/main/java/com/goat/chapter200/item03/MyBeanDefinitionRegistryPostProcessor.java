@@ -20,7 +20,7 @@ public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegi
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
 		GenericBeanDefinition beanDefinition = (GenericBeanDefinition) registry.getBeanDefinition("userService");
 //		beanDefinition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_NAME);
-//		beanDefinition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
+		beanDefinition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 		registry.registerBeanDefinition("userService",beanDefinition);
 	}
 

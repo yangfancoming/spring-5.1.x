@@ -276,7 +276,13 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 		// 例如，annotationClass字段不为null时，则会添加AnnotationTypeFilter过滤器，
 		// 通过该过滤器 实现只扫描 annotationClass 注解标识的接口的功能
 		scanner.registerFilters();
-		/* 扫描 */
+		/**
+		 * 这里有点绕，先走父类的scan方法
+		 * @see ClassPathBeanDefinitionScanner#scan(java.lang.String...)
+		 * 然后再走子类的doScan方法
+		 * @see ClassPathMapperScanner#doScan(java.lang.String...)
+		 * 然后再 显示调用父类的doScan方法 super.doScan
+		*/
 		scanner.scan(StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));
 	}
 

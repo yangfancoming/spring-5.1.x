@@ -107,6 +107,7 @@ public abstract class AnnotatedElementUtils {
 	}
 
 	/**
+	 * 获取指定类上的指定注解的所有元注解信息
 	 * Get the fully qualified class names of all meta-annotation types
 	 * <em>present</em> on the annotation (of the specified {@code annotationType}) on the supplied {@link AnnotatedElement}.
 	 * This method follows <em>get semantics</em> as described in the {@linkplain AnnotatedElementUtils class-level javadoc}.

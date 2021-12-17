@@ -10,7 +10,6 @@
     chapter1-8-5  Spring 所有重要接口 测试用例 及生命周期（完整版）
     chapter2-0-0  spring Bean的装配 （依赖注入）  四种方式 + 循环依赖
     chapter2-0-1  spring Bean的装配 xml  方式  解析各种xml标签
-                                
     chapter2-0-2  spring Bean的装配 注解方式    @Configuration 和 @ComponentScan  
      
 # aop 模块   

@@ -3,6 +3,8 @@ package com.goat.chapter201.Import;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.Arrays;
+
 
 /**
  * 给容器中注册组件的四大方式
@@ -20,7 +22,9 @@ public class App {
 
 	@Test
 	public void ImportConfig(){
-		new AnnotationConfigApplicationContext(ImportConfig.class);
+		AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(ImportConfig.class);
+		String[] str= ac.getBeanDefinitionNames();
+		Arrays.stream(str).forEach(x->System.out.println("***---***	 " + x));
 	}
 
 	/**

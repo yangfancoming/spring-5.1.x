@@ -134,8 +134,8 @@ abstract class AutowireUtils {
 	}
 
 	/**
-	 * Determine the target type for the generic return type of the given
-	 * <em>generic factory method</em>, where formal type variables are declared on the given method itself.
+	 * Determine the target type for the generic return type of the given <em>generic factory method</em>,
+	 * where formal type variables are declared on the given method itself.
 	 * For example, given a factory method with the following signature, if
 	 * {@code resolveReturnTypeForFactoryMethod()} is invoked with the reflected
 	 * method for {@code createProxy()} and an {@code Object[]} array containing

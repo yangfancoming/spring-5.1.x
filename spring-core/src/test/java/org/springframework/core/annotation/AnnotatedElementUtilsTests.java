@@ -56,14 +56,18 @@ public class AnnotatedElementUtilsTests {
 
 	@Test
 	public void getMetaAnnotationTypesOnNonAnnotatedClass() {
-		assertTrue(getMetaAnnotationTypes(NonAnnotatedClass.class, TransactionalComponent.class).isEmpty());
-		assertTrue(getMetaAnnotationTypes(NonAnnotatedClass.class, TransactionalComponent.class.getName()).isEmpty());
+		Set<String> metaAnnotationTypes = getMetaAnnotationTypes(NonAnnotatedClass.class, TransactionalComponent.class);
+		assertTrue(metaAnnotationTypes.isEmpty());
+
+		Set<String> metaAnnotationTypes1 = getMetaAnnotationTypes(NonAnnotatedClass.class, TransactionalComponent.class.getName());
+		assertTrue(metaAnnotationTypes1.isEmpty());
 	}
 
 	@Test
 	public void getMetaAnnotationTypesOnClassWithMetaDepth1() {
 		Set<String> names = getMetaAnnotationTypes(TransactionalComponentClass.class, TransactionalComponent.class);
-		assertEquals(names(Transactional.class, Component.class, Indexed.class), names);
+		Set<String> names1 = names(Transactional.class, Component.class, Indexed.class);
+		assertEquals(names1, names);
 
 		names = getMetaAnnotationTypes(TransactionalComponentClass.class, TransactionalComponent.class.getName());
 		assertEquals(names(Transactional.class, Component.class, Indexed.class), names);

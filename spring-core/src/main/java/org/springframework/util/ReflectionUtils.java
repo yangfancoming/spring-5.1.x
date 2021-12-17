@@ -161,8 +161,8 @@ public abstract class ReflectionUtils {
 
 	// Method handling
 	/**
-	 * Attempt to find a {@link Method} on the supplied class with the supplied name and no parameters. Searches all superclasses up to {@code Object}.
-	 * Returns {@code null} if no {@link Method} can be found.
+	 * Attempt to find a {@link Method} on the supplied class with the supplied name and no parameters.
+	 * Searches all superclasses up to {@code Object}.Returns {@code null} if no {@link Method} can be found.
 	 * @param clazz the class to introspect
 	 * @param name the name of the method
 	 * @return the Method object, or {@code null} if none found

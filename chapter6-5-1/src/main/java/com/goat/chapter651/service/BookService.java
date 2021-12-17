@@ -20,6 +20,10 @@ public class BookService {
 	@Autowired
 	BookMapper bookMapper;
 
+	public BookMapper getMaper() {
+		return bookMapper;
+	}
+
 	public List<Map> test(){
 		List<Map> maps = bookMapper.queryAll();
 		return maps;
