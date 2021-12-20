@@ -131,17 +131,17 @@ public final class PostProcessorRegistrationDelegate {
 				nonOrderedPostProcessorNames.add(ppName);
 			}
 		}
-		// First, invoke the BeanFactoryPostProcessors that implement PriorityOrdered.
+		// First, invoke the BeanFactoryPostProcessors that implement PriorityOrdered. （处理同时实现 BeanFactoryPostProcessors 和 PriorityOrdered 接口的实现类）
 		sortPostProcessors(priorityOrderedPostProcessors, beanFactory);
 		invokeBeanFactoryPostProcessors(priorityOrderedPostProcessors, beanFactory);
-		// Next, invoke the BeanFactoryPostProcessors that implement Ordered.
+		// Next, invoke the BeanFactoryPostProcessors that implement Ordered. （处理同时实现 BeanFactoryPostProcessors 和 Ordered 接口的实现类）
 		List<BeanFactoryPostProcessor> orderedPostProcessors = new ArrayList<>();
 		for (String postProcessorName : orderedPostProcessorNames) {
 			orderedPostProcessors.add(beanFactory.getBean(postProcessorName, BeanFactoryPostProcessor.class));
 		}
 		sortPostProcessors(orderedPostProcessors, beanFactory);
 		invokeBeanFactoryPostProcessors(orderedPostProcessors, beanFactory);
-		// Finally, invoke all other BeanFactoryPostProcessors.
+		// Finally, invoke all other BeanFactoryPostProcessors. （处理只实现 BeanFactoryPostProcessors 接口的实现类）
 		List<BeanFactoryPostProcessor> nonOrderedPostProcessors = new ArrayList<>();
 		for (String postProcessorName : nonOrderedPostProcessorNames) {
 			nonOrderedPostProcessors.add(beanFactory.getBean(postProcessorName, BeanFactoryPostProcessor.class));

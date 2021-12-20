@@ -463,6 +463,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				 *  这个方法再当前版本中 没有任何作用，可能spring想要再后续的版本中进行扩展吧
 				*/
 				postProcessBeanFactory(beanFactory);
+				// 【只处理这四种接口的实现类：BeanDefinitionRegistryPostProcessor  PriorityOrdered  Ordered  BeanFactoryPostProcessor】
 				// 以上都是对beanFactory的预准备、创建、后置处理工作 ，以下都是 利用创建好的beanFactory来创建各种组件！
 				// Invoke factory processors registered as beans in the context. 调用在上下文中注册为bean的工厂处理器
 				// 调用BeanFacotry的相关后置处理器，如果实现了 Order 或 PriorityOrdered 相关接口，会先进行排序。
@@ -479,6 +480,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// AutowiredAnnotationBeanPostProcessor(处理被@Autowired注解修饰的bean并注入)
 				// RequiredAnnotationBeanPostProcessor(处理被@Required注解修饰的方法)
 				// CommonAnnotationBeanPostProcessor(处理@PreDestroy、@PostConstruct、@Resource等多个注解的作用)等。
+				// 【 addBeanPostProcessor 只处理这四种接口的实现类：BeanPostProcessor  PriorityOrdered  Ordered  MergedBeanDefinitionPostProcessor】
 				registerBeanPostProcessors(beanFactory);
 				// Initialize message source for this context.
 				// 初始化国际化信息源   // 初始化信息源，信息源bean可以国际化的读取properties文件
@@ -497,6 +499,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// 给事件广播器注册一些监听器（观察者模式）
 				registerListeners();
 				/**
+				 * 重点，重点，重点  初始化所有的 singleton beans （lazy-init 的除外）
 				 * 完成 容器的所有 初始化工作！
 				 * 刚才我们提到了bean还没有初始化。这个方法就是负责初始化所有的没有设置懒加载的singleton bean
 				 * Instantiate all remaining (non-lazy-init) singletons.  初始化所有（lazy-init 的除外）的 singleton beans
@@ -507,7 +510,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 				// 初始化Lifecycle处理器，调用onRefresh方法，广播ContextRefreshedEvent。
 				// 初始化容器的生命周期事件处理器，并发布容器的生命周期事件
 				// 清除缓存的资源信息，初始化一些声明周期相关的bean，并且发布Context已被初始化的事件
-				//  重点，重点，重点  初始化所有的 singleton beans （lazy-init 的除外）
 				finishRefresh();
 			}catch (BeansException ex) {
 				if (logger.isWarnEnabled()) logger.warn("Exception encountered during context initialization - cancelling refresh attempt: " + ex);

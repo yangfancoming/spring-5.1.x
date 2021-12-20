@@ -36,6 +36,15 @@ public class App {
 	}
 
 	@Test
+	public void test11(){
+		ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("beans11.xml");
+		Person person = ac.getBean(Person.class);
+		Assert.assertEquals("明明",person.getName());
+		Assert.assertEquals(0,person.getAge());
+	}
+
+
+	@Test
 	public void test2(){
 		AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(MyBeanDefinitionRegistryPostProcessor1.class);
 		Arrays.stream(ac.getBeanDefinitionNames()).forEach(x->System.out.println("***---***	 " + x));
@@ -48,7 +57,5 @@ public class App {
 //		Assert.assertEquals("jordan",person.getName());
 		Assert.assertEquals("pipen",person.getName());
 		Assert.assertEquals(23,person.getAge());
-
-
 	}
 }

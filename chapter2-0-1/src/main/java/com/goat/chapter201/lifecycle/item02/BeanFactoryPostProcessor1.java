@@ -19,12 +19,12 @@ public class BeanFactoryPostProcessor1 implements BeanFactoryPostProcessor, Orde
 	 */
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		BeanDefinition bd = beanFactory.getBeanDefinition("normal baby");
+		BeanDefinition bd = beanFactory.getBeanDefinition("person");
 		MutablePropertyValues pv = bd.getPropertyValues();
 		pv.addPropertyValue("name", "明明");
 		pv.addPropertyValue("age", 0);
 		bd.setScope(BeanDefinition.SCOPE_SINGLETON);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@	BeanFactoryPostProcessor1... normal baby"  +  "改名为 明明");
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@	BeanFactoryPostProcessor1... person"  +  "改名为 明明");
 	}
 
 	@Override
