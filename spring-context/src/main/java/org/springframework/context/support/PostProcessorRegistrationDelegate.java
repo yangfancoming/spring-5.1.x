@@ -65,7 +65,7 @@ public final class PostProcessorRegistrationDelegate {
 			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry); // 走这里
 			currentRegistryProcessors.clear();
 			// Next, invoke the BeanDefinitionRegistryPostProcessors that implement Ordered.
-			//  再看  是否实现了 Ordered 接口的 BeanDefinitionRegistryPostProcessor
+			//  再看  是否同时实现了 Ordered 接口
 			postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
 			for (String ppName : postProcessorNames) {
 				if (!processedBeans.contains(ppName) && beanFactory.isTypeMatch(ppName, Ordered.class)) {
@@ -80,7 +80,7 @@ public final class PostProcessorRegistrationDelegate {
 			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
 			currentRegistryProcessors.clear();
 			// Finally, invoke all other BeanDefinitionRegistryPostProcessors until no further ones appear.
-			// 最后一步 执行所有剩下的 既没有实现  PriorityOrdered接口 也没有实现 Ordered接口的BeanDefinitionRegistryPostProcessor
+			// 最后一步 执行所有剩下的 既没有实现  PriorityOrdered接口 也没有实现 Ordered接口的 BeanDefinitionRegistryPostProcessor
 			boolean reiterate = true;
 			while (reiterate) {
 				reiterate = false;
@@ -88,7 +88,7 @@ public final class PostProcessorRegistrationDelegate {
 				postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
 				for (String ppName : postProcessorNames) {
 					if (!processedBeans.contains(ppName)) {
-						//根据名称和类型获取bean  //把已经调用过postProcessBeanDefinitionRegistry方法的bean全部放在registryPostProcessors中
+						//根据名称和类型获取bean
 						currentRegistryProcessors.add(beanFactory.getBean(ppName, BeanDefinitionRegistryPostProcessor.class));
 						//把已经调用过postProcessBeanDefinitionRegistry方法的bean的名称全部放在processedBeans中
 						processedBeans.add(ppName);

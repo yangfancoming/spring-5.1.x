@@ -54,7 +54,7 @@ public class App {
 	}
 
 	/**
-	 * ImportBeanDefinitionRegistrar 导入组件
+	 * ImportBeanDefinitionRegistrar 接口 导入组件
 	*/
 	@Test
 	public void ImportBeanDefinitionRegistrarConfig1(){
