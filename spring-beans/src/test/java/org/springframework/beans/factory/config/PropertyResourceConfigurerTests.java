@@ -13,6 +13,7 @@ import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 import java.util.prefs.PreferencesFactory;
 
+import org.apache.catalina.core.ApplicationContext;
 import org.junit.Test;
 
 import org.springframework.beans.MutablePropertyValues;
@@ -53,6 +54,14 @@ public class PropertyResourceConfigurerTests {
 
 	private final DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
 
+	@Test
+	public void goattest() {
+
+	}
+
+	/**
+	 * PropertyOverrideConfigurer
+	 */
 	@Test
 	public void testPropertyOverrideConfigurer() {
 		BeanDefinition def1 = BeanDefinitionBuilder.genericBeanDefinition(TestBean.class).getBeanDefinition();
@@ -407,6 +416,10 @@ public class PropertyResourceConfigurerTests {
 		assertEquals(System.getProperty("os.name"), inner2.getCountry());
 	}
 
+
+	/**
+	 * PropertyPlaceholderConfigurer
+	*/
 	@Test
 	public void testPropertyPlaceholderConfigurerWithSystemPropertyFallback() {
 		factory.registerBeanDefinition("tb", genericBeanDefinition(TestBean.class).addPropertyValue("country", "${os.name}").getBeanDefinition());

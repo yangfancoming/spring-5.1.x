@@ -50,6 +50,7 @@ public class ClassPathBeanDefinitionScannerTests {
 		ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(context);
 		Set<BeanDefinitionHolder> beanDefinitionHolders = scanner.doScan(BASE_PACKAGE);
 		System.out.println(beanDefinitionHolders);
+		assertEquals(7, beanDefinitionHolders.size());
 	}
 
 	@Test

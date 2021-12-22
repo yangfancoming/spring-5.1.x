@@ -31,6 +31,20 @@ import org.springframework.util.StringValueResolver;
  * PropertyPlaceholderConfigurer可以将上下文（配置文 件）中的属性值放在另一个单独的标准java Properties文件中去。
  * 在XML文件中用${…}替换指定的properties文件中的值。
  * 这样的话，只需要对properties文件进 行修改，而不用对xml配置文件进行修改。
+ *
+ *
+ * PropertyPlaceholderConfigurer
+ *
+ * 功能 : 解析和处理bean定义中属性值,构造函数参数值,和@Value注解中的占位符${...}
+ * 属性源 : 所设置的Properties属性对象,属性文件,系统属性(system properties)，环境变量(environment variables)
+ * 工作模式 : “拉”，遍历每个bean定义中的属性占位符，从属性源中拉取对应的属性值替换属性占位符
+ * 从Spring 3.1 开始，推荐使用PropertySourcesPlaceholderConfigurer而不是PropertyPlaceholderConfigurer。
+ *
+ * PropertyOverrideConfigurer
+ *
+ * 功能 : 基于属性文件定义的bean属性值设置指令执行相应的bean属性值设置
+ * 属性源 : 指定路径的属性文件
+ * 工作模式: “推”,根据属性文件中的bean属性设置指令将属性值推送设置到相应的bean属性
  */
 public class PropertyPlaceholderConfigurer extends PlaceholderConfigurerSupport {
 

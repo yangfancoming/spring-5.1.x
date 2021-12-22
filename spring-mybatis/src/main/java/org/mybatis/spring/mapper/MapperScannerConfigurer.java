@@ -294,7 +294,7 @@ public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProces
 	 * 	 BeanDefinitionRegistryPostProcessor （实现类为MapperScannerConfigurer） 会在应用启动的时候调用，
 	 * 	 并且会早于BeanFactoryPostProcessors （实现类为PropertyResourceConfigurer）的调用，
 	 * 	 这就意味着 PropertiesResourceConfigurer 还没有被加载所有对于属性文件的引用将会失效，
-	 * 	 为避免此种情况发生，此方法手动地找出定义的PropertyResourceConfigurers并进行调用，以保证对于属性的引用可以正常工作。
+	 * 	 为避免此种情况发生，此方法手动地找出定义的 PropertyResourceConfigurers 并进行调用，以保证对于属性的引用可以正常工作。
 	*/
 	private void processPropertyPlaceHolders() {
 		Map<String, PropertyResourceConfigurer> prcs = applicationContext.getBeansOfType(PropertyResourceConfigurer.class);
